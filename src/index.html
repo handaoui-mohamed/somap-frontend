@@ -37,7 +37,7 @@
             </div>
 
             <div id="logoImage" class="col-xs-4 col-sm-6 col-md-6" align="right"  align="right"
-                 data-toggle="modal" data-target="#myModal">
+                 ng-click="vm.showAboutDialog()">
                 <img data-toggle="tooltip" data-placement="left" title="Page d'accueil" 
                      src="assets/images/rsz_somap_logo2.png" class="img-responsive logo" alt="Image" >
             </div>
@@ -61,7 +61,7 @@
                 </li>
             </ul>
 
-            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-1 image" align="right" data-toggle="modal" data-target="#myModal">
+            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-1 image" align="right" ng-click="vm.showAboutDialog()">
                 <img data-toggle="tooltip" data-placement="left" title="Page d'accueil"
                      src="assets/images/rsz_somap_logo2.png" class="img-responsive logo" alt="Image" >
             </div>
@@ -192,71 +192,6 @@
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog" >
-    <div class="modal-dialog modal-lg" >
-
-        <!-- Modal content-->
-        <div class="modal-content" style="background-color: #2b303b">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" style="color: white">&times;</button>
-                <h4 class="modal-title" style="color: white">Apropos de SoMap et nous</h4>
-            </div>
-            <div class="modal-body" style="margin: -20px;">
-                <div id="carousel-id" class="carousel slide" data-ride="carousel" >
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-id" data-slide-to="1" class=""></li>
-                        <li data-target="#carousel-id" data-slide-to="2" class=""></li>
-                    </ol>
-                    <div class="carousel-inner" >
-                        <div class="item" >
-                            <img style="opacity: 0" data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" alt="First slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojN2E3YTdhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+Rmlyc3Qgc2xpZGU8L3RleHQ+PC9zdmc+">
-                            <div class="container">
-                                <div class="carousel-caption cScreen" >
-                                    <h1>SoMap</h1>
-                                    <p>SoMap est né d’une collaboration entre l’Ecole Supérieure d’Informatique d’Alger, et l’UNICEF, dans le cadre du projet InnovationLab. SoMap a été développé par une équipe d’étudiants motivés et engagés. Cette dernière compte Djallel Bouisri, Zoubida Ferkani, Mohamed Handaoui, et Mohamed Mancef Bekdouche.</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img style="opacity: 0" data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNmE2YTZhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+U2Vjb25kIHNsaWRlPC90ZXh0Pjwvc3ZnPg==">
-                            <div class="container">
-                                <div class="carousel-caption cScreen"  style="text-align:center">
-                                    <h1 class="Membre" style="color: #1E90FF;">LES MEMBRES DE l'EQUIPE</h1>
-                                    <li class="Membre">Djallel Ahmed BOUISRI</li>
-                                    <li class="Membre">FERKANI Zoubida</li>
-                                    <li class="Membre">BEKDOUCHE MANCEF Mohamed</li>
-                                    <li class="Membre">HANDAOUI Mohamed</li>
-                                    <h1 class="encadreur" style="color: #1E90FF;">ENCADRE PAR</h1>
-                                    <li class="encadreur">DAHAK Fouad</li>
-                                    <li class="encadreur">AZOUAOU Faical</li>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item active">
-                            <img alt="Third slide" src="assets/images/background.png">
-                            <div class="container">
-                                <div class="carousel-caption"  id="startScreen">
-                                    <h1>SoMap</h1>
-                                    <p>SoMap est une plateforme web qui permet de, rechercher des services sociaux sur l’ensemble du territoire Algérien, de les filtrer par type, par wilaya ou par localisation et de les afficher sur une carte en ligne.</p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="left carousel-control" href="#carousel-id" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                    <a class="right carousel-control" href="#carousel-id" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-
-
 <!-- script references -->
 <script type="text/javascript" src="..\bower_components\jquery\dist\jquery.min.js"></script>
 <script src="..\bower_components\bootstrap\dist\js\bootstrap.min.js"></script>
@@ -280,6 +215,7 @@
 <script type="text/javascript" src="app\index.config.js"></script>
 <script type="text/javascript" src="app\index.service.js"></script>
 <script type="text/javascript" src="app\index.run.js"></script>
+<script type="text/javascript" src="app\about-dialog\about-dialog.controller.js"></script>
 <script type="text/javascript" src="app\index.controller.js"></script>
 </body>
 

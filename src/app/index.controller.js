@@ -5,7 +5,7 @@
         .module("somap")
         .controller("IndexController",IndexController);
 
-    function IndexController($scope, WilayaService, InstitutionClassService,
+    function IndexController($scope, $mdDialog, WilayaService, InstitutionClassService,
                              InstitutionService, SourceBlack, SourceBlue){
         var vm = this;
 		
@@ -55,6 +55,7 @@
 		vm.reset = reset;
         vm.filterMarkers = filterMarkers;
 		vm.filterWilayas = filterWilayas;
+		vm.showAboutDialog = showAboutDialog;
 
 
         //Functions Implementation 
@@ -215,5 +216,19 @@
 				}
 			});
 		};*/
+
+
+		// Dialogs Section
+		function showAboutDialog(event) {
+			$mdDialog.show({
+				controller: "AboutDialogController",
+				controllerAs: "aboutVm",
+				templateUrl: 'app/about-dialog/about-dialog.html',
+				parent: angular.element(document.body),
+				targetEvent: event,
+				clickOutsideToClose:true,
+				escapeToClose: true
+			});
+		}
     }
 })();
