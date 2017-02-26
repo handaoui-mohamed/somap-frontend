@@ -6,7 +6,7 @@
         <title>SoMap</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href="..\bower_components\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet">
-        <link href="assets\css\styles.css" rel="stylesheet">
+        <link href="index.css" rel="stylesheet">
     </head>
 
 <body ng-controller="IndexController as vm">
@@ -89,7 +89,7 @@
                         </label>
                         <label id="institution_{{institutionClass.id}}" class="[ btn btn-default ]" 
                                 style="color: white;border-color: transparent; background-color: transparent;
-                                border-radius: 0px" for="institutionClass_{{institutionClass.id}}">
+                                border-radius: 0px;text-transform: capitalize" for="institutionClass_{{institutionClass.id}}">
                                 {{institutionClass.denomination}}
                         </label>
                     </div>
@@ -113,7 +113,8 @@
                             <span> </span>
                         </label>
                         <label class="[ btn btn-default ]" style="color: white;border-color: transparent; 
-                               background-color: transparent;border-radius: 0px" for="wilaya_{{wilaya.id}}">
+                               background-color: transparent;border-radius: 0px;text-transform: capitalize"
+                                for="wilaya_{{wilaya.id}}">
                                {{wilaya.name}}
                         </label>
                     </div>
@@ -139,19 +140,19 @@
 
                 <info-window id="myInfoWindow" >
                     <div ng-non-bindable="" >
-                        <h4 align="middle" style=" background-color: white ;font-weight: 100; color: #2d6ca2" ng-cloak>
+                        <h4 align="middle" style=" background-color: white ;font-weight: 100; color: #2d6ca2;text-transform: capitalize" ng-cloak>
                             {{vm.selectedMarker.denomination}}</h4>
-                        <h5 align="middle" style="font-weight: 100" ng-cloak>
+                        <h5 align="middle" style="font-weight: 100;text-transform: capitalize" ng-cloak>
                             {{vm.institutionClasses[vm.selectedMarker.typeId].denomination}}</h5>
                         <div>
-                            <p ng-cloak>
+                            <p ng-cloak style="text-transform: capitalize">
                                 {{vm.selectedMarker.description}}
                             </p>
                             <p>
-                                <span ng-cloak>{{vm.wilayas[vm.selectedMarker.wilayaId-1].name}}, {{vm.selectedMarker.commune}}, {{vm.selectedMarker.address}}</span>
+                                <span ng-cloak style="text-transform: capitalize">{{vm.wilayas[vm.selectedMarker.wilayaId-1].name}}, {{vm.selectedMarker.commune.name}}, {{vm.selectedMarker.address}}</span>
                                 <br />
                                 <span ng-cloak>{{vm.selectedMarker.phone}}</span>
-                            </p>
+                            </p> 
                         </div>
                     </div>
                 </info-window>
@@ -176,13 +177,13 @@
                         border-color: white;border-radius: 10px;text-align: start;width: 100%;white-space: normal;"
                   ng-click="vm.showOnMap(evt, institution)" ng-mouseover="vm.hoverIn(institution)" 
                   ng-mouseleave="vm.hoverOut(institution)">
-                <h5 align="left" style="display: inline-block;font-weight: bold; color: #2d6ca2;margin-right: 36px" href="#">
+                <h5 align="left" style="display: inline-block;font-weight: bold; color: #2d6ca2;margin-right: 36px;text-transform: capitalize" href="#">
                     {{institution.denomination}}</h5>
-                <h5 id="meaning{{institution.id}}" align="left" style="display: none;color: black">
+                <h5 id="meaning{{institution.id}}" align="left" style="display: none;color: black;text-transform: capitalize">
                     {{vm.institutionClasses[institution.typeId-1].denomination}}</h5>
                 <div>
                     <p>
-                        <span style="color: black">{{vm.wilayas[institution.wilayaId-1].name}}, {{institution.commune}}.{{institution.address}}</span>
+                        <span style="color: black;text-transform: capitalize;">{{vm.wilayas[institution.wilayaId-1].name}}, {{institution.commune.name}}.{{institution.address}}</span>
                         <span id="contact{{institution.id}}" style="display: none;color: black">{{institution.phone}}</span>
                     </p>
                 </div>
