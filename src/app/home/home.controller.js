@@ -49,7 +49,6 @@
         vm.onMarkerClicked = onMarkerClicked;
         vm.onMapClicked = onMapClicked;
 		vm.searchAction = searchAction;
-        vm.showOnMap = showOnMap;
 		vm.onSearchClicked = onSearchClicked;
         vm.selectAll= selectAll;
 		vm.reset = reset;
@@ -88,67 +87,7 @@
 				vm.map.setCenter(new google.maps.LatLng(32 , -4) );
 				vm.map.setZoom(6);
 			}
-		};
-
-        function showOnMap(event, institution){
-			var marker = vm.map.markers[institution.id];
-			vm.selectedMarker = institution;
-			if (vm.map.markers[institution.id].getVisible() == false)
-			{
-
-				vm.map.markers[institution.id].setVisible(true);
-				$('#button'+institution.id).css("backgroundColor","#F2F2F2");
-				$('#image'+institution.id).attr("src",vm.sourceBlue);
-				$('#contact'+institution.id).css("display","block");
-				$('#meaning'+institution.id).css("display","block");
-
-				var lng = marker.getPosition().lng() ;
-				var lat = marker.getPosition().lat() ;
-				vm.map.setCenter(new google.maps.LatLng(lat + 0.01 , lng - 0.03) );
-				vm.map.setZoom(13);
-				$scope.showInfoWindow(event, 'myInfoWindow', marker);
-
-				if (vm.selectedMarkers.indexOf(institution.id)===-1)
-				{
-					vm.selectedMarkers.push(institution.id);
-				}
-
-			}
-			else
-			{
-				vm.map.markers[institution.id].setVisible(false);
-				$('#button'+institution.id).css("backgroundColor","WHITE");
-				$('#image'+institution.id).attr("src",vm.sourceBlack);
-				$('#contact'+institution.id).css("display","none");
-				$('#meaning'+institution.id).css("display","none");
-				$scope.hideInfoWindow(event, 'myInfoWindow', marker);
-				vm.selectedMarker = null;
-
-				var index =vm.selectedMarkers.indexOf(institution.id);
-				if (index > -1)
-				{
-					if (index === vm.selectedMarkers.length -1)
-					{
-						if (vm.selectedMarkers.length > 1)
-						{
-							var prevMarker = vm.map.markers[vm.selectedMarkers[index-1]];
-							vm.map.markers[vm.selectedMarkers[index-1]].setVisible(true);
-							var lng = prevMarker.getPosition().lng() ;
-							var lat = prevMarker.getPosition().lat() ;
-							vm.map.setCenter(new google.maps.LatLng(lat + 0.01 , lng - 0.03) );
-							vm.map.setZoom(13);
-							$scope.showInfoWindow(event, 'myInfoWindow', prevMarker);
-						}
-					}
-
-					vm.selectedMarkers.splice(index,1);
-					if (vm.selectedMarkers.length === 0){
-						vm.map.setCenter(new google.maps.LatLng(32 , -4) );
-						vm.map.setZoom(6);
-					}
-				}
-			}
-		};
+		}
 
         function onSearchClicked(){
 			var i= -1;
@@ -168,13 +107,13 @@
 				i++;
 				button = document.getElementById('button'+i);
 			});
-		};
+		}
 
         function selectAll(value) {
 			for (var i = 0;i < vm.selectedWilayas.length; i++){
 				vm.selectedWilayas[i] = value;
 			}
-		};
+		}
 
         function reset(){
 			for(var i=0;i<vm.Institutions.length;i++)
@@ -191,17 +130,7 @@
 
 				}
 			}
-		};
-
-		vm.hoverIn =  function(institution){
-			if ($('#contact'+institution.id).css("display") ===  "none")
-			$('#button'+institution.id).css("backgroundColor","#F2F2F2");
-		};
-
-		vm.hoverOut =  function(institution){
-			if ($('#contact'+institution.id).css("display") ===  "none")
-				$('#button'+institution.id).css("backgroundColor","WHITE");
-		};
+		}
 		
 		// pour recuperer les position "geocoder"
 		/*$scope.showOnMap = function(institution){
