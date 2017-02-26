@@ -8,6 +8,10 @@
             "ngMap",
             "ngMaterial",
             "ngAria",
-            "ngAnimate"
+            "ngAnimate",
+            'ui.router',
+
+            //costum modules
+            "home"
         ]);
 })();

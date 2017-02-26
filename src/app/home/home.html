@@ -1,0 +1,183 @@
+<div id="MainContainer">
+
+    <!-- La bar superieur -->
+    <div class="navbar " id="navigationBar">
+        <div class="row" >
+            <div id="searchBar" class="col-xs-8 col-sm-6 col-md-6 col-lg-4 " >
+                <div id="rech">
+                    <div class="form-group" style="display:inline;">
+                        <div class="input-group">
+                            <span class="input-group-btn" style="z-index: 100">
+                                <button data-toggle="tooltip" data-placement="right" 
+                                    title="Afficher les Résultats Dans la map" ng-dblclick="vm.reset()" 
+                                    class="btn btn-default" type="button" id="ut"  ng-click="vm.onSearchClicked()">
+                                    <i id="iconS" class="glyphicon glyphicon-search"></i>
+                                    <br>
+                                    Afficher tout
+                                </button>
+                            </span>
+                            <input ng-model="vm.query" id="modern" type="text" class="form-control"
+                                   placeholder="Entrer un mot clé dans le champ de recherche">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="logoImage" class="col-xs-4 col-sm-6 col-md-6" align="right"  align="right"
+                 ng-click="vm.showAboutDialog()">
+                <img data-toggle="tooltip" data-placement="left" title="Page d'accueil" 
+                     src="assets/images/rsz_somap_logo2.png" class="img-responsive logo" alt="Image" >
+            </div>
+
+
+            <ul id="filterBar" class="nav navbar-nav col-xs-12 col-sm-12 col-md-12 col-lg-7">
+                <span style="text-align:center;margin-top: 15px;color: white;" 
+                      class="col-xs-12 col-sm-12 col-md-6 col-lg-2">Filtrer Par :</span>
+
+                <li data-placement="bottom"  class="col-xs-12 col-sm-12 col-md-3 col-lg-5" 
+                    style="text-align:center;" id="instDiv">
+                    <a  href="" id="instButton" type="button" class="filter">
+                        Institutions
+                    </a>
+                </li>
+
+                <li  data-placement="bottom"  class="col-xs-12 col-sm-12 col-md-3 col-lg-5" style="text-align:center;">
+                    <a href="" id="wilayaButton"  type="button" class="filter">
+                        Wilayas
+                    </a>
+                </li>
+            </ul>
+
+            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-1 image" align="right" ng-click="vm.showAboutDialog()">
+                <img data-toggle="tooltip" data-placement="left" title="Page d'accueil"
+                     src="assets/images/rsz_somap_logo2.png" class="img-responsive logo" alt="Image" >
+            </div>
+
+        </div>
+    </div>
+
+    <!-- div qui contient les cases a cocher des filtres -->
+    <div class="row" >
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5"></div>
+
+        <ul class="form-group col-xs-12 col-sm-12 col-md-5 col-lg-6" style="z-index: 100">
+            <div id="instFilter"  align="left">
+                <div  ng-repeat="institutionClass in vm.institutionClasses">
+                    <input  type="checkbox"  name="institutionClass_{{institutionClass.id}}" 
+                            id="institutionClass_{{institutionClass.id}}" value="{{institutionClass.id}}" 
+                            ng-model="vm.selectedInstitutions[institutionClass.id-1]" autocomplete="off" />
+                    <div class="[ btn-group ]">
+                        <label style="margin: 2px;border-radius: 2px;border-color: #2b303b;
+                               background-color: rgba(44, 48, 58, 1);" for="institutionClass_{{institutionClass.id}}" 
+                               class="[ btn btn-primary ]">
+                            <span class="[ glyphicon glyphicon-ok ]"></span>
+                            <span> </span>
+                        </label>
+                        <label id="institution_{{institutionClass.id}}" class="[ btn btn-default ]" 
+                                style="color: white;border-color: transparent; background-color: transparent;
+                                border-radius: 0px;text-transform: capitalize" for="institutionClass_{{institutionClass.id}}">
+                                {{institutionClass.denomination}}
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="wilayaFilter" align="left" >
+                <div align="center" style="padding-bottom: 10px">
+                    <button class="btn btn-default" ng-click="vm.selectAll(true)"> Sélectionner tout </button>
+                    <button class="btn btn-default"  ng-click="vm.selectAll(false)"> Désélectionner tout </button>
+                </div>
+                <div ng-repeat="wilaya in vm.wilayas"  class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
+                    <input type="checkbox"  name="wilaya_{{wilaya.id}}" id="wilaya_{{wilaya.id}}" 
+                    value="{{wilaya.id}}" ng-model="vm.selectedWilayas[wilaya.id-1]" autocomplete="off" />
+                    <div class="[ btn-group ]">
+                        <label style="margin: 2px;border-radius: 2px;border-color: #2b303b;
+                               background-color: rgba(44, 48, 58, 1);" for="wilaya_{{wilaya.id}}" 
+                               class="[ btn btn-primary ]">
+                            <span class="[ glyphicon glyphicon-ok ]"></span>
+                            <span> </span>
+                        </label>
+                        <label class="[ btn btn-default ]" style="color: white;border-color: transparent; 
+                               background-color: transparent;border-radius: 0px;text-transform: capitalize"
+                                for="wilaya_{{wilaya.id}}">
+                               {{wilaya.name}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </ul>
+
+        <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+
+    </div>
+
+    <!-- Map Container -->
+    <div id="MapContainer" >
+        <div id="map-canvas">
+            <map center="32, -4"  zoom="6" on-click="vm.onMapClicked(event)" style="height: 100%">
+                <marker ng-repeat="marker in vm.institutions" id="{{marker.id}}"
+                        on-click="onMarkerClicked(event)"
+                        position={{marker.position.lat+","+marker.position.lng}}
+                        title={{marker.denomination}}
+                        icon={{vm.institutionClasses[marker.typeId].icon_url}}
+                        visible = "false"></marker>
+
+                <info-window id="myInfoWindow" >
+                    <div ng-non-bindable="" >
+                        <h4 align="middle" style=" background-color: white ;font-weight: 100; color: #2d6ca2;text-transform: capitalize" ng-cloak>
+                            {{vm.selectedMarker.denomination}}</h4>
+                        <h5 align="middle" style="font-weight: 100;text-transform: capitalize" ng-cloak>
+                            {{vm.institutionClasses[vm.selectedMarker.typeId].denomination}}</h5>
+                        <div>
+                            <p ng-cloak style="text-transform: capitalize">
+                                {{vm.selectedMarker.description}}
+                            </p>
+                            <p>
+                                <span ng-cloak style="text-transform: capitalize">{{vm.wilayas[vm.selectedMarker.wilayaId-1].name}}, {{vm.selectedMarker.commune.name}}, {{vm.selectedMarker.address}}</span>
+                                <br />
+                                <span ng-cloak>{{vm.selectedMarker.phone}}</span>
+                            </p> 
+                        </div>
+                    </div>
+                </info-window>
+
+            </map>
+        </div>
+    </div>
+
+    <!--Conterneur Resultat de la recherche -->
+    <div id="main">
+        <div data-toggle="tooltip" data-placement="bottom" title="Afficher dans la map" class="institution" 
+             ng-repeat="institution in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
+            <img ng-click="vm.showOnMap(evt, institution)"
+                 ng-mouseover="vm.hoverIn(institution)" ng-mouseleave="vm.hoverOut(institution)"
+                 role="button" href=""
+                 id="image{{institution.id}}" align="right"
+                 style="cursor: pointer;margin: 5px;position: absolute;right: 0;z-index: 1;max-height: 36px;max-width: 36px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAE7UlEQVR4Xt2b3XEcNwzHiW3A7iByBZYrsFJB5Ari5epdSgWRK4j0ruU6FUSuIFIFUSqI0oHTAJH527yZ9c0tCYDcu0s4oxcdjyR+BPFB8MjtoU3TdMLMb5n5lIhOnXMn6W8++7Nz7pmZn4gIf4993+N/qzZaa3QIHWO8JKLzHcJKpwWQ+67rbteC0RzANE1nzPyzc+5MKqWw3wMRfej7/kHYX9StGYCk5tMKgm8LAhB9K41oAmCapktmvhEhb9PpMxFd931/WztcFYBpml7GGKd0zmvXov5+sg/Qhs/qL6cvmAEklf/NOQerfsgGj/G9FYIJwDRNp8z8u3Pu5SEln82NIwEIT9r1qAFA7Zn5jwrXpl2jtL9JE9QAQggQ/tBqvwTlyXv/RkoM/VQAQgiw9JeaCQ7Q99Z7fyWdVwwgBTg490ffkj0QBUwiAEd87pc249l7/0qyUyIA4zheExHC2+rGzH8T0QMzf0l+0oAnRISE6YyIvquexDnHzB+GYbgujVUEkHb/rwYu75GIrkquKrlY2Jq3pcUXPodrfFWKD4oAxnG8IqJfrIth5n+6rjvXJjGwOTHGeyJ6UTH3T8MwZEP0IoAQAnYf+bu6MfOfXdedlXZhaeAUaiP5ea2e/OsXim4xCyCpI/y+utUKv5mwFgIRvckduywAq/FLao+dV4emu0hjI2KM0AT1cSgZwyyAEAJ8qdoYlSZVq5NzzroZzrlH7/3i5UwJAGsXCzfXdd2p9dwX7MGzRQu894tyLn5Qcf5VoagGsDUUT+5w5wVrDgDu9tShryYM1QiPvnd3d+dd1+EOQtVya1oEYPX/OXVTrXqhcwjBciz7YRg+7hoyB8AU/h4pgMWwuDUAcRJi1QZLYJbzSq0BuCPVgMWQuLkRPEYAJiNovQCJMb67uLi4t6p47nt79QJHGgfAkv+ohWuKAzCJxeU450R5uFYI670EItNhGBaz2VIo/H/IBT5571Gh3tlWyQaTFpgKFUvZoLUQw8zZS5EsAKvRSUIgcUEubq7bYZzaC9nc+cf4xRuhcRxxptV5eIKAas07aym7tv6IS5lhGLJFnCKAEILJ8s5UGQABQXRPP7sJQjKGxMdcfyypv0gDKo/B/EgDwI33/lPOA4QQfnDOobJT/cKkpP4iAOg0jiPOc5P7ehjIVNf/Jj+PMaI2AGtt3vEtsL9679+X3G3xCCQA74kIz1/+M02y+2INSBBqjOG+wYl2XwvAdD+wb8m/CPW1IiR6Yyg6AhshGtuCtdio7iRVABp6hFWET/WIE03wpQKAVVtrBatIvDWoxO9vr0MNID2BRYRnjQ7XYpFNepYmVQNIHqGqYtyagEX1N2swATi2o1BzC2UGkKq2plJVYw1QWf1qGzAfwHpv2AqAJNsrzWXWgFlscBB7kM49irCigKepEdwerEHKXNqobz5v+f6gWgNmmgDXaH3KogWwWOtTDSS5EZIOWPuURToPMzcTXpUMSRa4BwjiLE+y3uYAMOCKkWJz4VcBkCCYHzUt7Nwqwq8GYAbhYwPDuJrwqwJIEPCbopqHjqsKvzqASghVIe7BjOCuiVN1B292RZXd1q4uB6NZICQhXnrmhggPNYGlB02SObR99goAixvHEXf1N9sXKi3DWw2EvQPY5SFaPazWCL7pexAAG+O4+blt+iFFVRXZIjy+8y9B8M9f9tzoZwAAAABJRU5ErkJggg=="/>
+
+            <div class="btn" role="button"
+                 id="button{{institution.id}}" href=""
+                 style="position: relative;	box-shadow: 0px 1px 5px #888888;background-color: white;
+                        border-color: white;border-radius: 10px;text-align: start;width: 100%;white-space: normal;"
+                  ng-click="vm.showOnMap(evt, institution)" ng-mouseover="vm.hoverIn(institution)" 
+                  ng-mouseleave="vm.hoverOut(institution)">
+                <h5 align="left" style="display: inline-block;font-weight: bold; color: #2d6ca2;margin-right: 36px;text-transform: capitalize" href="">
+                    {{institution.denomination}}</h5>
+                <h5 id="meaning{{institution.id}}" align="left" style="display: none;color: black;text-transform: capitalize">
+                    {{vm.institutionClasses[institution.typeId-1].denomination}}</h5>
+                <div>
+                    <p>
+                        <span style="color: black;text-transform: capitalize;">{{vm.wilayas[institution.wilayaId-1].name}}, {{institution.commune.name}}.{{institution.address}}</span>
+                        <span id="contact{{institution.id}}" style="display: none;color: black">{{institution.phone}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type='text/javascript' src="assets\js\actions.js"></script>

@@ -3,6 +3,10 @@ body {
 	overflow-y:hidden;
 }
 
+.carousel-caption{
+	line-height:inherit;
+}
+
 
 .form-group input[type="checkbox"] {
 	display: none;
@@ -253,10 +257,6 @@ textarea:focus,input[type="text"]:focus,.uneditable-input:focus {
 	color: white;
 }
 
-#startScreen{
-	top:50%;
-}
-
 #logoImage{
 	display: none;
 }
@@ -290,19 +290,12 @@ textarea:focus,input[type="text"]:focus,.uneditable-input:focus {
 }
 
 @media only screen and (width: 768px){
-	#startScreen{
-		top:100%;
-	}
 	.cScreen{
 		top:0;
 	}
 }
 
 @media only screen and (max-height: 570px){
-	#startScreen{
-		top:10%;
-	}
-
 	.cScreen{
 		top:10%;
 	}
@@ -312,17 +305,12 @@ textarea:focus,input[type="text"]:focus,.uneditable-input:focus {
 	.cScreen{
 		top:0;
 	}
-	.encadreur{
-		display: none;
-	}
+	
 }
 
 @media only screen and (max-height: 365px){
 	.cScreen{
 		top:0;
-	}
-	.Membre{
-		display: none;
 	}
 }
 
@@ -334,10 +322,6 @@ textarea:focus,input[type="text"]:focus,.uneditable-input:focus {
 		border-left-color: transparent;
 		border-right: 0;
 		border-right-color: transparent;
-	}
-
-	#startScreen{
-		top:100%;
 	}
 
 	.cScreen{

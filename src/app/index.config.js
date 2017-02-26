@@ -5,7 +5,23 @@
         .module("somap")
         .config(config);
 
-    function config(){
-        
+    function config($stateProvider, $locationProvider, $urlRouterProvider){
+        $locationProvider.html5Mode(true).hashPrefix('!');
+        $stateProvider.state('home', {
+            url: '/',
+            controller: 'HomeController as vm',
+            templateUrl: 'app/home/home.html'
+        });
+        $urlRouterProvider.otherwise('/');// we can use 404 page
+
+        // angular-translate configuration
+        // inject these: $translateProvider, $translatePartialLoaderProvider
+        // $translateProvider.useLoader('$translatePartialLoader', {
+        //     urlTemplate: '{part}/i18n/{lang}.json'
+        // });
+
+        // $translateProvider.preferredLanguage('ar');
+        // // $translateProvider.useSanitizeValueStrategy('sanitize');
+        // $translatePartialLoaderProvider.addPart('app');
     }
 })();

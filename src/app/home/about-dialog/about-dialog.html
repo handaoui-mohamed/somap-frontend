@@ -1,33 +1,35 @@
-<md-dialog aria-label="Apropos de SoMap et nous">
-    <md-toolbar>
+<md-dialog aria-label="Apropos de SoMap et nous" style="top:20px">
+    <md-toolbar style="background-color:rgba(44, 48, 58, 0.9)">
       <div class="md-toolbar-tools">
         <h2>Apropos de SoMap et nous</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="aboutVm.close()">
-          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+          <span class="glyphicon glyphicon-remove"></span>
         </md-button>
       </div>
     </md-toolbar>
 
     <md-dialog-content>
-      <div class="md-dialog-content">
-        <div id="carousel-id" class="carousel slide" data-ride="carousel" >
+      <div class="md-dialog-content" style="padding:0">
+        <div id="carousel-id" class="carousel slide" data-ride="carousel" style="height:450px; max-width:800px">
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-id" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel-id" data-slide-to="1" class=""></li>
                     <li data-target="#carousel-id" data-slide-to="2" class=""></li>
                 </ol>
                 <div class="carousel-inner" >
+                        <img alt="First slide" src="assets/images/background.png" style="width:100%">
                     <div class="item" >
                         <div class="container">
-                            <div class="carousel-caption" >
+                            <div class="carousel-caption"  style="text-align:center">
                                 <h1>SoMap</h1>
                                 <p>SoMap est né d’une collaboration entre l’Ecole Supérieure d’Informatique d’Alger, 
                                     et l’UNICEF, dans le cadre du projet InnovationLab. SoMap a été développé par une 
                                     équipe d’étudiants motivés et engagés. Cette dernière compte Djallel Bouisri, 
                                     Zoubida Ferkani, Mohamed Handaoui, et Mohamed Mancef Bekdouche.</p>
+                                </div>
+                            
 
-                            </div>
                         </div>
                     </div>
                     <div class="item">
@@ -45,9 +47,8 @@
                         </div>
                     </div>
                     <div class="item active">
-                        <img alt="Third slide" src="assets/images/background.png">
                         <div class="container">
-                            <div class="carousel-caption"  id="startScreen">
+                            <div class="carousel-caption">
                                 <h1>SoMap</h1>
                                 <p>SoMap est une plateforme web qui permet de, rechercher des services sociaux 
                                    sur l’ensemble du territoire Algérien, de les filtrer par type, par wilaya 
