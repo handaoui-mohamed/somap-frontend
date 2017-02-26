@@ -5,10 +5,25 @@
         <meta charset="utf-8">
         <title>SoMap</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link href="..\bower_components\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet">
-        <link href="index.css" rel="stylesheet">
-    </head>
+        <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="index.css"/>
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
+        <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+        <!-- bower:css --> 
+        <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css({.tmp/serve,src}) styles/app.css -->
+        <!-- inject:css -->
+        <!-- css files will be automatically insert here -->
+        <!-- endinject -->
+        <!-- endbuild -->
+    </head>
+<!--[if lt IE 10]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 <body ng-controller="IndexController as vm">
 
 <div id="MainContainer">
@@ -49,13 +64,13 @@
 
                 <li data-placement="bottom"  class="col-xs-12 col-sm-12 col-md-3 col-lg-5" 
                     style="text-align:center;" id="instDiv">
-                    <a  href="#" id="instButton" type="button" class="filter">
+                    <a  href="" id="instButton" type="button" class="filter">
                         Institutions
                     </a>
                 </li>
 
                 <li  data-placement="bottom"  class="col-xs-12 col-sm-12 col-md-3 col-lg-5" style="text-align:center;">
-                    <a href="#" id="wilayaButton"  type="button" class="filter">
+                    <a href="" id="wilayaButton"  type="button" class="filter">
                         Wilayas
                     </a>
                 </li>
@@ -167,17 +182,17 @@
              ng-repeat="institution in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
             <img ng-click="vm.showOnMap(evt, institution)"
                  ng-mouseover="vm.hoverIn(institution)" ng-mouseleave="vm.hoverOut(institution)"
-                 role="button" href="#"
+                 role="button" href=""
                  id="image{{institution.id}}" align="right"
                  style="cursor: pointer;margin: 5px;position: absolute;right: 0;z-index: 1;max-height: 36px;max-width: 36px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAE7UlEQVR4Xt2b3XEcNwzHiW3A7iByBZYrsFJB5Ari5epdSgWRK4j0ruU6FUSuIFIFUSqI0oHTAJH527yZ9c0tCYDcu0s4oxcdjyR+BPFB8MjtoU3TdMLMb5n5lIhOnXMn6W8++7Nz7pmZn4gIf4993+N/qzZaa3QIHWO8JKLzHcJKpwWQ+67rbteC0RzANE1nzPyzc+5MKqWw3wMRfej7/kHYX9StGYCk5tMKgm8LAhB9K41oAmCapktmvhEhb9PpMxFd931/WztcFYBpml7GGKd0zmvXov5+sg/Qhs/qL6cvmAEklf/NOQerfsgGj/G9FYIJwDRNp8z8u3Pu5SEln82NIwEIT9r1qAFA7Zn5jwrXpl2jtL9JE9QAQggQ/tBqvwTlyXv/RkoM/VQAQgiw9JeaCQ7Q99Z7fyWdVwwgBTg490ffkj0QBUwiAEd87pc249l7/0qyUyIA4zheExHC2+rGzH8T0QMzf0l+0oAnRISE6YyIvquexDnHzB+GYbgujVUEkHb/rwYu75GIrkquKrlY2Jq3pcUXPodrfFWKD4oAxnG8IqJfrIth5n+6rjvXJjGwOTHGeyJ6UTH3T8MwZEP0IoAQAnYf+bu6MfOfXdedlXZhaeAUaiP5ea2e/OsXim4xCyCpI/y+utUKv5mwFgIRvckduywAq/FLao+dV4emu0hjI2KM0AT1cSgZwyyAEAJ8qdoYlSZVq5NzzroZzrlH7/3i5UwJAGsXCzfXdd2p9dwX7MGzRQu894tyLn5Qcf5VoagGsDUUT+5w5wVrDgDu9tShryYM1QiPvnd3d+dd1+EOQtVya1oEYPX/OXVTrXqhcwjBciz7YRg+7hoyB8AU/h4pgMWwuDUAcRJi1QZLYJbzSq0BuCPVgMWQuLkRPEYAJiNovQCJMb67uLi4t6p47nt79QJHGgfAkv+ohWuKAzCJxeU450R5uFYI670EItNhGBaz2VIo/H/IBT5571Gh3tlWyQaTFpgKFUvZoLUQw8zZS5EsAKvRSUIgcUEubq7bYZzaC9nc+cf4xRuhcRxxptV5eIKAas07aym7tv6IS5lhGLJFnCKAEILJ8s5UGQABQXRPP7sJQjKGxMdcfyypv0gDKo/B/EgDwI33/lPOA4QQfnDOobJT/cKkpP4iAOg0jiPOc5P7ehjIVNf/Jj+PMaI2AGtt3vEtsL9679+X3G3xCCQA74kIz1/+M02y+2INSBBqjOG+wYl2XwvAdD+wb8m/CPW1IiR6Yyg6AhshGtuCtdio7iRVABp6hFWET/WIE03wpQKAVVtrBatIvDWoxO9vr0MNID2BRYRnjQ7XYpFNepYmVQNIHqGqYtyagEX1N2swATi2o1BzC2UGkKq2plJVYw1QWf1qGzAfwHpv2AqAJNsrzWXWgFlscBB7kM49irCigKepEdwerEHKXNqobz5v+f6gWgNmmgDXaH3KogWwWOtTDSS5EZIOWPuURToPMzcTXpUMSRa4BwjiLE+y3uYAMOCKkWJz4VcBkCCYHzUt7Nwqwq8GYAbhYwPDuJrwqwJIEPCbopqHjqsKvzqASghVIe7BjOCuiVN1B292RZXd1q4uB6NZICQhXnrmhggPNYGlB02SObR99goAixvHEXf1N9sXKi3DWw2EvQPY5SFaPazWCL7pexAAG+O4+blt+iFFVRXZIjy+8y9B8M9f9tzoZwAAAABJRU5ErkJggg=="/>
 
             <div class="btn" role="button"
-                 id="button{{institution.id}}" href="#"
+                 id="button{{institution.id}}" href=""
                  style="position: relative;	box-shadow: 0px 1px 5px #888888;background-color: white;
                         border-color: white;border-radius: 10px;text-align: start;width: 100%;white-space: normal;"
                   ng-click="vm.showOnMap(evt, institution)" ng-mouseover="vm.hoverIn(institution)" 
                   ng-mouseleave="vm.hoverOut(institution)">
-                <h5 align="left" style="display: inline-block;font-weight: bold; color: #2d6ca2;margin-right: 36px;text-transform: capitalize" href="#">
+                <h5 align="left" style="display: inline-block;font-weight: bold; color: #2d6ca2;margin-right: 36px;text-transform: capitalize" href="">
                     {{institution.denomination}}</h5>
                 <h5 id="meaning{{institution.id}}" align="left" style="display: none;color: black;text-transform: capitalize">
                     {{vm.institutionClasses[institution.typeId-1].denomination}}</h5>
@@ -193,31 +208,28 @@
 </div>
 
 
-<!-- script references -->
-<script type="text/javascript" src="..\bower_components\jquery\dist\jquery.min.js"></script>
-<script src="..\bower_components\bootstrap\dist\js\bootstrap.min.js"></script>
+<!-- Google Maps -->
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDk5AKCS1B10uQJmyfwEV29PCs00mmQPEE&output=embed"></script>
-
-<!-- Angular Scripts -->
-<script type="text/javascript" src="..\bower_components\angular\angular.min.js"></script>
-<script type="text/javascript" src="..\bower_components\ngmap\build\scripts\ng-map.min.js"></script>
-<script type="text/javascript" src="..\bower_components\angular-aria\angular-aria.js"></script>
-<script type="text/javascript" src="..\bower_components\angular-animate\angular-animate.js"></script>
-<script type="text/javascript" src="..\bower_components\angular-material\angular-material.js"></script>
-<script type="text/javascript" src="..\bower_components\satellizer\dist\satellizer.min.js"></script>
-<script type="text/javascript" src="..\bower_components\angular-resource\angular-resource.min.js"></script>
-
 <!-- scripts -->
-<script type='text/javascript' src="assets\js\actions.js"></script>
 
-<!-- index Scripts -->
-<script type="text/javascript" src="app\index.module.js"></script>
-<script type="text/javascript" src="app\index.const.js"></script>
-<script type="text/javascript" src="app\index.config.js"></script>
-<script type="text/javascript" src="app\index.service.js"></script>
-<script type="text/javascript" src="app\index.run.js"></script>
-<script type="text/javascript" src="app\about-dialog\about-dialog.controller.js"></script>
-<script type="text/javascript" src="app\index.controller.js"></script>
+<!-- build:js(src) scripts/vendor.js -->
+<!-- bower:js -->
+<!-- run `gulp inject` to automatically populate bower script dependencies -->
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+<!-- inject:js -->
+<!-- js files will be automatically insert here -->
+<!-- endinject -->
+
+<!-- inject:partials -->
+<!-- angular templates will be automatically converted in js and inserted here -->
+<!-- endinject -->
+<!-- endbuild -->
+
+
+<script type='text/javascript' src="assets\js\actions.js"></script>
 </body>
 
 </html>

@@ -40,14 +40,6 @@
         "key": "ui-router",
         "module": "ui.router"
       },
-      "ui": {
-        "key": "bootstrap",
-        "module": null
-      },
-      "bootstrapComponents": {
-        "key": "ui-bootstrap",
-        "module": "ui.bootstrap"
-      },
       "cssPreprocessor": {
         "key": "node-sass",
         "extension": "scss"

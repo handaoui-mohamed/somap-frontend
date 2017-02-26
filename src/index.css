@@ -4,8 +4,6 @@ body {
 }
 
 
-/*le style de checkbox menu filtre*/
-
 .form-group input[type="checkbox"] {
 	display: none;
 }
