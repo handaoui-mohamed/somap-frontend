@@ -18,10 +18,11 @@
 		vm.selectedWilayas = [];
 		vm.selectedMarkers = [];
 		vm.query = "";
-
-        $scope.$on('mapInitialized', function(event, map) {
+		
+		$scope.$on('mapInitialized', function(event, map) {
 			vm.map = map;
 		});
+        
 
         // fetch institutionClasses
         InstitutionClassService.get(function(data){

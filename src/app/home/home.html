@@ -10,13 +10,13 @@
                             <span class="input-group-btn" style="z-index: 100">
                                 <button data-toggle="tooltip" data-placement="right" 
                                     title="Afficher les Résultats Dans la map" ng-dblclick="vm.reset()" 
-                                    class="btn btn-default" type="button" id="ut"  ng-click="vm.onSearchClicked()">
+                                    class="btn btn-default" type="button" id="ut" ui-sref="auth" ng-click="vm.onSearchClicked()">
                                     <i id="iconS" class="glyphicon glyphicon-search"></i>
                                     <br>
                                     Afficher tout
                                 </button>
                             </span>
-                            <input ng-model="vm.query" id="modern" type="text" class="form-control"
+                            <input ng-model="vm.query" ng-model-options="{ debounce: 250 }" id="modern" type="text" class="form-control"
                                    placeholder="Entrer un mot clé dans le champ de recherche">
                         </div>
                     </div>
@@ -28,7 +28,6 @@
                 <img data-toggle="tooltip" data-placement="left" title="Page d'accueil" 
                      src="assets/images/rsz_somap_logo2.png" class="img-responsive logo" alt="Image" >
             </div>
-
 
             <ul id="filterBar" class="nav navbar-nav col-xs-12 col-sm-12 col-md-12 col-lg-7">
                 <span style="text-align:center;margin-top: 15px;color: white;" 
@@ -64,20 +63,20 @@
         <ul class="form-group col-xs-12 col-sm-12 col-md-5 col-lg-6" style="z-index: 100">
             <div id="instFilter"  align="left">
                 <div  ng-repeat="institutionClass in vm.institutionClasses">
-                    <input  type="checkbox"  name="institutionClass_{{institutionClass.id}}" 
-                            id="institutionClass_{{institutionClass.id}}" value="{{institutionClass.id}}" 
+                    <input  type="checkbox"  name="institutionClass_{{::institutionClass.id}}" 
+                            id="institutionClass_{{::institutionClass.id}}" value="{{::institutionClass.id}}" 
                             ng-model="vm.selectedInstitutions[institutionClass.id-1]" autocomplete="off" />
                     <div class="[ btn-group ]">
                         <label style="margin: 2px;border-radius: 2px;border-color: #2b303b;
-                               background-color: rgba(44, 48, 58, 1);" for="institutionClass_{{institutionClass.id}}" 
+                               background-color: rgba(44, 48, 58, 1);" for="institutionClass_{{::institutionClass.id}}" 
                                class="[ btn btn-primary ]">
                             <span class="[ glyphicon glyphicon-ok ]"></span>
                             <span> </span>
                         </label>
                         <label id="institution_{{institutionClass.id}}" class="[ btn btn-default ]" 
                                 style="color: white;border-color: transparent; background-color: transparent;
-                                border-radius: 0px;text-transform: capitalize" for="institutionClass_{{institutionClass.id}}">
-                                {{institutionClass.denomination}}
+                                border-radius: 0px;text-transform: capitalize" for="institutionClass_{{::institutionClass.id}}">
+                                {{::institutionClass.denomination}}
                         </label>
                     </div>
 
@@ -90,19 +89,19 @@
                     <button class="btn btn-default"  ng-click="vm.selectAll(false)"> Désélectionner tout </button>
                 </div>
                 <div ng-repeat="wilaya in vm.wilayas"  class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
-                    <input type="checkbox"  name="wilaya_{{wilaya.id}}" id="wilaya_{{wilaya.id}}" 
-                    value="{{wilaya.id}}" ng-model="vm.selectedWilayas[wilaya.id-1]" autocomplete="off" />
+                    <input type="checkbox"  name="wilaya_{{::wilaya.id}}" id="wilaya_{{::wilaya.id}}" 
+                    value="{{::wilaya.id}}" ng-model="vm.selectedWilayas[wilaya.id-1]" autocomplete="off" />
                     <div class="[ btn-group ]">
                         <label style="margin: 2px;border-radius: 2px;border-color: #2b303b;
-                               background-color: rgba(44, 48, 58, 1);" for="wilaya_{{wilaya.id}}" 
+                               background-color: rgba(44, 48, 58, 1);" for="wilaya_{{::wilaya.id}}" 
                                class="[ btn btn-primary ]">
                             <span class="[ glyphicon glyphicon-ok ]"></span>
                             <span> </span>
                         </label>
                         <label class="[ btn btn-default ]" style="color: white;border-color: transparent; 
                                background-color: transparent;border-radius: 0px;text-transform: capitalize"
-                                for="wilaya_{{wilaya.id}}">
-                               {{wilaya.name}}
+                                for="wilaya_{{::wilaya.id}}">
+                               {{::wilaya.name}}
                         </label>
                     </div>
                 </div>
@@ -143,20 +142,18 @@
                         </div>
                     </div>
                 </info-window>
-
             </map>
         </div>
     </div>
 
     <!--Conterneur Resultat de la recherche -->
     <div id="main">
-        <div ng-repeat="institution in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
+        <div ng-repeat="(key,institution) in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
             <service-card   selected-marker="vm.selectedMarker"
                             app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers"
                             institution-classes="vm.institutionClasses" wilayas="vm.wilayas"></service-card>
         </div>
     </div>
 </div>
-
 
 <script type='text/javascript' src="assets\js\actions.js"></script>

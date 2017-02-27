@@ -5,6 +5,7 @@
         .module("somap",[
             "ngResource",
             "satellizer",
+            "ngMessages",
             "ngMap",
             "ngMaterial",
             "ngAria",
@@ -12,6 +13,7 @@
             'ui.router',
 
             //costum modules
-            "home"
+            "home",
+            "auth"
         ]);
 })();

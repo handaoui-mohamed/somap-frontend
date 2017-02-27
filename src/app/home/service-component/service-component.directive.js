@@ -19,7 +19,6 @@
                 wilayas: "="
             },
             link:function(scope, element, attrs){
-                console.log(scope)
                 scope.map = scope.appMap;
                 scope.sourceBlack = SourceBlack;
                 scope.hoverIn =  function(institution){
