@@ -6,7 +6,7 @@
             "ngResource",
             "satellizer",
             "ngMessages",
-            "ngMap",
+            // "ngMap",
             "ngMaterial",
             "ngAria",
             "ngAnimate",

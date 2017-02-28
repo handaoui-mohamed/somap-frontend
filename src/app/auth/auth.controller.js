@@ -9,6 +9,8 @@
         var vm = this;
         vm.loginUser = loginUser;
         vm.registerUser = registerUser;
+        vm.facebookAuth = facebookAuth;
+        vm.googleAuth = googleAuth;
 
         function registerUser(){
             vm.disabledRegistration = true;
@@ -37,6 +39,14 @@
                 Toast.error(error)
                 vm.disabledLogin = false;
             });
+        }
+
+        function facebookAuth(){
+            Toast.message("facebookAuth");
+        }
+
+        function googleAuth(){
+            Toast.message("googleAuth");
         }
     }
 })();
