@@ -9,8 +9,12 @@
         $locationProvider.html5Mode(true).hashPrefix('!');
         $stateProvider.state('home', {
             url: '/',
-            controller: 'HomeController as vm',
-            templateUrl: 'app/home/home.html'
+            views: {
+                'main@': {
+                    controller: 'HomeController as vm',
+                    templateUrl: 'app/home/home.html'
+                }
+            }
         });
         $urlRouterProvider.otherwise('/');// we can use 404 page
 

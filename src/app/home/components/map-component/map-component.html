@@ -1,0 +1,33 @@
+<!-- Map Container -->
+<div id="MapContainer" >
+    <div id="map-canvas">
+        <map center="32, -4"  zoom="6" on-click="onMapClicked(event)" style="height: 100%">
+            <marker ng-repeat="marker in institutions" id="{{marker.id}}"
+                    on-click="onMarkerClicked(event)"
+                    position={{marker.position.lat+","+marker.position.lng}}
+                    title={{marker.denomination}}
+                    icon={{institutionClasses[marker.typeId].icon_url}}
+                    visible = "false"></marker>
+
+            <info-window id="myInfoWindow" >
+                <div ng-non-bindable="" >
+                    <h4 align="middle" style=" background-color: white ;font-weight: 100; color: #2d6ca2;
+                                               text-transform: capitalize" >
+                        {{selectedMarker.denomination}}</h4>
+                    <h5 align="middle" style="font-weight: 100;text-transform: capitalize" >
+                        {{institutionClasses[selectedMarker.typeId].denomination}}</h5>
+                    <div>
+                        <p  style="text-transform: capitalize">
+                            {{selectedMarker.description}}
+                        </p>
+                        <p>
+                            <span  style="text-transform: capitalize">{{selectedMarker.wilaya}}, {{selectedMarker.commune.name}}, {{selectedMarker.address}}</span>
+                            <br />
+                            <span >{{selectedMarker.phone}}</span>
+                        </p> 
+                    </div>
+                </div>
+            </info-window>
+        </map>
+    </div>
+</div>

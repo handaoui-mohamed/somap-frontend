@@ -6,7 +6,7 @@
         .controller("HomeController",HomeController);
 
     function HomeController($scope, $mdDialog, WilayaService, InstitutionClassService,
-                             InstitutionService, SourceBlack, SourceBlue){
+                             InstitutionService, SourceBlack, SourceBlue, Toast){
         var vm = this;
 		
 		vm.sourceBlack = SourceBlack;
@@ -24,31 +24,27 @@
 		});
         
 
-        // fetch institutionClasses
+        // fetch Data from server
         InstitutionClassService.get(function(data){
             vm.institutionClasses = data.elements;
             vm.selectedInstitutions = new Array(vm.institutionClasses.length).fill(true);
         },function(errors){
-            console.log("can't load institution classes !");
+            Toast.error(errors);
         });
         
         WilayaService.get(function(data){
             vm.wilayas = data.elements;
 			vm.selectedWilayas = new Array(vm.wilayas.length).fill(true);
         },function(errors){
-            console.log("can't load wilayas !");
+            Toast.error(errors);
         });
-
-		// fetch institutions from file : "institutions.json"
 
         InstitutionService.get(function(data){
             vm.institutions = data.elements;
         },function(errors){
-            console.log("can't load institutions !");
+            Toast.error(errors);
         });
 
-        vm.onMarkerClicked = onMarkerClicked;
-        vm.onMapClicked = onMapClicked;
 		vm.searchAction = searchAction;
 		vm.onSearchClicked = onSearchClicked;
         vm.selectAll= selectAll;
@@ -74,21 +70,6 @@
         function searchAction(){
 			vm.queryString = vm.query;
 		};
-
-        function onMarkerClicked(evt) {
-			vm.selectedMarker = vm.Institutions[this.id];
-			$scope.showInfoWindow(evt, 'myInfoWindow', this);
-		}
-
-        function onMapClicked(event) {
-			// hide the infowindow if it is visible
-			if (vm.selectedMarker != null) {
-				$scope.hideInfoWindow(event, 'myInfoWindow', vm.selectedMarker);
-				vm.selectedMarker = null;
-				vm.map.setCenter(new google.maps.LatLng(32 , -4) );
-				vm.map.setZoom(6);
-			}
-		}
 
         function onSearchClicked(){
 			var i= -1;
@@ -153,7 +134,7 @@
 			$mdDialog.show({
 				controller: "AboutDialogController",
 				controllerAs: "aboutVm",
-				templateUrl: 'app/home/about-dialog/about-dialog.html',
+				templateUrl: 'app/home/dialogs/about-dialog/about-dialog.html',
 				parent: angular.element(document.body),
 				targetEvent: event, 
 				clickOutsideToClose:true,

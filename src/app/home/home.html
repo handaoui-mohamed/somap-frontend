@@ -63,22 +63,12 @@
         <ul class="form-group col-xs-12 col-sm-12 col-md-5 col-lg-6" style="z-index: 100">
             <div id="instFilter"  align="left">
                 <div  ng-repeat="institutionClass in vm.institutionClasses">
-                    <input  type="checkbox"  name="institutionClass_{{::institutionClass.id}}" 
-                            id="institutionClass_{{::institutionClass.id}}" value="{{::institutionClass.id}}" 
-                            ng-model="vm.selectedInstitutions[institutionClass.id-1]" autocomplete="off" />
-                    <div class="[ btn-group ]">
-                        <label style="margin: 2px;border-radius: 2px;border-color: #2b303b;
-                               background-color: rgba(44, 48, 58, 1);" for="institutionClass_{{::institutionClass.id}}" 
-                               class="[ btn btn-primary ]">
-                            <span class="[ glyphicon glyphicon-ok ]"></span>
-                            <span> </span>
-                        </label>
-                        <label id="institution_{{institutionClass.id}}" class="[ btn btn-default ]" 
-                                style="color: white;border-color: transparent; background-color: transparent;
-                                border-radius: 0px;text-transform: capitalize" for="institutionClass_{{::institutionClass.id}}">
-                                {{::institutionClass.denomination}}
-                        </label>
-                    </div>
+                    <md-checkbox ng-model="vm.selectedInstitutions[institutionClass.id-1]" class="md-primary" 
+                                 id="institutionClass_{{::institutionClass.id}}"  
+                                 name="institutionClass_{{::institutionClass.id}}"  
+                                 aria-label="institution" style="color: white;">
+                        {{::institutionClass.denomination}}
+                    </md-checkbox>
 
                 </div>
             </div>
@@ -89,21 +79,11 @@
                     <button class="btn btn-default"  ng-click="vm.selectAll(false)"> Désélectionner tout </button>
                 </div>
                 <div ng-repeat="wilaya in vm.wilayas"  class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
-                    <input type="checkbox"  name="wilaya_{{::wilaya.id}}" id="wilaya_{{::wilaya.id}}" 
-                    value="{{::wilaya.id}}" ng-model="vm.selectedWilayas[wilaya.id-1]" autocomplete="off" />
-                    <div class="[ btn-group ]">
-                        <label style="margin: 2px;border-radius: 2px;border-color: #2b303b;
-                               background-color: rgba(44, 48, 58, 1);" for="wilaya_{{::wilaya.id}}" 
-                               class="[ btn btn-primary ]">
-                            <span class="[ glyphicon glyphicon-ok ]"></span>
-                            <span> </span>
-                        </label>
-                        <label class="[ btn btn-default ]" style="color: white;border-color: transparent; 
-                               background-color: transparent;border-radius: 0px;text-transform: capitalize"
-                                for="wilaya_{{::wilaya.id}}">
-                               {{::wilaya.name}}
-                        </label>
-                    </div>
+                    <md-checkbox ng-model="vm.selectedWilayas[wilaya.id-1]" class="md-primary" 
+                                 name="wilaya_{{::wilaya.id}}" id="wilaya_{{::wilaya.id}}" aria-label="wilaya"
+                                 style="color: white;">
+                        {{::wilaya.name}}
+                    </md-checkbox>
                 </div>
             </div>
 
@@ -112,48 +92,18 @@
         <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
 
     </div>
-
-    <!-- Map Container -->
-    <div id="MapContainer" >
-        <div id="map-canvas">
-            <map center="32, -4"  zoom="6" on-click="vm.onMapClicked(event)" style="height: 100%">
-                <marker ng-repeat="marker in vm.institutions" id="{{marker.id}}"
-                        on-click="onMarkerClicked(event)"
-                        position={{marker.position.lat+","+marker.position.lng}}
-                        title={{marker.denomination}}
-                        icon={{vm.institutionClasses[marker.typeId].icon_url}}
-                        visible = "false"></marker>
-
-                <info-window id="myInfoWindow" >
-                    <div ng-non-bindable="" >
-                        <h4 align="middle" style=" background-color: white ;font-weight: 100; color: #2d6ca2;text-transform: capitalize" >
-                            {{vm.selectedMarker.denomination}}</h4>
-                        <h5 align="middle" style="font-weight: 100;text-transform: capitalize" >
-                            {{vm.institutionClasses[vm.selectedMarker.typeId].denomination}}</h5>
-                        <div>
-                            <p  style="text-transform: capitalize">
-                                {{vm.selectedMarker.description}}
-                            </p>
-                            <p>
-                                <span  style="text-transform: capitalize">{{vm.selectedMarker.wilaya}}, {{vm.selectedMarker.commune.name}}, {{vm.selectedMarker.address}}</span>
-                                <br />
-                                <span >{{vm.selectedMarker.phone}}</span>
-                            </p> 
-                        </div>
-                    </div>
-                </info-window>
-            </map>
+    <div layout="row">
+        <google-maps selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses"institutions="vm.institutions"></google-maps>
+ 
+        <!--Conterneur Resultat de la recherche -->
+        <div id="main">
+            <div ng-repeat="institution in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
+                <service-card   selected-marker="vm.selectedMarker"
+                                app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers"
+                                institution-classes="vm.institutionClasses" wilayas="vm.wilayas"></service-card>
+            </div>
         </div>
     </div>
-
-    <!--Conterneur Resultat de la recherche -->
-    <div id="main">
-        <div ng-repeat="(key,institution) in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
-            <service-card   selected-marker="vm.selectedMarker"
-                            app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers"
-                            institution-classes="vm.institutionClasses" wilayas="vm.wilayas"></service-card>
-        </div>
-    </div>
-</div>
+</div> 
 
 <script type='text/javascript' src="assets\js\actions.js"></script>

@@ -42,11 +42,16 @@
         }
 
         function facebookAuth(){
-            Toast.message("facebookAuth");
+            $auth.authenticate('facebook')
+                 .then(function(response){
+                    console.log(response);
+                 }).catch(function(errors){
+
+                 });
         }
 
         function googleAuth(){
-            Toast.message("googleAuth");
+            $auth.authenticate('google');
         }
     }
 })();

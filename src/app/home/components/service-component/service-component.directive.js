@@ -9,7 +9,7 @@
         return{ 
             restrict: 'E',
             replace: true,
-            templateUrl: 'app/home/service-component/service-component.html',
+            templateUrl: 'app/home/components/service-component/service-component.html',
             scope: {
                 selectedMarker: '=',
                 selectedMarkers:"=",

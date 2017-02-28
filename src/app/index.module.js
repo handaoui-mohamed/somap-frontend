@@ -6,12 +6,12 @@
             "ngResource",
             "satellizer",
             "ngMessages",
-            // "ngMap",
+            "ngMap",
             "ngMaterial",
             "ngAria",
             "ngAnimate",
             'ui.router',
-
+ 
             //costum modules
             "home",
             "auth"

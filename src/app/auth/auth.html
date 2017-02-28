@@ -79,7 +79,7 @@
 
 
     <!--Login Form-->
-    <form name="loginForm" flex="50" layout="column" layout-align="center none"
+    <form name="loginForm" flex="50" layout="column" layout-align="center none" novalidate
           style="padding:0 80px 0 80px">
         <h2 layout="row" layout-align="center center">Se Connecter</h1>
         <md-input-container flex>
@@ -121,16 +121,15 @@
         </div>
 
         <div layout="column" layout-align="center">
-            <md-button type="submit" class="md-raised md-primary" ng-click="vm.facebookAuth()">
+            <md-button class="md-raised md-primary" ng-click="vm.facebookAuth()">
                        Se connecter avec facebook
             </md-button>
         </div>
 
         <div layout="column" layout-align="center">
-            <md-button type="submit" class="md-raised md-warn" ng-click="vm.googleAuth()">
+            <md-button class="md-raised md-warn" ng-click="vm.googleAuth()">
                        Se connecter avec google
             </md-button>
         </div>
     </form>
-
 </div>

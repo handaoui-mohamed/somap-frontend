@@ -10,11 +10,23 @@
         $authProvider.tokenPrefix = '';
         $authProvider.authHeader = 'Authorization';
         $authProvider.authToken = '';
+
+        $authProvider.facebook({
+            clientId: '1187667897997263'
+        });
+
+        $authProvider.google({
+            clientId: 'Google Client ID'
+        });
         
         $stateProvider.state('auth', {
             url: '/auth',
-            controller: 'AuthController as vm',
-            templateUrl: 'app/auth/auth.html'
+            views: {
+                'main@': {
+                    controller: 'AuthController as vm',
+                    templateUrl: 'app/auth/auth.html'
+                }
+            }
         });
     }
 })();
