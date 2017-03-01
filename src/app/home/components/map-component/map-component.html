@@ -1,7 +1,7 @@
 <!-- Map Container -->
 <div id="MapContainer" >
     <div id="map-canvas">
-        <map center="32, -4"  zoom="6" on-click="onMapClicked(event)" style="height: 100%">
+        <map center="32, 2"  zoom="6" on-click="onMapClicked(event)" style="height: 100%">
             <marker ng-repeat="marker in institutions" id="{{marker.id}}"
                     on-click="onMarkerClicked(event)"
                     position={{marker.position.lat+","+marker.position.lng}}

@@ -1,109 +1,96 @@
-<div id="MainContainer">
-
-    <!-- La bar superieur -->
-    <div class="navbar " id="navigationBar">
-        <div class="row" >
-            <div id="searchBar" class="col-xs-8 col-sm-6 col-md-6 col-lg-4 " >
-                <div id="rech">
-                    <div class="form-group" style="display:inline;">
-                        <div class="input-group">
-                            <span class="input-group-btn" style="z-index: 100">
-                                <button data-toggle="tooltip" data-placement="right" 
-                                    title="Afficher les Résultats Dans la map" ng-dblclick="vm.reset()" 
-                                    class="btn btn-default" type="button" id="ut" ui-sref="auth" ng-click="vm.onSearchClicked()">
-                                    <i id="iconS" class="glyphicon glyphicon-search"></i>
-                                    <br>
-                                    Afficher tout
-                                </button>
-                            </span>
-                            <input ng-model="vm.query" ng-model-options="{ debounce: 250 }" id="modern" type="text" class="form-control"
-                                   placeholder="Entrer un mot clé dans le champ de recherche">
-                        </div>
-                    </div>
-                </div>
+ <md-toolbar md-whiteframe="4">
+    <div class="md-toolbar-tools">
+        <md-truncate style="width:21%" md-whiteframe="4">
+            <div class="input-group" layout-fill layout="row">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+              </span>
+              <input type="text" class="form-control " placeholder="Entrer un mot clé dans le champ de recherche"
+                      style="border:0">
             </div>
+        </md-truncate>
+    </div>
+</md-toolbar>
 
-            <div id="logoImage" class="col-xs-4 col-sm-6 col-md-6" align="right"  align="right"
-                 ng-click="vm.showAboutDialog()">
-                <img data-toggle="tooltip" data-placement="left" title="Page d'accueil" 
-                     src="assets/images/rsz_somap_logo2.png" class="img-responsive logo" alt="Image" >
-            </div>
+<!--ng-controller="AppCtrl" -->
+<div layout="column" ng-cloak layout-fill>
 
-            <ul id="filterBar" class="nav navbar-nav col-xs-12 col-sm-12 col-md-12 col-lg-7">
-                <span style="text-align:center;margin-top: 15px;color: white;" 
-                      class="col-xs-12 col-sm-12 col-md-6 col-lg-2">Filtrer Par :</span>
+  <section layout="row" flex>
 
-                <li data-placement="bottom"  class="col-xs-12 col-sm-12 col-md-3 col-lg-5" 
-                    style="text-align:center;" id="instDiv">
-                    <a  href="" id="instButton" type="button" class="filter">
-                        Institutions
-                    </a>
-                </li>
+    <md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')"
+        md-whiteframe="1">
 
-                <li  data-placement="bottom"  class="col-xs-12 col-sm-12 col-md-3 col-lg-5" style="text-align:center;">
-                    <a href="" id="wilayaButton"  type="button" class="filter">
-                        Wilayas
-                    </a>
-                </li>
-            </ul>
+      <md-toolbar class="md-theme-indigo" style="height:150px !important">
+          <md-input-container>
+            <label >Institutions</label>
+            <md-select ng-model="vm.selectedInstitutionClasses"
+                      multiple>
+              <md-optgroup label="institutionClasse">
+                <md-option ng-value="id" ng-repeat="institutionClasse in vm.institutionClasses |
+                  filter:vm.institution_search" >{{institutionClasse.denomination}}</md-option>
+              </md-optgroup>
+            </md-select>
+          </md-input-container>
+          
+        <div layout="row" layout-align="space-around">
+            <md-input-container>
+                <label>Wilayas</label>
+                <md-select ng-model="vm.selectedWilayas"
+                          multiple>
+                  <md-select-header>
+                    <input ng-model="vm.wilaya_search"
+                          type="search"
+                          placeholder="Recherche Wilaya"
+                          class="md-text">
+                  </md-select-header>
+                  <md-optgroup label="wilaya">
+                    <md-option ng-value="id" ng-repeat="wilaya in vm.wilayas |
+                      filter:vm.wilaya_search">{{wilaya.name}}</md-option>
+                  </md-optgroup>
+                </md-select>
+              </md-input-container>
+            </md-toolbar>
 
-            <div class="col-xs-0 col-sm-0 col-md-0 col-lg-1 image" align="right" ng-click="vm.showAboutDialog()">
-                <img data-toggle="tooltip" data-placement="left" title="Page d'accueil"
-                     src="assets/images/rsz_somap_logo2.png" class="img-responsive logo" alt="Image" >
-            </div>
-
+            <md-input-container>
+                <label>Commune</label>
+                <md-select ng-model="vm.selectedWilayas"
+                          multiple>
+                  <md-select-header>
+                    <input ng-model="vm.wilaya_search"
+                          type="search"
+                          placeholder="Recherche Wilaya"
+                          class="md-text">
+                  </md-select-header>
+                  <md-optgroup label="wilaya">
+                    <md-option ng-value="id" ng-repeat="wilaya in vm.wilayas |
+                      filter:vm.wilaya_search">{{wilaya.name}}</md-option>
+                  </md-optgroup>
+                </md-select>
+            </md-input-container>
         </div>
-    </div>
-
-    <!-- div qui contient les cases a cocher des filtres -->
-    <div class="row" >
-
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5"></div>
-
-        <ul class="form-group col-xs-12 col-sm-12 col-md-5 col-lg-6" style="z-index: 100">
-            <div id="instFilter"  align="left">
-                <div  ng-repeat="institutionClass in vm.institutionClasses">
-                    <md-checkbox ng-model="vm.selectedInstitutions[institutionClass.id-1]" class="md-primary" 
-                                 id="institutionClass_{{::institutionClass.id}}"  
-                                 name="institutionClass_{{::institutionClass.id}}"  
-                                 aria-label="institution" style="color: white;">
-                        {{::institutionClass.denomination}}
-                    </md-checkbox>
-
-                </div>
-            </div>
-
-            <div id="wilayaFilter" align="left" >
-                <div align="center" style="padding-bottom: 10px">
-                    <button class="btn btn-default" ng-click="vm.selectAll(true)"> Sélectionner tout </button>
-                    <button class="btn btn-default"  ng-click="vm.selectAll(false)"> Désélectionner tout </button>
-                </div>
-                <div ng-repeat="wilaya in vm.wilayas"  class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
-                    <md-checkbox ng-model="vm.selectedWilayas[wilaya.id-1]" class="md-primary" 
-                                 name="wilaya_{{::wilaya.id}}" id="wilaya_{{::wilaya.id}}" aria-label="wilaya"
-                                 style="color: white;">
-                        {{::wilaya.name}}
-                    </md-checkbox>
-                </div>
-            </div>
-
-        </ul>
-
-        <div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
-
-    </div>
-    <div layout="row">
-        <google-maps selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses"institutions="vm.institutions"></google-maps>
- 
-        <!--Conterneur Resultat de la recherche -->
-        <div id="main">
-            <div ng-repeat="institution in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
+      </md-toolbar>
+      <!--ng-controller="LeftCtrl"-->
+      <md-content>
+        <div ng-repeat="institution in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
                 <service-card   selected-marker="vm.selectedMarker"
                                 app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers"
                                 institution-classes="vm.institutionClasses" wilayas="vm.wilayas"></service-card>
             </div>
-        </div>
-    </div>
-</div> 
+        
+      </md-content>
 
-<script type='text/javascript' src="assets\js\actions.js"></script>
+    </md-sidenav>
+
+    <md-content flex>
+
+      <div layout="column" layout-align="top center">
+        <div layout="row">
+        <google-maps selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses"institutions="vm.institutions"></google-maps>
+      </div>
+
+    </md-content>
+  </section>
+</div>

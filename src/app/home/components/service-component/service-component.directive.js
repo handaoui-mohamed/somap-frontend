@@ -46,7 +46,7 @@
 
                         lng = marker.getPosition().lng() ;
                         lat = marker.getPosition().lat() ;
-                        scope.map.setCenter(new google.maps.LatLng(lat + 0.01 , lng - 0.03) );
+                        scope.map.setCenter(new google.maps.LatLng(lat, lng) );
                         scope.map.setZoom(13);
                         scope.map.showInfoWindow(event, 'myInfoWindow', marker);
 
@@ -75,7 +75,7 @@
                                     scope.map.markers[scope.selectedMarkers[index-1]].setVisible(true);
                                     lng = prevMarker.getPosition().lng() ;
                                     lat = prevMarker.getPosition().lat() ;
-                                    scope.map.setCenter(new google.maps.LatLng(lat + 0.01 , lng - 0.03) );
+                                    scope.map.setCenter(new google.maps.LatLng(lat, lng) );
                                     scope.map.setZoom(13);
                                     scope.map.showInfoWindow(event, 'myInfoWindow', prevMarker);
                                 }
@@ -83,7 +83,7 @@
 
                             scope.selectedMarkers.splice(index,1);
                             if (scope.selectedMarkers.length === 0){
-                                scope.map.setCenter(new google.maps.LatLng(32 , -4) );
+                                scope.map.setCenter(new google.maps.LatLng(32 , 2) );
                                 scope.map.setZoom(6);
                             }
                         }

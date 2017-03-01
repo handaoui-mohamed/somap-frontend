@@ -30,7 +30,7 @@
                     if (scope.selectedMarker != null) {
                         goolgeMap.hideInfoWindow(event, 'myInfoWindow', scope.selectedMarker);
                         scope.selectedMarker = null;
-                        goolgeMap.setCenter(new google.maps.LatLng(32 , -4) );
+                        goolgeMap.setCenter(new google.maps.LatLng(32 , 2));
                         goolgeMap.setZoom(6);
                     }
                 }
