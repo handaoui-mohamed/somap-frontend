@@ -20,10 +20,10 @@
     <md-sidenav
         class="md-sidenav-left"
         md-component-id="left"
-        md-is-locked-open="$mdMedia('gt-md')"
-        md-whiteframe="1">
-
-      <md-toolbar class="md-theme-indigo" style="height:150px !important">
+        md-is-locked-open="$mdMedia('gt-md')">
+ 
+      <md-toolbar  style="z-index: 100; font-size:15px">
+        <div layout="row" layout-align="space-around">
           <md-input-container>
             <label >Institutions</label>
             <md-select ng-model="vm.selectedInstitutionClasses"
@@ -34,8 +34,6 @@
               </md-optgroup>
             </md-select>
           </md-input-container>
-          
-        <div layout="row" layout-align="space-around">
             <md-input-container>
                 <label>Wilayas</label>
                 <md-select ng-model="vm.selectedWilayas"
@@ -52,7 +50,6 @@
                   </md-optgroup>
                 </md-select>
               </md-input-container>
-            </md-toolbar>
 
             <md-input-container>
                 <label>Commune</label>
@@ -75,10 +72,10 @@
       <!--ng-controller="LeftCtrl"-->
       <md-content>
         <div ng-repeat="institution in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
-                <service-card   selected-marker="vm.selectedMarker"
-                                app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers"
-                                institution-classes="vm.institutionClasses" wilayas="vm.wilayas"></service-card>
-            </div>
+            <service-card   selected-marker="vm.selectedMarker"
+                            app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers"
+                            institution-classes="vm.institutionClasses" wilayas="vm.wilayas"></service-card>
+        </div>
         
       </md-content>
 
