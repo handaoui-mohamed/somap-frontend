@@ -28,3 +28,19 @@
 .gm-style-mtc {
 	display: none;
 }
+
+.md-select-value .md-select-icon{
+	color:white !important;
+}
+
+md-input-container:not([md-no-float]) .md-select-placeholder span:first-child{
+	color: white !important;
+}
+
+.md-select-value{
+	color: white !important;
+}
+
+md-input-container label:not(.md-no-float):not(.md-container-ignore), md-input-container .md-placeholder{
+	color: gainsboro
+}

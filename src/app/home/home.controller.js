@@ -17,17 +17,22 @@
 		vm.wilayas = [];
 		vm.selectedWilayas = [];
 		vm.selectedMarkers = [];
+		vm.selectedInstitutionsId = [];
+		vm.selectedWilayasId = [];
 		vm.query = "";
-		
+		vm.showMap = true;
+
 		$scope.$on('mapInitialized', function(event, map) {
 			vm.map = map;
-		});
-        
+		});		
 
         // fetch Data from server
         InstitutionClassService.get(function(data){
             vm.institutionClasses = data.elements;
             vm.selectedInstitutions = new Array(vm.institutionClasses.length).fill(true);
+			vm.selectedInstitutionsId = vm.institutionClasses.map(function(institutionClass){
+				return institutionClass.id;
+			});
         },function(errors){
             Toast.error(errors);
         });
@@ -35,6 +40,9 @@
         WilayaService.get(function(data){
             vm.wilayas = data.elements;
 			vm.selectedWilayas = new Array(vm.wilayas.length).fill(true);
+			vm.selectedWilayasId = vm.wilayas.map(function(institutionClass){
+				return institutionClass.id;
+			});
         },function(errors){
             Toast.error(errors);
         });
@@ -45,14 +53,23 @@
             Toast.error(errors);
         });
 
-		vm.searchAction = searchAction;
-		vm.onSearchClicked = onSearchClicked;
         vm.selectAll= selectAll;
-		vm.reset = reset;
         vm.filterMarkers = filterMarkers;
 		vm.filterWilayas = filterWilayas;
 		vm.showAboutDialog = showAboutDialog;
+		vm.showSelectedInstitutions = showSelectedInstitutions; 
+		vm.showSelectedWilayas = showSelectedWilayas;
 
+		function showSelectedInstitutions(){
+			vm.selectedInstitutions.forEach(function(institutionClass,index){
+				vm.selectedInstitutions[index] = vm.selectedInstitutionsId.includes(index+1);
+			});
+		}
+		function showSelectedWilayas(){
+			vm.selectedWilayas.forEach(function(wilaya,index){
+				vm.selectedWilayas[index] = vm.selectedWilayasId.includes(index+1);
+			}); 
+		}
 
         //Functions Implementation 
         function filterMarkers(){
@@ -67,50 +84,9 @@
 			};
 		}
 
-        function searchAction(){
-			vm.queryString = vm.query;
-		};
-
-        function onSearchClicked(){
-			var i= -1;
-			var button = null;
-			vm.reset();
-			$('#main').find('.institution:visible').each(function(){
-				while (button == null)
-				{
-					i++;
-					button = document.getElementById('button'+i);
-				}
-				vm.map.markers[i].setVisible(true);
-				$('#button'+i).css("backgroundColor","#F2F2F2");
-				$('#image'+i).attr("src",vm.sourceBlue);
-				$('#contact'+i).css("display","block");
-				$('#meaning'+i).css("display","block");
-				i++;
-				button = document.getElementById('button'+i);
-			});
-		}
-
         function selectAll(value) {
 			for (var i = 0;i < vm.selectedWilayas.length; i++){
 				vm.selectedWilayas[i] = value;
-			}
-		}
-
-        function reset(){
-			for(var i=0;i<vm.Institutions.length;i++)
-			{
-				if (vm.map.markers[i].getVisible() == true)
-				{
-					vm.map.markers[i].setVisible(false);
-					if ($('#button'+i) != null){
-						$('#button'+i).css("backgroundColor","WHITE");
-						$('#image'+i).attr("src",vm.sourceBlack);
-						$('#contact'+i).css("display","none");
-						$('#meaning'+i).css("display","none");
-					}
-
-				}
 			}
 		}
 		
