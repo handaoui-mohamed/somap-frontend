@@ -1,5 +1,8 @@
  <md-toolbar md-whiteframe="4">
     <div class="md-toolbar-tools">
+        <!--<button class="btn" ng-click="vm.openned = !vm.openned"> 
+            <i class="glyphicon glyphicon-align-justify"></i>
+        </button>-->
         <md-truncate style="width:21%" md-whiteframe="4">
             <div class="input-group" layout-fill layout="row">
               <span class="input-group-btn">
@@ -21,9 +24,9 @@
     <md-sidenav
         class="md-sidenav-left"
         md-component-id="left"
-        md-is-locked-open="$mdMedia('gt-md')">
+        md-is-locked-open="$mdMedia('gt-md') || vm.openned">
  
-      <md-toolbar  style="z-index: 100; font-size:15px;">
+      <md-toolbar  style="z-index: 100; font-size:15px;" class="sidenav-toolbar">
         <div layout="row" layout-align="space-around">
           <span layout="column" layout-align="center">Filtres:</span>
           <md-input-container>
@@ -61,7 +64,7 @@
       <!--ng-controller="LeftCtrl"-->
       <md-content>
         <div ng-repeat="institution in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
-            <service-card   selected-marker="vm.selectedMarker"
+            <service-card   selected-marker="vm.selectedMarker" ui-sref="home.institution({id: institution.id})"
                             app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers"
                             institution-classes="vm.institutionClasses" wilayas="vm.wilayas"></service-card>
         </div>
@@ -71,19 +74,11 @@
     </md-sidenav>
 
     <md-content flex>
-        <div ng-show="!vm.showMap">
-          <!--institution details-->
-          <p>
-            The left sidenav will 'lock open' on a medium (>=960px wide) device.
-          </p>
-          <p>
-            The right sidenav will focus on a specific child element.
-          </p>
-        </div>
+        <div ng-if="true" ui-view layout="row" layout-align="center center">hello</div>
       <div layout="column" layout-align="top center">
 
         <div layout="row">
-          <google-maps ng-show="vm.showMap" selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses"institutions="vm.institutions"></google-maps>
+          <google-maps ng-show="false" selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses"institutions="vm.institutions"></google-maps>
         </div>
 
     </md-content>

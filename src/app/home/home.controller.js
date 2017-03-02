@@ -6,7 +6,7 @@
         .controller("HomeController",HomeController);
 
     function HomeController($scope, $mdDialog, WilayaService, InstitutionClassService,
-                             InstitutionService, SourceBlack, SourceBlue, Toast){
+                             InstitutionService, SourceBlack, SourceBlue, Toast, $mdSidenav){
         var vm = this;
 		
 		vm.sourceBlack = SourceBlack;
@@ -59,6 +59,11 @@
 		vm.showAboutDialog = showAboutDialog;
 		vm.showSelectedInstitutions = showSelectedInstitutions; 
 		vm.showSelectedWilayas = showSelectedWilayas;
+		vm.toggleSideNav = toggleSideNav;
+		
+		function toggleSideNav(){
+			$mdSidenav('left').toggle();
+		}
 
 		function showSelectedInstitutions(){
 			vm.selectedInstitutions.forEach(function(institutionClass,index){

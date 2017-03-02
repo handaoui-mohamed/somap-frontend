@@ -1,10 +1,3 @@
-
-
-[ng\:cloak], [ng-cloak], .ng-cloak {
-	display: none !important;
-}
-
-/*map canvas*/
 #map-canvas {
 	top: 0;
 	background-color: #adadad;
@@ -23,24 +16,28 @@
 	outline: 0;
 }
 
-
 /*google map : enlever le choix satellite*/
 .gm-style-mtc {
 	display: none;
 }
 
-.md-select-value .md-select-icon{
-	color:white !important;
+.sidenav-toolbar .md-select-value .md-select-icon{
+	color:white;
 }
 
-md-input-container:not([md-no-float]) .md-select-placeholder span:first-child{
-	color: white !important;
+.sidenav-toolbar md-input-container:not([md-no-float]) .md-select-placeholder span:first-child{
+	color: white;
 }
 
-.md-select-value{
-	color: white !important;
+.sidenav-toolbar .md-select-value{
+	color: white;
 }
 
-md-input-container label:not(.md-no-float):not(.md-container-ignore), md-input-container .md-placeholder{
+.sidenav-toolbar md-input-container label:not(.md-no-float):not(.md-container-ignore), md-input-container .md-placeholder{
 	color: gainsboro
+}
+
+
+.institution-info label{
+	font-weight: normal !important;
 }
