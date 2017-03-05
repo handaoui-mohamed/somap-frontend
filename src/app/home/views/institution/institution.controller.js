@@ -48,7 +48,7 @@
 
         // TODO Must Improve this function
         function getCoordinates() {
-            if (!$scope.geocoder) vm.geocoder = new google.maps.Geocoder();
+            if (!vm.geocoder) vm.geocoder = new google.maps.Geocoder();
             vm.geocoder.geocode({
                     'address': vm.institution.address + ", " +
                         vm.wilayas[vm.institution.wilaya_id].name + ", " +
