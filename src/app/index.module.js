@@ -1,8 +1,8 @@
-(function(){
+(function() {
     "use strict";
-    
+
     angular
-        .module("somap",[
+        .module("somap", [
             "ngResource",
             "satellizer",
             "ngMessages",
@@ -11,7 +11,7 @@
             "ngAria",
             "ngAnimate",
             'ui.router',
- 
+
             //costum modules
             "home",
             "auth"

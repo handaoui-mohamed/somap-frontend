@@ -12,7 +12,7 @@
             text-transform: capitalize" href="">
             {{::institution.denomination}}</h5>
         <h5 id="meaning{{::institution.id}}" align="left" style="display: none;color: black;text-transform: capitalize">
-            {{::institutionClasses[institution.typeId-1].denomination}}</h5>
+            {{::institutionClasses[institution.class_id-1].denomination}}</h5>
         <div>
             <p>
                 <span style="color: black;text-transform: capitalize;">{{::institution.wilaya}}, {{::institution.commune.name}}.{{::institution.address}}</span>

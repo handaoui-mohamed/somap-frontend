@@ -1,12 +1,12 @@
 <!-- Map Container -->
-<div id="MapContainer" >
+<div id="MapContainer">
     <div id="map-canvas">
-        <map center="32, 2"  zoom="6" on-click="onMapClicked(event)" style="height: 100%">
+        <map center="32, 2" zoom="6" on-click="onMapClicked(event)" style="height: 100%">
             <marker ng-repeat="marker in institutions" id="{{marker.id}}"
                     on-click="onMarkerClicked(event)"
                     position={{marker.position.lat+","+marker.position.lng}}
                     title={{marker.denomination}}
-                    icon={{institutionClasses[marker.typeId].icon_url}}
+                    icon={{institutionClasses[marker.class_id].icon_url}}
                     visible = "false"></marker>
 
             <info-window id="myInfoWindow" >
@@ -15,7 +15,7 @@
                                                text-transform: capitalize" >
                         {{selectedMarker.denomination}}</h4>
                     <h5 align="middle" style="font-weight: 100;text-transform: capitalize" >
-                        {{institutionClasses[selectedMarker.typeId].denomination}}</h5>
+                        {{institutionClasses[selectedMarker.class_id].denomination}}</h5>
                     <div>
                         <p  style="text-transform: capitalize">
                             {{selectedMarker.description}}

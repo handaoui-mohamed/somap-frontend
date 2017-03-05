@@ -1,118 +1,94 @@
-<form name="institutionForm" novalidate flex="50" layout="column" layout-align="center stretch" 
-      class="institution-info">
+<form name="institutionForm" novalidate flex="50" layout="column" layout-align="center stretch" class="institution-info">
     <h2 layout="row" layout-align="center">Ajouter Une Institution</h1>
-    <md-input-container flex>
-        <label>Dénomination</label>
-        <input  type="text"
-                name="denomination"
-                ng-model="vmIns.institution.denomination"
-                required>
-        <div ng-messages="institutionForm.denomination.$error"
-                ng-if="institutionForm.denomination.$touched || institutionForm.$submitted" role="alert">
-            <div ng-message="required">Ce champ est obligatoire.</div>
+        <md-input-container flex>
+            <label>Dénomination</label>
+            <input type="text" name="denomination" ng-model="vmIns.institution.denomination" required>
+            <div ng-messages="institutionForm.denomination.$error" ng-if="institutionForm.denomination.$touched || institutionForm.$submitted" role="alert">
+                <div ng-message="required">Ce champ est obligatoire.</div>
+            </div>
+        </md-input-container>
+        <div layout="row">
+            <md-input-container flex>
+                <label>Numéro Téléphone</label>
+                <input type="text" name="phone" ng-model="vmIns.institution.phone" required>
+                <div ng-messages="institutionForm.phone.$error" ng-if="institutionForm.phone.$touched || institutionForm.$submitted" role="alert">
+                    <div ng-message="required">Ce champ est obligatoire.</div>
+                </div>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Numéro Fax</label>
+                <input type="text" name="fax" ng-model="vmIns.institution.fax">
+                <div ng-messages="institutionForm.fax.$error" ng-if="institutionForm.fax.$touched || institutionForm.$submitted" role="alert">
+
+                </div>
+            </md-input-container>
         </div>
-    </md-input-container>
-    <div layout="row">
-        <md-input-container flex>
-            <label>Numéro Téléphone</label>
-            <input type="text"
-                    name="phone"
-                    ng-model="vmIns.institution.phone"
-                    required>
-            <div ng-messages="institutionForm.phone.$error"
-                    ng-if="institutionForm.phone.$touched || institutionForm.$submitted" role="alert">
-                <div ng-message="required">Ce champ est obligatoire.</div>
-            </div>
-        </md-input-container>
-        <md-input-container flex>
-            <label>Numéro Fax</label>
-            <input type="text"
-                    name="fax"
-                    ng-model="vmIns.institution.fax">
-            <div ng-messages="institutionForm.fax.$error"
-                    ng-if="institutionForm.fax.$touched || institutionForm.$submitted" role="alert">
-                
-            </div>
-        </md-input-container>
-    </div>
 
-    <div layout="row" flex>
-        <md-input-container flex>
-            <label>Type Institution</label>
-            <md-select ng-model="vmIns.institution.typeId" name="institutionclasse" required>
-            <md-optgroup label="Type Institution">
-                <md-option ng-value="institutionClasse.id" ng-repeat="institutionClasse in vmIns.institutionClasses" style="text-transform: capitalize">
-                    {{institutionClasse.denomination}}
-                </md-option>
-            </md-optgroup>
-            </md-select>
-            <div ng-messages="institutionForm.institutionclasse.$error"
-                ng-if="institutionForm.institutionclasse.$touched || institutionForm.$submitted" role="alert">
-                <div ng-message="required">Ce champ est obligatoire.</div>
-            </div>
-        </md-input-container>
+        <div layout="row" flex>
+            <md-input-container flex>
+                <label>Type Institution</label>
+                <md-select ng-model="vmIns.institution.class_id" name="institutionclasse" required>
+                    <md-optgroup label="Type Institution">
+                        <md-option ng-value="institutionClasse.id" ng-repeat="institutionClasse in vmIns.institutionClasses" style="text-transform: capitalize">
+                            {{institutionClasse.denomination}}
+                        </md-option>
+                    </md-optgroup>
+                </md-select>
+                <div ng-messages="institutionForm.institutionclasse.$error" ng-if="institutionForm.institutionclasse.$touched || institutionForm.$submitted" role="alert">
+                    <div ng-message="required">Ce champ est obligatoire.</div>
+                </div>
+            </md-input-container>
 
-        <md-input-container flex>
-            <label>Wilayas</label>
-            <md-select ng-model="vmIns.institution.wilayaId" name="wilaya" required>
-            <md-optgroup label="wilaya">
-                <md-option ng-value="wilaya.id" ng-repeat="wilaya in vmIns.wilayas" style="text-transform: capitalize">
-                    {{wilaya.name}}
-                </md-option>
-            </md-optgroup>
-            </md-select>
-            
-            <div ng-messages="institutionForm.wilaya.$error"
-                ng-if="institutionForm.wilaya.$touched || institutionForm.$submitted" role="alert">
-                <div ng-message="required">Ce champ est obligatoire.</div>
-            </div>
-        </md-input-container>
+            <md-input-container flex>
+                <label>Wilayas</label>
+                <md-select ng-model="vmIns.institution.wilaya_id" name="wilaya" required>
+                    <md-optgroup label="wilaya">
+                        <md-option ng-value="wilaya.id" ng-repeat="wilaya in vmIns.wilayas" style="text-transform: capitalize">
+                            {{wilaya.name}}
+                        </md-option>
+                    </md-optgroup>
+                </md-select>
 
-        <md-input-container flex>
-            <label>Communes</label>
-            <md-select ng-model="vmIns.institution.commune_id" md-on-open="vmIns.loadCommunes()" name="commune" required>
-            <md-optgroup label="commune">
-                <md-option ng-value="commune.id" ng-repeat="commune in vmIns.selectedWilaya.communes" style="text-transform: capitalize">
-                {{commune.name}}
-                </md-option>
-            </md-optgroup>
-            </md-select>
-            <div ng-messages="institutionForm.commune.$error"
-                ng-if="institutionForm.commune.$touched || institutionForm.$submitted" role="alert">
-                <div ng-message="required">Ce champ est obligatoire.</div>
-            </div>
-        </md-input-container>
-    </div>
-    
-    <md-input-container flex>
-        <label>Adresse</label>
-        <input type="text"
-                name="address"
-                ng-model="vmIns.institution.address"
-                required>
-        <div ng-messages="institutionForm.address.$error"
-                ng-if="institutionForm.address.$touched || institutionForm.$submitted" role="alert">
-            <div ng-message="required">Ce champ est obligatoire.</div>
+                <div ng-messages="institutionForm.wilaya.$error" ng-if="institutionForm.wilaya.$touched || institutionForm.$submitted" role="alert">
+                    <div ng-message="required">Ce champ est obligatoire.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>Communes</label>
+                <md-select ng-model="vmIns.institution.commune_id" md-on-open="vmIns.loadCommunes()" name="commune" required>
+                    <md-optgroup label="commune">
+                        <md-option ng-value="commune.id" ng-repeat="commune in vmIns.selectedWilaya.communes" style="text-transform: capitalize">
+                            {{commune.name}}
+                        </md-option>
+                    </md-optgroup>
+                </md-select>
+                <div ng-messages="institutionForm.commune.$error" ng-if="institutionForm.commune.$touched || institutionForm.$submitted" role="alert">
+                    <div ng-message="required">Ce champ est obligatoire.</div>
+                </div>
+            </md-input-container>
         </div>
-    </md-input-container>
 
-    <md-input-container flex>
-        <label>Description</label>
-        <input type="text"
-                name="description"
-                ng-model="vmIns.institution.description">
-        <div ng-messages="institutionForm.description.$error"
-                ng-if="institutionForm.description.$touched || institutionForm.$submitted" role="alert">
-            
+        <md-input-container flex>
+            <label>Adresse</label>
+            <input type="text" name="address" ng-model="vmIns.institution.address" required>
+            <div ng-messages="institutionForm.address.$error" ng-if="institutionForm.address.$touched || institutionForm.$submitted" role="alert">
+                <div ng-message="required">Ce champ est obligatoire.</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container flex>
+            <label>Description</label>
+            <input type="text" name="description" ng-model="vmIns.institution.description">
+            <div ng-messages="institutionForm.description.$error" ng-if="institutionForm.description.$touched || institutionForm.$submitted" role="alert">
+
+            </div>
+        </md-input-container>
+        <span>Téléchager des images</span>
+
+        <div layout="row" layout-align="center center">
+            <md-button type="submit" class="md-raised md-primary" ng-click="vmIns.getCoordinates()" ng-disabled="vmIns.disabled || institutionForm.$invalid || institutionForm.$pristine">
+                Ajouter L'institution
+            </md-button>
         </div>
-    </md-input-container>
-
-
-    <div layout="row" layout-align="center center">
-        <md-button type="submit" class="md-raised md-primary" ng-click="vmIns.addInstitution()"
-                    ng-disabled="vmIns.disabled || institutionForm.$invalid || institutionForm.$pristine">
-                    Ajouter L'institution
-        </md-button>
-    </div>
 </form>
-
