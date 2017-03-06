@@ -32,7 +32,7 @@
                     <md-input-container>
                         <label>Institutions</label>
                         <md-select ng-model="vm.selectedInstitutionsId" ng-change="vm.showSelectedInstitutions()" md-selected-text="(vm.selectedInstitutionsId.length)+' Institutions'" multiple>
-                            <md-optgroup label="institutionClasse">
+                            <md-optgroup label="Types d'institution">
                                 <md-option ng-value="institutionClasse.id" ng-repeat="institutionClasse in vm.institutionClasses" style="text-transform: capitalize">
                                     {{institutionClasse.denomination}}</md-option>
                             </md-optgroup>

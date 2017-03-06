@@ -1,12 +1,12 @@
-(function(){
+(function() {
     'use strict';
 
     angular
         .module("home")
-        .directive("googleMaps",googleMaps);
+        .directive("googleMaps", googleMaps);
 
-    function googleMaps(){
-        return{ 
+    function googleMaps() {
+        return {
             restrict: 'E',
             replace: true,
             templateUrl: 'app/home/components/map-component/map-component.html',
@@ -15,13 +15,17 @@
                 institutions: '=',
                 institutionClasses: '='
             },
-            link: function(scope, element, attrs){
+            link: function(scope, element, attrs) {
                 var goolgeMap;
                 scope.$on('mapInitialized', function(event, map) {
                     goolgeMap = map;
                 });
+
+                scope.onMarkerClicked = onMarkerClicked;
+                scope.onMapClicked = onMapClicked;
+
                 function onMarkerClicked(evt) {
-                    vm.selectedMarker = scope.institutions[this.id];
+                    scope.selectedMarker = scope.institutions[this.id];
                     goolgeMap.showInfoWindow(evt, 'myInfoWindow', this);
                 }
 
@@ -30,11 +34,13 @@
                     if (scope.selectedMarker != null) {
                         goolgeMap.hideInfoWindow(event, 'myInfoWindow', scope.selectedMarker);
                         scope.selectedMarker = null;
-                        goolgeMap.setCenter(new google.maps.LatLng(32 , 2));
+                        goolgeMap.setCenter(new google.maps.LatLng(32, 2));
                         goolgeMap.setZoom(6);
                     }
                 }
             }
         }
     }
+
+
 })();

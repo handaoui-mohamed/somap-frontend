@@ -7,27 +7,24 @@
                     position={{marker.position.lat+","+marker.position.lng}}
                     title={{marker.denomination}}
                     icon={{institutionClasses[marker.class_id].icon_url}}
-                    visible = "false"></marker>
+                    visible = "false"></marker> 
 
-            <info-window id="myInfoWindow" >
-                <div ng-non-bindable="" >
-                    <h4 align="middle" style=" background-color: white ;font-weight: 100; color: #2d6ca2;
-                                               text-transform: capitalize" >
-                        {{selectedMarker.denomination}}</h4>
-                    <h5 align="middle" style="font-weight: 100;text-transform: capitalize" >
-                        {{institutionClasses[selectedMarker.class_id].denomination}}</h5>
-                    <div>
-                        <p  style="text-transform: capitalize">
-                            {{selectedMarker.description}}
-                        </p>
-                        <p>
-                            <span  style="text-transform: capitalize">{{selectedMarker.wilaya}}, {{selectedMarker.commune.name}}, {{selectedMarker.address}}</span>
-                            <br />
-                            <span >{{selectedMarker.phone}}</span>
-                        </p> 
+            <info-window id="myInfoWindow" max-width="500" style="text-transform: capitalize">
+                <div id="iw-container" ng-non-bindable>
+                    <div class="iw-title" layout="row" layout-align="center space-between">
+                        <span>{{selectedMarker.denomination}}</span>
+                        <a ui-sref="home.institution_detail({id:selectedMarker.id})" class="btn">Afficher Détails</a>
                     </div>
-                </div>
-            </info-window>
+                    <div class="iw-content">
+                      <div class="iw-subTitle">{{institutionClasses[selectedMarker.class_id].denomination}}</div>
+                      <p>{{selectedMarker.description}}</p>
+                      <div class="iw-subTitle">Contacts</div>
+                      <p>Adresse: {{selectedMarker.wilaya}}, {{selectedMarker.commune.name}}, {{selectedMarker.address}}<br>3830-292 Ílhavo - Portugal<br>
+                      <br>Téléphone: {{selectedMarker.phone}}<br>Fax: {{selectedMarker.fax}}</p>
+                    </div>
+                    <div class="iw-bottom-gradient"></div>
+                  </div>
+            </info-window> 
         </map>
     </div>
 </div>
