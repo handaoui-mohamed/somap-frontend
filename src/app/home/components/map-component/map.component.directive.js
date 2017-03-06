@@ -13,7 +13,8 @@
             scope: {
                 selectedMarker: '=',
                 institutions: '=',
-                institutionClasses: '='
+                institutionClasses: '=',
+                atHome: "="
             },
             link: function(scope, element, attrs) {
                 var goolgeMap;

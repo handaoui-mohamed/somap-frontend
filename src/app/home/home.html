@@ -13,9 +13,8 @@
         </md-truncate>
         <div layout-fill layout="row" layout-align="space-between center">
             <md-button ui-sref="home">Afficher Tout</md-button>
-            <md-button ui-sref="home.institution">Ajouter une Institution</md-button>
+            <md-button ui-sref="home.institution" ui-sref-opts="{location: false}" ng-click="vm.atHome=false">Ajouter une Institution</md-button>
         </div>
-
     </div>
 </md-toolbar>
 
@@ -65,10 +64,11 @@
         </md-sidenav>
 
         <md-content flex>
-            <div ui-view layout="row" layout-align="center center">
-                <div layout="row">
-                    <google-maps selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses" institutions="vm.institutions"></google-maps>
-                </div>
+            <a ng-click="vm.atHome=true" class="btn btn-default return-button" ng-if="!vm.atHome">Retourner vers la Map</a>
+            <div ui-view layout="row" layout-align="center center" ng-if="!vm.atHome">
+            </div>
+            <div layout="row" ng-show="vm.atHome">
+                <google-maps at-home="vm.atHome" selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses" institutions="vm.institutions"></google-maps>
             </div>
         </md-content>
     </section>

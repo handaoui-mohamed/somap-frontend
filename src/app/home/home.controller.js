@@ -20,7 +20,7 @@
         vm.selectedInstitutionsId = [];
         vm.selectedWilayasId = [];
         vm.query = "";
-        vm.showMap = true;
+        vm.atHome = true;
 
         $scope.$on('mapInitialized', function(event, map) {
             vm.map = map;

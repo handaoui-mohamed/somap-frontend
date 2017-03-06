@@ -27,7 +27,7 @@
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 22px;
     font-weight: 400;
-    padding: 10px;
+    padding: 5px;
     background-color: #333;
     color: white;
     margin: 0;
@@ -89,9 +89,8 @@
     display: none;
 }
 
-.iw-container .btn:hover,
-.iw-container .btn:focus,
-.iw-container .btn.focus {
+.iw-title a:hover,
+.iw-title a:focus {
     color: #fff !important;
 }
 

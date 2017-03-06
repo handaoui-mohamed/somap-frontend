@@ -14,6 +14,6 @@
             url: 'institution/:id',
             controller: 'InstitutionDetailController as vmIns',
             templateUrl: 'app/home/views/institution-detail/institution-detail.html'
-        });;
+        });
     }
 })();

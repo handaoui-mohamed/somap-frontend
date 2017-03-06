@@ -1,4 +1,16 @@
-<a ui-sref="home" class="btn return-button">Retourner vers la Map</a>
-<div>
-    {{ vmIns.institution.denomination }}
+<div layout="column" layout-align="center center" layout-fill>
+    <h1 style="text-align: center">Détail d'institution</h1>
+    <div>
+        <h3>{{vmIns.institution.denomination}}</h3>
+        <div>
+            <h3>{{vmIns.institutionClasses[vmIns.institution.class_id].denomination}}</h3>
+            <p>{{vmIns.institution.description}}</p>
+            <h4>Contacts</h4>
+            <p>Adresse: {{vmIns.institution.wilaya}}, {{vmIns.institution.commune.name}}, {{vmIns.institution.address}}<br>
+                <br>Téléphone: {{vmIns.institution.phone}}<br>Fax: {{vmIns.institution.fax}}</p>
+        </div>
+    </div>
+
+    <div> Des Images de cette institution </div>
+    <img src="assets/images/background.png" alt="" style="width:40%">
 </div>
