@@ -3,9 +3,9 @@
 
     angular
         .module("home")
-        .directive("googleMaps", googleMaps);
+        .directive("soMap", soMap);
 
-    function googleMaps() {
+    function soMap() {
         return {
             restrict: 'E',
             replace: true,
@@ -14,7 +14,7 @@
                 selectedMarker: '=',
                 institutions: '=',
                 institutionClasses: '=',
-                atHome: "="
+                atHome: "=",
             },
             link: function(scope, element, attrs) {
                 var goolgeMap;
@@ -39,7 +39,7 @@
                         goolgeMap.setZoom(6);
                     }
                 }
-            }
+            } 
         }
     }
 

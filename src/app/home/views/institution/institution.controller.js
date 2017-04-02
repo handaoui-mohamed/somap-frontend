@@ -50,8 +50,7 @@
         function getCoordinates() {
             if (!vm.geocoder) vm.geocoder = new google.maps.Geocoder();
             vm.geocoder.geocode({
-                    'address': vm.institution.address + ", " +
-                        vm.wilayas[vm.institution.wilaya_id].name + ", " +
+                    'address': vm.wilayas[vm.institution.wilaya_id].name + ", " +
                         vm.selectedWilaya.communes.find(function(commune) { return commune.id === vm.institution.commune_id }).name
                 },
                 function(results, status) {
@@ -59,12 +58,9 @@
                         var location = results[0].geometry.location;
                         vm.institution.latitude = location.lat();
                         vm.institution.longitude = location.lng();
-                        addInstitution();
+                        addInstitution()
                     } else {
-                        vm.geocoder.geocode({
-                                'address': vm.wilayas[vm.institution.wilaya_id].name + ", " +
-                                    vm.selectedWilaya.communes.find(function(commune) { return commune.id === vm.institution.commune_id }).name
-                            },
+                        vm.geocoder.geocode({ 'address': vm.wilayas[vm.institution.wilaya_id].name },
                             function(results, status) {
                                 if (status == google.maps.GeocoderStatus.OK) {
                                     var location = results[0].geometry.location;
@@ -72,17 +68,7 @@
                                     vm.institution.longitude = location.lng();
                                     addInstitution()
                                 } else {
-                                    vm.geocoder.geocode({ 'address': vm.wilayas[vm.institution.wilaya_id].name },
-                                        function(results, status) {
-                                            if (status == google.maps.GeocoderStatus.OK) {
-                                                var location = results[0].geometry.location;
-                                                vm.institution.latitude = location.lat();
-                                                vm.institution.longitude = location.lng();
-                                                addInstitution()
-                                            } else {
-                                                Toast.error("Cette adresse est introuvable!");
-                                            }
-                                        });
+                                    Toast.error("Cette adresse est introuvable!");
                                 }
                             });
                     }

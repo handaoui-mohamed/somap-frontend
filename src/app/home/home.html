@@ -4,15 +4,12 @@
             <i class="glyphicon glyphicon-align-justify"></i>
         </button>-->
         <md-truncate style="width:21%" md-whiteframe="4">
-            <div class="input-group" layout-fill layout="row">
-                <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
-              </span>
-                <input type="text" class="form-control" placeholder="Entrer un mot clé dans le champ de recherche" style="border:0" ng-model="vm.query" ng-model-options="{ debounce: 250 }">
+            <div class="input-group" layout-fill layout="row" style="border-radius: 3px;">
+                <input  style="border-radius: 3px;" ng-change="vm.filterInstitutions()" type="text" class="form-control" placeholder="Entrer un mot clé dans le champ de recherche" style="border:0" ng-model="vm.query" ng-model-options="{ debounce: 250 }">
             </div>
         </md-truncate>
         <div layout-fill layout="row" layout-align="space-between center">
-            <md-button ui-sref="home">Afficher Tout</md-button>
+            <md-button ng-click="vm.showAll()">{{ !vm.allShowed ? 'Afficher Tout' : 'Cacher Tout' }}</md-button>
             <md-button ui-sref="home.institution" ui-sref-opts="{location: false}" ng-click="vm.atHome=false">Ajouter une Institution</md-button>
         </div>
     </div>
@@ -54,11 +51,11 @@
                 </div>
             </md-toolbar>
             <!--ng-controller="LeftCtrl"-->
-            <md-content>
-                <div ng-repeat="institution in vm.institutions | filter:vm.filterMarkers() | filter:vm.filterWilayas() | filter:vm.query">
+            <md-content ng-init="vm.filterInstitutions()">
+                <div ng-repeat="institution in vm.filteredInstitutions">
                     <service-card selected-marker="vm.selectedMarker" app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers" institution-classes="vm.institutionClasses" wilayas="vm.wilayas"></service-card>
                 </div>
-
+                <md-button style="display: block; width: 95%; text-align: center" class="md-raised md-primary" ng-hide="vm.limit > vm.filteredInstitutions.length" ng-click="vm.limit = vm.limit + 10; vm.filterInstitutions(true)">Affichier Plus...</md-button>
             </md-content>
 
         </md-sidenav>
@@ -68,7 +65,7 @@
             <div ui-view layout="row" layout-align="center center" ng-if="!vm.atHome">
             </div>
             <div layout="row" ng-show="vm.atHome">
-                <google-maps at-home="vm.atHome" selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses" institutions="vm.institutions"></google-maps>
+                <so-map at-home="vm.atHome" selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses" institutions="vm.filteredInstitutions"></so-map>
             </div>
         </md-content>
     </section>

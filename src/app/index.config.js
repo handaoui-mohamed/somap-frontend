@@ -1,11 +1,11 @@
-(function(){
+(function() {
     "use strict";
 
     angular
         .module("somap")
         .config(config);
 
-    function config($stateProvider, $locationProvider, $urlRouterProvider,$mdThemingProvider){
+    function config($stateProvider, $locationProvider, $urlRouterProvider, $mdThemingProvider) {
         $mdThemingProvider.definePalette('amazingPaletteName', {
             '50': '2C303A',
             '100': '2C303A',
@@ -34,7 +34,7 @@
             controller: 'HomeController as vm',
             templateUrl: 'app/home/home.html'
         });
-        $urlRouterProvider.otherwise('/');// we can use 404 page
+        $urlRouterProvider.otherwise('/'); // we can use 404 page
 
         // angular-translate configuration
         // inject these: $translateProvider, $translatePartialLoaderProvider

@@ -6,11 +6,11 @@
         .controller("HomeController", HomeController);
 
     function HomeController($scope, $mdDialog, WilayaService, InstitutionClassService,
-        InstitutionService, SourceBlack, SourceBlue, Toast, $mdSidenav) {
+        InstitutionService, SourceBlack, SourceBlue, Toast, $mdSidenav, $filter) {
         var vm = this;
 
         vm.sourceBlack = SourceBlack;
-        vm.sourceBlue = SourceBlue
+        vm.sourceBlue = SourceBlue;
         vm.institutions = [];
         vm.institutionClasses = [];
         vm.selectedInstitutions = [];
@@ -19,8 +19,11 @@
         vm.selectedMarkers = [];
         vm.selectedInstitutionsId = [];
         vm.selectedWilayasId = [];
+        vm.filteredInstitutions = [];
         vm.query = "";
         vm.atHome = true;
+        vm.limit = 20;
+        vm.showAll = showAll;
 
         $scope.$on('mapInitialized', function(event, map) {
             vm.map = map;
@@ -49,17 +52,17 @@
 
         InstitutionService.get(function(data) {
             vm.institutions = data.elements;
+            vm.filteredInstitutions = vm.institutions.slice(0, vm.limit);
         }, function(errors) {
             Toast.error(errors);
         });
 
         vm.selectAll = selectAll;
-        vm.filterMarkers = filterMarkers;
-        vm.filterWilayas = filterWilayas;
         vm.showAboutDialog = showAboutDialog;
         vm.showSelectedInstitutions = showSelectedInstitutions;
         vm.showSelectedWilayas = showSelectedWilayas;
         vm.toggleSideNav = toggleSideNav;
+        vm.filterInstitutions = filterInstitutions;
 
         function toggleSideNav() {
             $mdSidenav('left').toggle();
@@ -69,31 +72,36 @@
             vm.selectedInstitutions.forEach(function(institutionClass, index) {
                 vm.selectedInstitutions[index] = vm.selectedInstitutionsId.includes(index + 1);
             });
+            filterInstitutions();
         }
 
         function showSelectedWilayas() {
             vm.selectedWilayas.forEach(function(wilaya, index) {
                 vm.selectedWilayas[index] = vm.selectedWilayasId.includes(index + 1);
             });
+            filterInstitutions();
         }
 
-        //Functions Implementation 
-        function filterMarkers() {
-            return function(marker) {
-                return vm.selectedInstitutions[(marker.class_id) - 1];
-            };
-        }
-
-        function filterWilayas() {
-            return function(marker) {
-                return vm.selectedWilayas[(marker.wilaya_id) - 1];
-            };
-        }
 
         function selectAll(value) {
+            if(value){
+                vm.selectedWilayasId = vm.wilayas.map(function(institutionClass) {
+                    return institutionClass.id;
+                });
+            }else{
+                vm.selectedWilayasId = [];
+            }
             for (var i = 0; i < vm.selectedWilayas.length; i++) {
                 vm.selectedWilayas[i] = value;
             }
+            filterInstitutions();
+        }
+
+        function showAll(){
+            vm.allShowed = !vm.allShowed;
+            vm.filteredInstitutions.forEach(function(institution){
+                vm.map.markers[institution.id].setVisible(vm.allShowed);
+            })
         }
 
         // Dialogs Section
@@ -107,6 +115,21 @@
                 clickOutsideToClose: true,
                 escapeToClose: true
             });
+        }
+
+        function filterInstitutions(added){ 
+            if (!added) {vm.limit = 20;}
+            vm.filteredInstitutions = $filter('filter')(vm.institutions, function(marker) {
+                return vm.selectedInstitutions[(marker.class_id) - 1];
+            });
+            vm.filteredInstitutions = $filter('filter')(vm.filteredInstitutions, function(marker) {
+                return vm.selectedWilayas[(marker.wilaya_id) - 1];
+            });
+            if (vm.query !== ""){
+                vm.filteredInstitutions = $filter('filter')(vm.filteredInstitutions, vm.query);
+            }
+            vm.filteredInstitutions = $filter('limitTo')(vm.filteredInstitutions, vm.limit);
+            return vm.filterInstitutions;
         }
     }
 })();
