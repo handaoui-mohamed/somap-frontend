@@ -13,7 +13,6 @@
             'ui.router',
 
             //costum modules
-            "home",
-            "auth"
+            "home"
         ]);
 })();
