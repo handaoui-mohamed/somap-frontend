@@ -4,15 +4,15 @@
     angular
         .module("somap", [
             "ngResource",
-            "satellizer",
             "ngMessages",
             "ngMap",
             "ngMaterial",
             "ngAria",
             "ngAnimate",
             'ui.router',
+            'ngFileUpload',
 
             //costum modules
-            "home"
+            "home" 
         ]);
 })();

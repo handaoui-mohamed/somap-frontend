@@ -25,9 +25,8 @@
                 scope.onMarkerClicked = onMarkerClicked;
                 scope.onMapClicked = onMapClicked;
 
-                function onMarkerClicked(evt) {
-                    scope.selectedMarker = scope.institutions[this.id];
-                    goolgeMap.showInfoWindow(evt, 'myInfoWindow', this);
+                function onMarkerClicked(evt, marker) {
+                    goolgeMap.showInfoWindow(evt, 'myInfoWindow', goolgeMap.markers[marker.id]);
                 }
 
                 function onMapClicked(event) {
@@ -37,7 +36,7 @@
                         scope.selectedMarker = null;
                         goolgeMap.setCenter(new google.maps.LatLng(32, 2));
                         goolgeMap.setZoom(6);
-                    }
+                    } 
                 }
             } 
         }
