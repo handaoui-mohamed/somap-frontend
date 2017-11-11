@@ -1,28 +1,26 @@
 <div id="MapContainer">
-  <div id="map-canvas">
-    <map center="32, 2" zoom="6" on-click="onMapClicked(event)" style="height: 100%">
-            <marker ng-repeat="marker in institutions" id="{{marker.id}}"
-                    ng-click="onMarkerClicked(event, marker)"
-                    position="{{marker.position.lat+','+marker.position.lng}}"
-                    title="{{marker.denomination}}"
-                    icon="{{institutionClasses[marker.class_id].icon_url}}"
-                    visible = "false"></marker> 
+	<div id="map-canvas">
+		<map center="32, 2" zoom="6" on-click="onMapClicked(event)" style="height: 100%">
+			<marker ng-repeat="marker in institutions" id="{{marker.id}}" ng-click="onMarkerClicked(event, marker)" position="{{marker.position.lat+','+marker.position.lng}}"
+			 title="{{marker.denomination}}" icon="{{institutionClasses[marker.class_id].icon_url}}" visible="false"></marker>
 
-        <info-window id="myInfoWindow" max-width="500" style="text-transform: capitalize">
-            <div id="iw-container" ng-non-bindable>
-                <div class="iw-title" layout="row" layout-align="space-between center">
-                    <span>{{ selectedMarker.denomination }}</span>
-                    <md-button ng-click="atHome=false" ui-sref="home.institution_detail({id:selectedMarker.id})" ui-sref-opts="{location: false}">Afficher Détails</md-button>
-                </div>
-                <div class="iw-content">
-                    <div class="iw-subTitle">{{ institutionClasses[selectedMarker.class_id].denomination }}</div>
-                    <p>{{ selectedMarker.description }}</p>
-                    <div class="iw-subTitle">Contacts</div>
-                    <p>Adresse: {{ selectedMarker.wilaya }}, {{ selectedMarker.commune.name }}, {{ selectedMarker.address }}<br>
-                    <br>Téléphone: {{ selectedMarker.phone }}<br>Fax: {{ selectedMarker.fax }}</p>
-                </div>
-            </div>
-        </info-window> 
-    </map>
-  </div>
+			<info-window id="myInfoWindow" max-width="500" style="text-transform: capitalize">
+				<div id="iw-container" ng-non-bindable>
+					<div class="iw-title" layout="row" layout-align="space-between center">
+						<span>{{ selectedMarker.denomination }}</span>
+						<md-button ng-click="atHome=false" ui-sref="home.institution_detail({id:selectedMarker.id})" ui-sref-opts="{location: false}">Afficher Détails</md-button>
+					</div>
+					<div class="iw-content">
+						<div class="iw-subTitle">{{ institutionClasses[selectedMarker.class_id].denomination }}</div>
+						<p>{{ selectedMarker.description }}</p>
+						<div class="iw-subTitle">Contacts</div>
+						<p>Adresse: {{ selectedMarker.wilaya }}, {{ selectedMarker.commune.name }}, {{ selectedMarker.address }}
+							<br>
+							<br>Téléphone: {{ selectedMarker.phone }}
+							<br>Fax: {{ selectedMarker.fax }}</p>
+					</div>
+				</div>
+			</info-window>
+		</map>
+	</div>
 </div>

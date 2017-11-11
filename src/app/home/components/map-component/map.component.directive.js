@@ -20,8 +20,16 @@
                 var goolgeMap;
                 scope.$on('mapInitialized', function(event, map) {
                     goolgeMap = map;
+                    destroyOnMapInitilized();
                 });
 
+                function destroyOnMapInitilized(){
+                    scope.$on('mapInitialized', function(event, map) {
+                        return;
+                    });
+                }
+
+ 
                 scope.onMarkerClicked = onMarkerClicked;
                 scope.onMapClicked = onMapClicked;
 

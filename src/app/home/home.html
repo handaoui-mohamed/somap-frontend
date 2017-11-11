@@ -1,72 +1,77 @@
-<md-toolbar md-whiteframe="4">
-    <div class="md-toolbar-tools">
-        <!--<button class="btn" ng-click="vm.openned = !vm.openned"> 
+<md-toolbar md-whiteframe="4" style="height: 50px !important;min-height: 40px;">
+	<div class="md-toolbar-tools" style="padding-left:5px">
+		<!--<button class="btn" ng-click="vm.openned = !vm.openned"> 
             <i class="glyphicon glyphicon-align-justify"></i>
         </button>-->
-        <md-truncate style="width:21%" md-whiteframe="4">
-            <div class="input-group" layout-fill layout="row" style="border-radius: 3px;">
-                <input  style="border-radius: 3px;" ng-change="vm.filterInstitutions()" type="text" class="form-control" placeholder="Entrer un mot clé dans le champ de recherche" style="border:0" ng-model="vm.query" ng-model-options="{ debounce: 250 }">
-            </div>
-        </md-truncate>
-        <div layout-fill layout="row" layout-align="space-between center">
-            <md-button ng-click="vm.showAll()">{{ !vm.allShowed ? 'Afficher Tout' : 'Cacher Tout' }}</md-button>
-            <md-button ui-sref="home.institution" ui-sref-opts="{location: false}" ng-click="vm.atHome=false">Ajouter une Institution</md-button>
-        </div>
-    </div>
+		<md-truncate style="width: 30%" md-whiteframe="4">
+			<div class="input-group" layout-fill layout="row" style="border-radius: 2px;">
+				<input style="border-radius: 2px;" ng-change="vm.filterInstitutions()" type="text" class="form-control" placeholder="Recharcher ..."
+				 style="border:0" ng-model="vm.query" ng-model-options="{ debounce: 250 }">
+			</div>
+		</md-truncate>
+		<div layout-fill layout="row" layout-align="space-between center">
+			<md-button ng-click="vm.showAll()">{{ !vm.allShowed ? 'Afficher Tout' : 'Cacher Tout' }}</md-button>
+			<md-button ui-sref="home.institution" ui-sref-opts="{location: false}" ng-click="vm.atHome=false">Ajouter une Institution</md-button>
+		</div>
+	</div>
 </md-toolbar>
 
 <!--ng-controller="AppCtrl" -->
-<div layout="column" ng-cloak layout-fill>
+<div layout="column" ng-cloak style="height: calc(100% - (50px));">
 
-    <section layout="row" flex>
+	<section layout="row" flex>
 
-        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md') || vm.openned">
+		<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md') || vm.openned">
 
-            <md-toolbar style="z-index: 100; font-size:15px;" class="sidenav-toolbar">
-                <div layout="row" layout-align="space-around">
-                    <span layout="column" layout-align="center">Filtres:</span>
-                    <md-input-container>
-                        <label>Institutions</label>
-                        <md-select ng-model="vm.selectedInstitutionsId" ng-change="vm.showSelectedInstitutions()" md-selected-text="(vm.selectedInstitutionsId.length)+' Institutions'" multiple>
-                            <md-optgroup label="Types d'institution">
-                                <md-option ng-value="institutionClasse.id" ng-repeat="institutionClasse in vm.institutionClasses" style="text-transform: capitalize">
-                                    {{institutionClasse.denomination}}</md-option>
-                            </md-optgroup>
-                        </md-select>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Wilayas</label>
-                        <md-select ng-model="vm.selectedWilayasId" md-selected-text="(vm.selectedWilayasId.length)+' Wilayas'" ng-change="vm.showSelectedWilayas()" multiple>
-                            <md-select-header>
-                                <md-button ng-click="vm.selectAll(true)">Tout</md-button>
-                                <md-button ng-click="vm.selectAll(false)">Aucun</md-button>
-                            </md-select-header>
-                            <md-optgroup label="wilaya">
-                                <md-option ng-value="wilaya.id" ng-repeat="wilaya in vm.wilayas" style="text-transform: capitalize">
-                                    {{wilaya.name}}
-                                </md-option>
-                            </md-optgroup>
-                        </md-select>
-                    </md-input-container>
-                </div>
-            </md-toolbar>
-            <!--ng-controller="LeftCtrl"-->
-            <md-content ng-init="vm.filterInstitutions()">
-                <div ng-repeat="institution in vm.filteredInstitutions">
-                    <service-card selected-marker="vm.selectedMarker" app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers" institution-classes="vm.institutionClasses" wilayas="vm.wilayas"></service-card>
-                </div>
-                <md-button style="display: block; width: 95%; text-align: center" class="md-raised md-primary" ng-hide="vm.limit > vm.filteredInstitutions.length" ng-click="vm.limit = vm.limit + 10; vm.filterInstitutions(true)">Affichier Plus...</md-button>
-            </md-content>
+			<md-toolbar style="z-index: 100; font-size:15px;" class="sidenav-toolbar">
+				<div layout="row" layout-align="space-around">
+					<span layout="column" layout-align="center">Filtres:</span>
+					<md-input-container>
+						<label>Institutions</label>
+						<md-select ng-model="vm.selectedInstitutionsId" ng-change="vm.showSelectedInstitutions()" md-selected-text="(vm.selectedInstitutionsId.length)+' Institutions'"
+						 multiple>
+							<md-optgroup label="Types d'institution">
+								<md-option ng-value="institutionClasse.id" ng-repeat="institutionClasse in vm.institutionClasses" style="text-transform: capitalize">
+									{{institutionClasse.denomination}}</md-option>
+							</md-optgroup>
+						</md-select>
+					</md-input-container>
+					<md-input-container>
+						<label>Wilayas</label>
+						<md-select ng-model="vm.selectedWilayasId" md-selected-text="(vm.selectedWilayasId.length)+' Wilayas'" ng-change="vm.showSelectedWilayas()"
+						 multiple>
+							<md-select-header>
+								<md-button ng-click="vm.selectAll(true)">Tout</md-button>
+								<md-button ng-click="vm.selectAll(false)">Aucun</md-button>
+							</md-select-header>
+							<md-optgroup label="wilaya">
+								<md-option ng-value="wilaya.id" ng-repeat="wilaya in vm.wilayas" style="text-transform: capitalize">
+									{{wilaya.name}}
+								</md-option>
+							</md-optgroup>
+						</md-select>
+					</md-input-container>
+				</div>
+			</md-toolbar>
+			<!--ng-controller="LeftCtrl"-->
+			<md-content ng-init="vm.filterInstitutions()">
+				<div ng-repeat="institution in vm.filteredInstitutions">
+					<service-card selected-marker="vm.selectedMarker" app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers"
+					 institution-classes="vm.institutionClasses" wilayas="vm.wilayas"></service-card>
+				</div>
+				<md-button style="display: block; width: 95%; text-align: center" class="md-raised md-primary" ng-hide="vm.limit > vm.filteredInstitutions.length"
+				 ng-click="vm.limit = vm.limit + 10; vm.filterInstitutions(true)">Affichier Plus...</md-button>
+			</md-content>
 
-        </md-sidenav>
+		</md-sidenav>
 
-        <md-content flex>
-            <a ng-click="vm.atHome=true" class="btn btn-default return-button" ng-if="!vm.atHome">Retourner vers la Map</a>
-            <div ui-view layout="row" layout-align="center center" ng-if="!vm.atHome">
-            </div>
-            <div layout="row" ng-show="vm.atHome">
-                <so-map at-home="vm.atHome" selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses" institutions="vm.filteredInstitutions"></so-map>
-            </div>
-        </md-content>
-    </section>
+		<md-content flex>
+			<a ng-click="vm.atHome=true" class="btn btn-default return-button" ng-if="!vm.atHome">Retourner vers la Map</a>
+			<div ui-view layout="row" layout-align="center center" ng-if="!vm.atHome">
+			</div>
+			<div layout="row" ng-show="vm.atHome">
+				<so-map at-home="vm.atHome" selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses" institutions="vm.filteredInstitutions"></so-map>
+			</div>
+		</md-content>
+	</section>
 </div>

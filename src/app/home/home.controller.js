@@ -27,6 +27,7 @@
 
         $scope.$on('mapInitialized', function(event, map) {
             vm.map = map;
+            destroyOnMapInitilized();
         });
 
         // fetch Data from server
@@ -63,6 +64,12 @@
         vm.showSelectedWilayas = showSelectedWilayas;
         vm.toggleSideNav = toggleSideNav;
         vm.filterInstitutions = filterInstitutions;
+
+        function destroyOnMapInitilized(){
+            $scope.$on('mapInitialized', function(event, map) {
+                return;
+            });
+        }
 
         function toggleSideNav() {
             $mdSidenav('left').toggle();

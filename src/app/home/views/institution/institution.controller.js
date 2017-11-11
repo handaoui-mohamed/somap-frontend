@@ -42,12 +42,12 @@
 
         function addInstitution() {
             console.log(vm.institution);
-            // InstitutionService.save(vm.institution, function(data) {
-            //     uploadInstitutionFile(vm.institution_image,data.element.id)
-            //     Toast.message("L'institution en attente de validation, On vous remercie.");
-            // }, function(errors) {
-            //     Toast.error(errors);
-            // });
+            InstitutionService.save(vm.institution, function(data) {
+                // uploadInstitutionFile(vm.institution_image,data.element.id)
+                Toast.message("L'institution en attente de validation, On vous remercie.");
+            }, function(errors) {
+                Toast.error(errors);
+            });
         }
 
         function onMapClicked(event) {
