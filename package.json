@@ -2,7 +2,7 @@
 	"name": "somap",
 	"version": "0.0.0",
 	"scripts": {
-		"start": "gulp serve",
+		"start": "node_modules/gulp/bin/gulp gulp serve",
 		"test": "gulp test"
 	},
 	"dependencies": {
