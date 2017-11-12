@@ -163,7 +163,6 @@ md-input-container .md-placeholder {
     width: 40px;
     position: relative;
     padding: 21px;
-    margin-right: 6px;
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
     transition: .5s ease-in-out;
@@ -174,7 +173,7 @@ md-input-container .md-placeholder {
     display: block;
     position: absolute;
     height: 5px;
-    width: 100%;
+    width: 35px;
     background: #fff;
     border-radius: 5px;
     opacity: 1;
@@ -209,27 +208,4 @@ md-input-container .md-placeholder {
     -moz-transform-origin: left center;
     -o-transform-origin: left center;
     transform-origin: left center;
-}
-
-#nav-icon.open span:nth-child(1) {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    transform: rotate(45deg);
-    top: 3px;
-    left: 10px;
-}
-
-#nav-icon.open span:nth-child(2) {
-    width: 0%;
-    opacity: 0;
-}
-
-#nav-icon.open span:nth-child(3) {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-    top: 33px;
-    left: 10px;
 }
