@@ -1,10 +1,14 @@
 <div data-toggle="tooltip" data-placement="bottom" title="Afficher dans la map" class="institution" ng-click="showOnMap(evt, institution)"
  ng-mouseover="hoverIn(institution)" ng-mouseleave="hoverOut(institution)">
-	<img role="button" href="" id="image{{institution.id}}" align="right" ng-src="{{sourceBlack}}" style="cursor: pointer;margin: 5px;position: absolute;right: 0;z-index: 1;max-height: 36px;max-width: 36px;"
+	<img role="button" href="" id="image{{institution.id}}" align="right" ng-src="{{sourceBlack}}" style="cursor: pointer;margin: 5px;position: absolute;right: 0;z-index: 1;max-height: 25px;max-width: 25px;"
 	/>
 
-	<div class="btn" role="button" id="button{{::institution.id}}" href="" style="position: relative;	box-shadow: 0px 1px 5px #888888;background-color: white;
-                border-color: white;border-radius: 10px;text-align: start;width: 100%;white-space: normal;">
+	<div class="btn" role="button" id="button{{::institution.id}}" href="" style="    position: relative;
+    border-bottom-color: #ddd;
+    border-radius: 0px;
+    text-align: start;
+    width: 100%;
+    white-space: normal;">
 		<h5 align="left" style="display: inline-block;font-weight: bold; color: #2d6ca2;margin-right: 36px;
             text-transform: capitalize" href="">
 			{{::institution.denomination}}</h5>
