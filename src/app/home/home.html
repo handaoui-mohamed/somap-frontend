@@ -1,9 +1,11 @@
 <md-toolbar md-whiteframe="4" style="height: 50px !important;min-height: 40px;">
-	<div class="md-toolbar-tools" style="padding-left:5px">
-		<!--<button class="btn" ng-click="vm.openned = !vm.openned"> 
-            <i class="glyphicon glyphicon-align-justify"></i>
-        </button>-->
-		<md-truncate style="width: 30%" md-whiteframe="4">
+	<div class="md-toolbar-tools" style="padding-left:5px" layout="row">
+		<div id="nav-icon" class="" ng-class="{'open': vm.openned}" ng-click="vm.toggleSideNav()">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<md-truncate style="width: 25%" md-whiteframe="4">
 			<div class="input-group" layout-fill layout="row" style="border-radius: 2px;">
 				<input style="border-radius: 2px;" ng-change="vm.filterInstitutions()" type="text" class="form-control" placeholder="Recharcher ..."
 				 style="border:0" ng-model="vm.query" ng-model-options="{ debounce: 250 }">
@@ -21,7 +23,7 @@
 
 	<section layout="row" flex>
 
-		<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md') || vm.openned">
+		<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="vm.openned">
 
 			<md-toolbar style="z-index: 100; font-size:15px;" class="sidenav-toolbar">
 				<div layout="row" layout-align="space-around">
