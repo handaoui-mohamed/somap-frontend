@@ -9,7 +9,7 @@
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: 'app/home/components/map-component/map-component.html',
+            templateUrl: 'app/home/components/map-component/map.html',
             scope: {
                 selectedMarker: '=',
                 institutions: '=',

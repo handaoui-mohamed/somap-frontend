@@ -6,17 +6,14 @@
 		.controller("HomeController", HomeController);
 
 	function HomeController($scope, $timeout, $mdDialog, WilayaService, InstitutionClassService,
-		InstitutionService, SourceBlack, SourceBlue, Toast, $mdSidenav, $filter) {
+		InstitutionService, Toast, $mdSidenav, $filter) {
 		var vm = this;
 
-		vm.sourceBlack = SourceBlack;
-		vm.sourceBlue = SourceBlue;
 		vm.institutions = [];
 		vm.institutionClasses = [];
 		vm.selectedInstitutions = [];
 		vm.wilayas = [];
 		vm.selectedWilayas = [];
-		vm.selectedMarkers = [];
 		vm.selectedInstitutionsId = [];
 		vm.selectedWilayasId = [];
 		vm.filteredInstitutions = [];
@@ -78,7 +75,7 @@
 			this.openned = !this.openned; // toggle sidenav
 			$timeout(function () {
 				google.maps.event.trigger(vm.map, 'resize')
-			},300);
+			}, 300);
 
 		}
 
