@@ -5,7 +5,7 @@
 		.module("home")
 		.controller("HomeController", HomeController);
 
-	function HomeController($scope, $mdDialog, WilayaService, InstitutionClassService,
+	function HomeController($scope, $timeout, $mdDialog, WilayaService, InstitutionClassService,
 		InstitutionService, SourceBlack, SourceBlue, Toast, $mdSidenav, $filter) {
 		var vm = this;
 
@@ -76,6 +76,10 @@
 			if (!this.openned)
 				$mdSidenav("left").close();
 			this.openned = !this.openned; // toggle sidenav
+			$timeout(function () {
+				google.maps.event.trigger(vm.map, 'resize')
+			},300);
+
 		}
 
 		function showSelectedInstitutions() {

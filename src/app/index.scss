@@ -157,6 +157,16 @@ md-input-container .md-placeholder {
     text-transform: capitalize;
 }
 
+md-toolbar {
+    md-select:focus md-select-value span {
+        color: #fff;
+    }
+    md-select.md-default-theme .md-select-value,
+    md-select .md-select-value {
+        border-bottom-color: rgba(255, 255, 255, 0.3);
+    }
+}
+
 // hamburger icon
 #nav-icon {
     outline: transparent;

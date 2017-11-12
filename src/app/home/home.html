@@ -1,16 +1,16 @@
 <md-toolbar md-whiteframe="4" style="height: 50px !important;min-height: 40px;">
 	<div class="md-toolbar-tools" style="padding-left:5px" layout="row">
-		<div id="nav-icon" ng-click="vm.toggleSideNav()">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-		<md-truncate style="width: 25%" md-whiteframe="4">
-			<div class="input-group" layout-fill layout="row" style="border-radius: 2px;">
+		<div layout="row" layout="center center" style="width:400px">
+			<div id="nav-icon" ng-click="vm.toggleSideNav()">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="input-group" layout="row" style="border-radius: 2px;width: 270px;top: 5px;">
 				<input style="border-radius: 2px;" ng-change="vm.filterInstitutions()" type="text" class="form-control" placeholder="Recharcher ..."
 				 style="border:0" ng-model="vm.query" ng-model-options="{ debounce: 250 }">
 			</div>
-		</md-truncate>
+		</div>
 		<div layout-fill layout="row" layout-align="space-between center">
 			<md-button ng-click="vm.showAll()">{{ !vm.allShowed ? 'Afficher Tout' : 'Cacher Tout' }}</md-button>
 			<md-button ui-sref="home.institution" ui-sref-opts="{location: false}" ng-click="vm.atHome=false">Ajouter une Institution</md-button>
@@ -25,7 +25,7 @@
 
 		<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="vm.openned">
 
-			<md-toolbar style="z-index: 100; font-size:15px;" class="sidenav-toolbar">
+			<md-toolbar style="font-size:15px;padding-top: 5px;min-height: 65px;" class="sidenav-toolbar">
 				<div layout="row" layout-align="space-around">
 					<span layout="column" layout-align="center">Filtres:</span>
 					<md-input-container>
