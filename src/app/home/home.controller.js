@@ -53,26 +53,19 @@
 		});
 
 		vm.selectAll = selectAll;
-		vm.showSelectedInstitutions = showSelectedInstitutions;
-		vm.showSelectedWilayas = showSelectedWilayas;
-		vm.toggleSideNav = toggleSideNav;
+		vm.filterInstitutionClasses = filterInstitutionClasses;
+		vm.filterWilayas = filterWilayas;
 		vm.filterInstitutions = filterInstitutions;
 
-		function toggleSideNav() {
-			if (!this.openned)
-				$mdSidenav("left").close();
-			this.openned = !this.openned;
-			$rootScope.$broadcast('mapResized');
-		}
 
-		function showSelectedInstitutions() {
+		function filterInstitutionClasses() {
 			vm.selectedInstitutions.forEach(function (institutionClass, index) {
 				vm.selectedInstitutions[index] = vm.selectedInstitutionsId.includes(index + 1);
 			});
 			filterInstitutions();
 		}
 
-		function showSelectedWilayas() {
+		function filterWilayas() {
 			vm.selectedWilayas.forEach(function (wilaya, index) {
 				vm.selectedWilayas[index] = vm.selectedWilayasId.includes(index + 1);
 			});

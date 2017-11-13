@@ -1,74 +1,23 @@
-<md-toolbar md-whiteframe="4" style="height: 50px !important;min-height: 40px;">
-	<div class="md-toolbar-tools" style="padding-left:5px" layout="row">
-		<div layout="row" layout="center center" style="width:400px">
-			<div id="nav-icon" ng-click="vm.toggleSideNav()">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-			<div id="search-container" layout="column" layout-align="center">
-				<input ng-change="vm.filterInstitutions()" type="text" placeholder="Recharcher ..." ng-model="vm.query" ng-model-options="{ debounce: 250 }">
-				<!-- add menu -->
-			</div>
-		</div>
-		<div layout-fill layout="row" layout-align="space-between center">
-			<md-button ng-click="vm.showAll()">{{ !vm.allShowed ? 'Afficher Tout' : 'Cacher Tout' }}</md-button>
-			<md-button ui-sref="home.institution" ui-sref-opts="{location: false}" ng-click="vm.atHome=false">Ajouter une Institution</md-button>
-		</div>
-	</div>
-</md-toolbar>
+<app-nav-bar></app-nav-bar>
 
 <!--ng-controller="AppCtrl" -->
 <div layout="column" ng-cloak style="height: calc(100% - (50px));">
-
 	<section layout="row" flex>
-
-		<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="vm.openned">
-
-			<md-toolbar style="font-size:15px;padding-top: 5px;min-height: 65px;" class="sidenav-toolbar">
-				<div layout="row" layout-align="space-around">
-					<span layout="column" layout-align="center">Filtres:</span>
-					<md-input-container>
-						<label>Institutions</label>
-						<md-select ng-model="vm.selectedInstitutionsId" ng-change="vm.showSelectedInstitutions()" md-selected-text="(vm.selectedInstitutionsId.length)+' Institutions'"
-						 multiple>
-							<md-optgroup label="Types d'institution">
-								<md-option ng-value="institutionClasse.id" ng-repeat="institutionClasse in vm.institutionClasses" style="text-transform: capitalize">
-									{{institutionClasse.denomination}}</md-option>
-							</md-optgroup>
-						</md-select>
-					</md-input-container>
-					<md-input-container>
-						<label>Wilayas</label>
-						<md-select ng-model="vm.selectedWilayasId" md-selected-text="(vm.selectedWilayasId.length)+' Wilayas'" ng-change="vm.showSelectedWilayas()"
-						 multiple>
-							<md-select-header>
-								<md-button ng-click="vm.selectAll(true)">Tout</md-button>
-								<md-button ng-click="vm.selectAll(false)">Aucun</md-button>
-							</md-select-header>
-							<md-optgroup label="wilaya">
-								<md-option ng-value="wilaya.id" ng-repeat="wilaya in vm.wilayas" style="text-transform: capitalize">
-									{{wilaya.name}}
-								</md-option>
-							</md-optgroup>
-						</md-select>
-					</md-input-container>
-				</div>
-			</md-toolbar>
-			<!--ng-controller="LeftCtrl"-->
-			<md-content>
-				<div ng-repeat="institution in vm.filteredInstitutions">
-					<institution-card institution="institution" institution-class="vm.institutionClasses[institution.class_id-1].denomination"
-					 selected="institution.selected"></institution-card>
-				</div>
-				<md-button style="display: block; width: 95%; text-align: center" class="md-raised md-primary" ng-hide="vm.limit > vm.filteredInstitutions.length"
-				 ng-click="vm.limit = vm.limit + 10; vm.filterInstitutions()">Affichier Plus...</md-button>
-			</md-content>
-
-		</md-sidenav>
+		<app-side-nav institution-classes="vm.institutionClasses" wilayas="vm.wilayas" filter-wilayas="vm.filterWilayas()" filter-institution-classes="vm.filterInstitutionClasses()">
+			<div ng-repeat="institution in vm.filteredInstitutions">
+				<institution-card institution="institution" institution-class="vm.institutionClasses[institution.class_id-1].denomination"
+				 selected="institution.selected"></institution-card>
+			</div>
+			<md-button style="display: block; width: 95%; text-align: center" class="md-raised md-primary" ng-hide="vm.limit > vm.filteredInstitutions.length"
+			 ng-click="vm.limit = vm.limit + 10; vm.filterInstitutions()">
+				Affichier Plus...
+			</md-button>
+		</app-side-nav>
 
 		<md-content flex>
-			<a ng-click="vm.atHome=true" class="btn btn-default return-button" ng-if="!vm.atHome">Retourner vers la Map</a>
+			<a ng-click="vm.atHome=true" class="btn btn-default return-button" ng-if="!vm.atHome">
+				Retourner vers la Map
+			</a>
 			<div ui-view layout="row" layout-align="center center" ng-if="!vm.atHome">
 			</div>
 			<div layout="row" ng-show="vm.atHome">

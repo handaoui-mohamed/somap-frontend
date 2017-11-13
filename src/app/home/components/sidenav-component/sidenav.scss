@@ -1,0 +1,38 @@
+app-side-nav,
+.app-side-nav {
+    md-sidenav {
+        height: calc(100vh - 50px) !important;
+    }
+    md-sidenav md-content {
+        overflow-x: hidden !important;
+        overflow-y: scroll !important;
+    }
+    .sidenav-toolbar .md-select-value .md-select-icon {
+        color: white;
+    }
+    .sidenav-toolbar md-input-container:not([md-no-float]) .md-select-placeholder span:first-child {
+        color: white;
+    }
+    .sidenav-toolbar .md-select-value {
+        color: white;
+    }
+    .sidenav-toolbar md-input-container label:not(.md-no-float):not(.md-container-ignore),
+    md-input-container .md-placeholder {
+        color: gainsboro
+    }
+    md-toolbar {
+        md-select:focus md-select-value span {
+            color: #fff;
+        }
+        md-select.md-default-theme .md-select-value,
+        md-select .md-select-value {
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+    }
+}
+
+.sidenav-toolbar {
+    font-size: 15px;
+    padding-top: 5px;
+    min-height: 65px;
+}

@@ -5,7 +5,7 @@
 		.module("home")
 		.directive("soMap", soMap);
 
-	function soMap(NgMap) {
+	function soMap(NgMap, $timeout) {
 		return {
 			restrict: 'E',
 			replace: false,
