@@ -24,8 +24,8 @@
 				scope.showInfoWindow = showInfoWindow;
 				scope.hideInfoWindow = hideInfoWindow;
 
-				function showInfoWindow(event, marker) {
-					var position = marker.getPosition();
+				function showInfoWindow(event, marker, clickedInMap) {
+					var position = clickedInMap ? googleMap.markers[marker.id].getPosition() : marker.getPosition();
 					googleMap.setCenter(new google.maps.LatLng(position.lng(), position.lat()));
 					googleMap.setZoom(13);
 					scope.selectedInstitution = scope.institutions[marker.id];
