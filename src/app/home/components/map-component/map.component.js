@@ -29,10 +29,10 @@
 				}
 
 
-				scope.onMarkerClicked = onMarkerClicked;
-				scope.onMapClicked = onMapClicked;
+				scope.showInfoWindow = showInfoWindow;
+				scope.hideInfoWindow = hideInfoWindow;
 
-				function onMarkerClicked(event, marker) {
+				function showInfoWindow(event, marker) {
 					var position = marker.getPosition();
 					googleMap.setCenter(new google.maps.LatLng(position.lng(), position.lat()));
 					googleMap.setZoom(13);
@@ -40,7 +40,7 @@
 					googleMap.showInfoWindow(event, 'myInfoWindow', googleMap.markers[marker.id]);
 				}
 
-				function onMapClicked(event) {
+				function hideInfoWindow(event) {
 					// hide the infowindow if it is visible
 					if (scope.selectedInstitution != null) {
 						googleMap.hideInfoWindow(event, 'myInfoWindow', scope.selectedInstitution);

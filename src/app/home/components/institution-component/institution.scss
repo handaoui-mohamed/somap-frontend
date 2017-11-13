@@ -1,25 +1,20 @@
 .institution {
-	white-space: normal;
-	cursor: pointer;
+    white-space: normal;
+    cursor: pointer;
     background-color: #fff;
     outline: 0;
-     :hover {
-        background-color: #F2F2F2;
-    }
     .institution-button {
         position: relative;
         border-bottom: 1px solid #ddd;
-        border-radius: 0px;
-        padding: 5px 5px 5px 10px;
+        padding: 5px 0 15px 10px;
         text-align: start;
-        width: 100%;
         white-space: normal;
     }
     img {
         cursor: pointer;
-        margin: 5px;
         position: absolute;
         right: 0;
+        margin-top: 5px;
         z-index: 1;
         max-height: 30px;
         max-width: 30px;
@@ -28,10 +23,10 @@
         display: inline-block;
         font-weight: bold;
         color: #2d6ca2;
-        margin-right: 36px;
         text-transform: capitalize;
         text-align: left;
         cursor: pointer;
+        margin: 10px 0px;
     }
     .meaning {
         display: none;
@@ -46,10 +41,17 @@
     .details span:nth-child(2) {
         display: none;
     }
+    span {
+        font-size: 15px;
+    }
+}
+
+.institution:hover {
+    background-color: #F2F2F2;
 }
 
 .institution.selected {
-    background-color: #F2F2F2;
+    background-color: #F2F2F2 !important;
     .meaning,
     .details span:nth-child(2) {
         display: block;
