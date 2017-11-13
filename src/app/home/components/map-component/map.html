@@ -7,17 +7,17 @@
 			<info-window id="myInfoWindow" max-width="500" style="text-transform: capitalize">
 				<div id="iw-container" ng-non-bindable>
 					<div class="iw-title" layout="row" layout-align="space-between center">
-						<span>{{ selectedMarker.denomination }}</span>
-						<md-button ng-click="atHome=false" ui-sref="home.institution_detail({id:selectedMarker.id})" ui-sref-opts="{location: false}">Afficher Détails</md-button>
+						<span>{{ selectedInstitution.denomination }}</span>
+						<md-button ng-click="atHome=false" ui-sref="home.institution_detail({id:selectedInstitution.id})" ui-sref-opts="{location: false}">Afficher Détails</md-button>
 					</div>
 					<div class="iw-content">
-						<div class="iw-subTitle">{{ institutionClasses[selectedMarker.class_id].denomination }}</div>
-						<p>{{ selectedMarker.description }}</p>
+						<div class="iw-subTitle">{{ institutionClasses[selectedInstitution.class_id].denomination }}</div>
+						<p>{{ selectedInstitution.description }}</p>
 						<div class="iw-subTitle">Contacts</div>
-						<p>Adresse: {{ selectedMarker.wilaya }}, {{ selectedMarker.commune.name }}, {{ selectedMarker.address }}
+						<p>Adresse: {{ selectedInstitution.wilaya }}, {{ selectedInstitution.commune.name }}, {{ selectedInstitution.address }}
 							<br>
-							<br>Téléphone: {{ selectedMarker.phone }}
-							<br>Fax: {{ selectedMarker.fax }}</p>
+							<br>Téléphone: {{ selectedInstitution.phone }}
+							<br>Fax: {{ selectedInstitution.fax }}</p>
 					</div>
 				</div>
 			</info-window>

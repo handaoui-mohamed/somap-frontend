@@ -1,4 +1,4 @@
-<div class="institution" ng-class="{'selected': selected}" ng-click="showOnMap(evt, institution)">
+<div class="institution" ng-class="{'selected': selected}" ng-click="toggle(evt, institution.id)">
 	<img ng-if="!selected" src="/assets/icons/black.png" />
 	<img ng-if="selected" ng-src="/assets/icons/blue.png" />
 
@@ -14,4 +14,5 @@
 			<span id="contact{{::institution.id}}">{{::institution.phone}}</span>
 		</div>
 	</div>
+	<!-- TODO: fix font -->
 </div>

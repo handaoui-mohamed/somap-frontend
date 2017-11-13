@@ -58,8 +58,8 @@
 			<!--ng-controller="LeftCtrl"-->
 			<md-content ng-init="vm.filterInstitutions()">
 				<div ng-repeat="institution in vm.filteredInstitutions">
-					<institution-card selected-marker="vm.selectedMarker" app-map="vm.map" institution="institution" selected-markers="vm.selectedMarkers"
-					 institution-class="vm.institutionClasses[institution.class_id-1].denomination" wilayas="vm.wilayas"></institution-card>
+					<institution-card institution="institution" institution-class="vm.institutionClasses[institution.class_id-1].denomination"
+					 selected="institution.selected"></institution-card>
 				</div>
 				<md-button style="display: block; width: 95%; text-align: center" class="md-raised md-primary" ng-hide="vm.limit > vm.filteredInstitutions.length"
 				 ng-click="vm.limit = vm.limit + 10; vm.filterInstitutions(true)">Affichier Plus...</md-button>
