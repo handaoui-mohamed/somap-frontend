@@ -1,0 +1,81 @@
+#MapContainer {
+    #map-canvas {
+        top: 0;
+        background-color: #adadad;
+        position: absolute;
+        height: 100%;
+        right: 0;
+        left: 0;
+        float: right;
+        z-index: 0;
+    }
+    #map-canvas img {
+        max-width: none !important;
+    }
+    #iw-container {
+        background-color: #fff;
+        box-shadow: 0 1px 6px rgba(178, 178, 178, 0.9);
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 10px 10px 10px 10px;
+        padding-bottom: 10px;
+    }
+    #iw-container .iw-title {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-size: 22px;
+        font-weight: 400;
+        padding: 5px;
+        background-color: #333;
+        color: white;
+        margin: 0;
+        border-radius: 2px 2px 0 0;
+        text-transform: capitalize;
+    }
+    #iw-container .iw-content {
+        font-size: 13px;
+        line-height: 18px;
+        font-weight: 400;
+        margin-right: 1px;
+        padding: 15px 5px 20px 15px;
+        max-height: 140px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        text-transform: uppercase;
+    }
+    .iw-content img {
+        float: right;
+        margin: 0 5px 5px 10px;
+    }
+    .iw-subTitle {
+        font-size: 16px;
+        font-weight: 700;
+        padding: 5px 0;
+    }
+    .gm-style-iw {
+        top: 25px !important;
+        left: 25px !important;
+    }
+    .gm-style-iw>div:nth-child(1) {
+        border-radius: 10px !important;
+    }
+    .ng-map-info-window>div:nth-child(1)>div:nth-child(1) {
+        border-top: 24px solid #333 !important;
+    }
+    .ng-map-info-window div:first-child>div:nth-child(2) {
+        border-top-color: transparent !important;
+        background-color: transparent !important;
+        box-shadow: inset 0px 0px 0px 0px transparent !important;
+    }
+    .ng-map-info-window div:nth-child(3) {
+        display: none !important;
+    }
+    .ng-map-info-window div:first-child>div:nth-child(4) {
+        background-color: transparent !important;
+    }
+    .gm-style-mtc {
+        display: none;
+    }
+    .iw-title a:hover,
+    .iw-title a:focus {
+        color: #fff !important;
+    }
+}

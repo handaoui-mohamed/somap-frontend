@@ -26,10 +26,11 @@
         text-transform: capitalize;
         text-align: left;
         cursor: pointer;
-        margin: 10px 0px;
+        margin: 10px 25px 10px 0px;
     }
     .meaning {
-        display: none;
+		display: none;
+		margin: 10px 0px;
         color: #222
     }
     .details {

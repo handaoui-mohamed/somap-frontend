@@ -5,7 +5,7 @@
 		.module("home")
 		.directive("soMap", soMap);
 
-	function soMap() {
+	function soMap(NgMap) {
 		return {
 			restrict: 'E',
 			replace: false,
@@ -17,17 +17,9 @@
 			},
 			link: function (scope, element, attrs) {
 				var googleMap;
-				scope.$on('mapInitialized', function (event, map) {
+				NgMap.getMap('main-map').then(function (map) {
 					googleMap = map;
-					destroyOnMapInitilized();
-				});
-
-				function destroyOnMapInitilized() {
-					scope.$on('mapInitialized', function (event, map) {
-						return;
-					});
-				}
-
+				}).catch(function (error) { console.log(error) });
 
 				scope.showInfoWindow = showInfoWindow;
 				scope.hideInfoWindow = hideInfoWindow;
@@ -41,8 +33,7 @@
 				}
 
 				function hideInfoWindow(event) {
-					// hide the infowindow if it is visible
-					if (scope.selectedInstitution != null) {
+					if (scope.selectedInstitution) {
 						googleMap.hideInfoWindow(event, 'myInfoWindow', scope.selectedInstitution);
 						scope.selectedInstitution = null;
 						googleMap.setCenter(new google.maps.LatLng(32, 2));
@@ -53,13 +44,19 @@
 				scope.$on('showInstitutionMarker', function (event, markerId) {
 					var marker = googleMap.markers[markerId];
 					marker.setVisible(true);
-					onMarkerClicked(event, marker);
+					showInfoWindow(event, marker);
 				});
 
 				scope.$on('hideInstitutionMarker', function (event, markerId) {
 					var marker = googleMap.markers[markerId];
 					marker.setVisible(false);
-					onMapClicked(event);
+					hideInfoWindow(event);
+				});
+
+				scope.$on('mapResized', function (event) {
+					$timeout(function () {
+						google.maps.event.trigger(googleMap, "resize");
+					}, 300);
 				});
 			}
 		}

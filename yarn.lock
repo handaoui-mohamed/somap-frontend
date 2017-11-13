@@ -3646,6 +3646,10 @@ ng-dependencies@~0.2.0:
     estraverse "^1.5.1"
     lodash "^3.0.1"
 
+ngmap@^1.18.4:
+  version "1.18.4"
+  resolved "https://registry.yarnpkg.com/ngmap/-/ngmap-1.18.4.tgz#8f36d8e840da6829ce5d40e5d747b70c4a3ac833"
+
 node-gyp@^3.3.1:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/node-gyp/-/node-gyp-3.6.1.tgz#19561067ff185464aded478212681f47fd578cbc"

@@ -5,8 +5,9 @@
 		.module("home")
 		.controller("HomeController", HomeController);
 
-	function HomeController($scope, $timeout, $mdDialog, WilayaService, InstitutionClassService,
-		InstitutionService, Toast, $mdSidenav, $filter) {
+	function HomeController($rootScope, $scope, $mdSidenav, $filter, Toast, WilayaService, InstitutionClassService,
+		InstitutionService) {
+
 		var vm = this;
 
 		vm.institutions = [];
@@ -22,11 +23,6 @@
 		vm.limit = 20;
 		vm.showAll = showAll;
 		vm.openned = true;
-
-		$scope.$on('mapInitialized', function (event, map) {
-			vm.map = map;
-			destroyOnMapInitilized();
-		});
 
 		// fetch Data from server
 		InstitutionClassService.get(function (data) {
@@ -51,32 +47,22 @@
 
 		InstitutionService.get(function (data) {
 			vm.institutions = data.elements;
-			vm.filteredInstitutions = vm.institutions.slice(0, vm.limit);
+			vm.filteredInstitutions = vm.institutions;
 		}, function (errors) {
 			Toast.error(errors);
 		});
 
 		vm.selectAll = selectAll;
-		vm.showAboutDialog = showAboutDialog;
 		vm.showSelectedInstitutions = showSelectedInstitutions;
 		vm.showSelectedWilayas = showSelectedWilayas;
 		vm.toggleSideNav = toggleSideNav;
 		vm.filterInstitutions = filterInstitutions;
 
-		function destroyOnMapInitilized() {
-			$scope.$on('mapInitialized', function (event, map) {
-				return;
-			});
-		}
-
 		function toggleSideNav() {
 			if (!this.openned)
 				$mdSidenav("left").close();
-			this.openned = !this.openned; // toggle sidenav
-			$timeout(function () {
-				google.maps.event.trigger(vm.map, 'resize')
-			}, 300);
-
+			this.openned = !this.openned;
+			$rootScope.$broadcast('mapResized');
 		}
 
 		function showSelectedInstitutions() {
@@ -115,32 +101,13 @@
 			})
 		}
 
-		// Dialogs Section
-		function showAboutDialog(event) {
-			$mdDialog.show({
-				controller: "AboutDialogController",
-				controllerAs: "aboutVm",
-				templateUrl: 'app/home/dialogs/about-dialog/about-dialog.html',
-				parent: angular.element(document.body),
-				targetEvent: event,
-				clickOutsideToClose: true,
-				escapeToClose: true
+		function filterInstitutions() {
+			vm.filteredInstitutions = vm.institutions.filter(function (institution) {
+				return vm.selectedInstitutions[(institution.class_id) - 1] &&
+					vm.selectedWilayas[(institution.wilaya_id) - 1];
 			});
-		}
-
-		function filterInstitutions(added) {
-			if (!added) { vm.limit = 20; }
-			vm.filteredInstitutions = $filter('filter')(vm.institutions, function (marker) {
-				return vm.selectedInstitutions[(marker.class_id) - 1];
-			});
-			vm.filteredInstitutions = $filter('filter')(vm.filteredInstitutions, function (marker) {
-				return vm.selectedWilayas[(marker.wilaya_id) - 1];
-			});
-			if (vm.query !== "") {
-				vm.filteredInstitutions = $filter('filter')(vm.filteredInstitutions, vm.query);
-			}
-			vm.filteredInstitutions = $filter('limitTo')(vm.filteredInstitutions, vm.limit);
-			return vm.filterInstitutions;
+			vm.filteredInstitutions = $filter('filter')(vm.filteredInstitutions, vm.query);
+			return vm.filteredInstitutions;
 		}
 	}
 })();

@@ -6,9 +6,9 @@
 				<span></span>
 				<span></span>
 			</div>
-			<div class="input-group" layout="row" style="border-radius: 2px;width: 270px;top: 5px;">
-				<input style="border-radius: 2px;" ng-change="vm.filterInstitutions()" type="text" class="form-control" placeholder="Recharcher ..."
-				 style="border:0" ng-model="vm.query" ng-model-options="{ debounce: 250 }">
+			<div id="search-container" layout="column" layout-align="center">
+				<input ng-change="vm.filterInstitutions()" type="text" placeholder="Recharcher ..." ng-model="vm.query" ng-model-options="{ debounce: 250 }">
+				<!-- add menu -->
 			</div>
 		</div>
 		<div layout-fill layout="row" layout-align="space-between center">
@@ -56,13 +56,13 @@
 				</div>
 			</md-toolbar>
 			<!--ng-controller="LeftCtrl"-->
-			<md-content ng-init="vm.filterInstitutions()">
+			<md-content>
 				<div ng-repeat="institution in vm.filteredInstitutions">
 					<institution-card institution="institution" institution-class="vm.institutionClasses[institution.class_id-1].denomination"
 					 selected="institution.selected"></institution-card>
 				</div>
 				<md-button style="display: block; width: 95%; text-align: center" class="md-raised md-primary" ng-hide="vm.limit > vm.filteredInstitutions.length"
-				 ng-click="vm.limit = vm.limit + 10; vm.filterInstitutions(true)">Affichier Plus...</md-button>
+				 ng-click="vm.limit = vm.limit + 10; vm.filterInstitutions()">Affichier Plus...</md-button>
 			</md-content>
 
 		</md-sidenav>

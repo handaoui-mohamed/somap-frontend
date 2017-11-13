@@ -1,6 +1,6 @@
 <div id="MapContainer">
 	<div id="map-canvas">
-		<map center="32, 2" zoom="6" on-click="hideInfoWindow(event)" style="height: 100%">
+		<map id="main-map" center="32, 2" zoom="6" on-click="hideInfoWindow(event)" style="height: 100%">
 			<marker ng-repeat="marker in institutions" id="{{marker.id}}" ng-click="showInfoWindow(event, marker)" position="{{marker.position.lat+','+marker.position.lng}}"
 			 title="{{marker.denomination}}" icon="{{institutionClasses[marker.class_id].icon_url}}" visible="false"></marker>
 
