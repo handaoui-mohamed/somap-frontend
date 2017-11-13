@@ -1,11 +1,9 @@
-(function(){
-    "use strict";
-    
-    angular
-        .module("somap")
-        .controller("IndexController",IndexController);
+(function () {
+	"use strict";
 
-    function IndexController(){
-        var vm = this;
-    }
+	angular
+		.module("somap")
+		.controller("IndexController", IndexController);
+
+	function IndexController() { }
 })();

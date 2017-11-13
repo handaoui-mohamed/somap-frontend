@@ -21,7 +21,7 @@
             'A200': '2C303A',
             'A400': '2C303A',
             'A700': '2C303A',
-            'contrastDefaultColor': 'light',
+            'contrastDefaultColor': 'light'
         });
 
         $mdThemingProvider.theme('default').primaryPalette('amazingPaletteName');

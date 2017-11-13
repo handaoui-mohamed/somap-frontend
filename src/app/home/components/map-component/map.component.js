@@ -5,7 +5,7 @@
 		.module("home")
 		.directive("soMap", soMap);
 
-	function soMap(NgMap, $timeout) {
+	function soMap(NgMap, $timeout, $log) {
 		return {
 			restrict: 'E',
 			replace: false,
@@ -13,13 +13,13 @@
 			scope: {
 				institutions: '=',
 				institutionClasses: '=',
-				atHome: "=",
+				atHome: "="
 			},
-			link: function (scope, element, attrs) {
+			link: function (scope) {
 				var googleMap;
 				NgMap.getMap('main-map').then(function (map) {
 					googleMap = map;
-				}).catch(function (error) { console.log(error) });
+				}).catch(function (error) { $log(error) });
 
 				scope.showInfoWindow = showInfoWindow;
 				scope.hideInfoWindow = hideInfoWindow;
@@ -53,7 +53,7 @@
 					hideInfoWindow(event);
 				});
 
-				scope.$on('mapResized', function (event) {
+				scope.$on('mapResized', function () {
 					$timeout(function () {
 						google.maps.event.trigger(googleMap, "resize");
 					}, 300);

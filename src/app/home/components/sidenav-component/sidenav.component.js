@@ -19,7 +19,7 @@
 			},
 			link: function (scope) {
 				scope.openned = true;
-				scope.$on('toggleSideNav', function (event) {
+				scope.$on('toggleSideNav', function () {
 					if (!scope.openned)
 						$mdSidenav("left").close();
 					scope.openned = !scope.openned;
