@@ -12,15 +12,12 @@
 			templateUrl: 'app/home/components/navbar-component/navbar.html',
 			scope: {
 				queryText: "=",
-				atHome: "="
+				atHome: "=",
+				showInstitutions: "&"
 			},
 			link: function (scope) {
 				scope.toggleSideNav = function () {
 					$rootScope.$broadcast('toggleSideNav')
-				}
-
-				scope.showIntitutions = function () {
-					$rootScope.$broadcast('showInstitutions');
 				}
 			}
 		}

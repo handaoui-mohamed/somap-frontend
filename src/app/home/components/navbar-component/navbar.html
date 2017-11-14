@@ -7,13 +7,35 @@
 				<span></span>
 			</div>
 			<div id="search-container" layout="column" layout-align="center">
-				<input type="text" placeholder="Recharcher ..." ng-model="queryText" ng-model-options="{ debounce: 250 }">
+				<input id="searchInput" type="text" placeholder="Recharcher ..." ng-model="queryText" ng-model-options="{ debounce: 250 }">
 				<!-- add menu -->
+				<img for="searchInput" src="/assets/icons/search.png" alt="search">
 			</div>
+
+			<md-menu>
+				<md-button aria-label="menu" class="md-icon-button menu-button" ng-click="$mdMenu.open(event)">
+					<img src="/assets/icons/menu.png" width="20" alt="menu">
+				</md-button>
+				<md-menu-content width="3">
+					<md-menu-item>
+						<md-button ng-click="showInstitutions()">
+							Afficher Tout
+						</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button ng-click="showInstitutions()">
+							Cacher Tout
+						</md-button>
+					</md-menu-item>
+					<!-- <md-menu-divider></md-menu-divider> -->
+				</md-menu-content>
+			</md-menu>
 		</div>
 		<div layout-fill layout="row" layout-align="space-between center">
-			<md-button ng-click="showIntitutions()">{{ !allShowed ? 'Afficher Tout' : 'Cacher Tout' }}</md-button>
-			<md-button ui-sref="home.institution" ui-sref-opts="{location: false}" ng-click="atHome=false">Ajouter une Institution</md-button>
+			<span flex></span>
+			<md-button ui-sref="home.institution" ui-sref-opts="{location: false}" ng-click="atHome=false">
+				Ajouter une Institution
+			</md-button>
 		</div>
 	</div>
 </md-toolbar>

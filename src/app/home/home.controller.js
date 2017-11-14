@@ -5,7 +5,7 @@
 		.module("home")
 		.controller("HomeController", HomeController);
 
-	function HomeController($rootScope, $scope, $mdSidenav, $filter, Toast, WilayaService, InstitutionClassService,
+	function HomeController($rootScope, $filter, Toast, WilayaService, InstitutionClassService,
 		InstitutionService) {
 
 		var vm = this;
@@ -43,6 +43,11 @@
 		}, function (errors) { Toast.error(errors); });
 
 		vm.filterInstitutions = filterInstitutions;
+		vm.showInstitutions = showInstitutions;
+
+		function showInstitutions() {
+			$rootScope.$broadcast("showInstitutions", vm.filteredInstitutions);
+		}
 
 		function filterInstitutions() {
 			vm.filteredInstitutions = vm.institutions.filter(function (institution) {
