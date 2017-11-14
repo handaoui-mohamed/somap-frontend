@@ -1,10 +1,10 @@
-<app-nav-bar></app-nav-bar>
+<app-nav-bar query-text="vm.query" at-home="vm.atHome"></app-nav-bar>
 
 <!--ng-controller="AppCtrl" -->
 <div layout="column" ng-cloak style="height: calc(100% - (50px));">
 	<section layout="row" flex>
 		<app-side-nav institution-classes="vm.institutionClasses" wilayas="vm.wilayas" filter-wilayas="vm.filterWilayas()" filter-institution-classes="vm.filterInstitutionClasses()">
-			<div ng-repeat="institution in vm.filteredInstitutions | limitTo:vm.limit">
+			<div ng-repeat="institution in vm.filteredInstitutions | filter:vm.query | limitTo:vm.limit">
 				<institution-card institution="institution" institution-class="vm.institutionClasses[institution.class_id-1].denomination"
 				 selected="institution.selected"></institution-card>
 			</div>

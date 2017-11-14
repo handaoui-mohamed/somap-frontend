@@ -7,13 +7,13 @@
 				<span></span>
 			</div>
 			<div id="search-container" layout="column" layout-align="center">
-				<input ng-change="vm.filterInstitutions()" type="text" placeholder="Recharcher ..." ng-model="vm.query" ng-model-options="{ debounce: 250 }">
+				<input type="text" placeholder="Recharcher ..." ng-model="queryText" ng-model-options="{ debounce: 250 }">
 				<!-- add menu -->
 			</div>
 		</div>
 		<div layout-fill layout="row" layout-align="space-between center">
-			<md-button ng-click="vm.showAll()">{{ !vm.allShowed ? 'Afficher Tout' : 'Cacher Tout' }}</md-button>
-			<md-button ui-sref="home.institution" ui-sref-opts="{location: false}" ng-click="vm.atHome=false">Ajouter une Institution</md-button>
+			<md-button ng-click="showAll()">{{ !allShowed ? 'Afficher Tout' : 'Cacher Tout' }}</md-button>
+			<md-button ui-sref="home.institution" ui-sref-opts="{location: false}" ng-click="atHome=false">Ajouter une Institution</md-button>
 		</div>
 	</div>
 </md-toolbar>

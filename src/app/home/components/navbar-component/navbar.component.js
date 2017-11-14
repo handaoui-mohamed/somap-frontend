@@ -11,6 +11,8 @@
 			replace: true,
 			templateUrl: 'app/home/components/navbar-component/navbar.html',
 			scope: {
+				queryText: "=",
+				atHome: "="
 			},
 			link: function (scope) {
 				scope.toggleSideNav = function () {

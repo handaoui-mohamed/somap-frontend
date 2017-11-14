@@ -68,22 +68,21 @@
 			vm.geocoder.geocode({
 				'address': vm.wilayas[vm.institution.wilaya_id - 1].name + ", " +
 				vm.selectedWilaya.communes.find(function (commune) { return commune.id === vm.institution.commune_id }).name
-			},
-				function (results, status) {
-					if (status == google.maps.GeocoderStatus.OK) {
-						var location = results[0].geometry.location;
-						vm.institution.latitude = location.lat();
-						vm.institution.longitude = location.lng();
-						vm.markers = [{
-							id: 0,
-							lat: vm.institution.latitude,
-							lng: vm.institution.longitude
-						}];
-						Toast.message("veuillez vérifier si l'adresse est correcte, sinon modifier la sur la map");
-					} else {
-						Toast.error("Cette adresse est introuvable!, veuillez la rechercher sur la map");
-					}
-				});
+			}, function (results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					var location = results[0].geometry.location;
+					vm.institution.latitude = location.lat();
+					vm.institution.longitude = location.lng();
+					vm.markers = [{
+						id: 0,
+						lat: vm.institution.latitude,
+						lng: vm.institution.longitude
+					}];
+					Toast.message("veuillez vérifier si l'adresse est correcte, sinon modifier la sur la map");
+				} else {
+					Toast.error("Cette adresse est introuvable!, veuillez la rechercher sur la map");
+				}
+			});
 		}
 
 		function uploadInstitutionFile(file, institutionId) {
