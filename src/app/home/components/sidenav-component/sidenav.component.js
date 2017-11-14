@@ -5,7 +5,7 @@
 		.module("home")
 		.directive("appSideNav", appSideNav);
 
-	function appSideNav($rootScope, $mdSidenav) {
+	function appSideNav($rootScope, $mdSidenav, $log) {
 		return {
 			restrict: 'E',
 			replace: false,
@@ -14,8 +14,8 @@
 			scope: {
 				institutionClasses: "=",
 				wilayas: "=",
-				filterWilayas: "&",
-				filterInstitutionClasses: "&"
+				selected: "=selectedItems",
+				filterInstitutions: "&"
 			},
 			link: function (scope) {
 				scope.openned = true;
@@ -25,6 +25,14 @@
 					scope.openned = !scope.openned;
 					$rootScope.$broadcast('mapResized');
 				});
+
+				scope.selectWilayas = function (value) {
+					scope.selected.wilayas = !value ? [] : scope.wilayas.map(function (wilaya) {
+						return wilaya.id;
+					});
+					$log.info('wilayas', scope.selected.wilayas);
+					scope.filterInstitutions();
+				}
 			}
 		}
 	}

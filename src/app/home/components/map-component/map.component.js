@@ -58,6 +58,20 @@
 						google.maps.event.trigger(googleMap, "resize");
 					}, 300);
 				});
+
+				scope.$on('showInstitutions', function () {
+					googleMap.markers.forEach(function (marker, index) {
+						marker.setVisible(true);
+						institutions[index].selected = true;
+					});
+				});
+
+				scope.$on('hideInstitutions', function () {
+					googleMap.markers.forEach(function (marker, index) {
+						institutions[index].selected = false;
+						marker.setVisible(false);
+					});
+				});
 			}
 		}
 	}

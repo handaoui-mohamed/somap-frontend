@@ -18,6 +18,10 @@
 				scope.toggleSideNav = function () {
 					$rootScope.$broadcast('toggleSideNav')
 				}
+
+				scope.showIntitutions = function () {
+					$rootScope.$broadcast('showInstitutions');
+				}
 			}
 		}
 	}

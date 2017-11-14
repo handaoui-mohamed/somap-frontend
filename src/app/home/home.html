@@ -3,7 +3,8 @@
 <!--ng-controller="AppCtrl" -->
 <div layout="column" ng-cloak style="height: calc(100% - (50px));">
 	<section layout="row" flex>
-		<app-side-nav institution-classes="vm.institutionClasses" wilayas="vm.wilayas" filter-wilayas="vm.filterWilayas()" filter-institution-classes="vm.filterInstitutionClasses()">
+		<app-side-nav institution-classes="vm.institutionClasses" wilayas="vm.wilayas" filter-institutions="vm.filterInstitutions()"
+		 selected-items="vm.selected">
 			<div ng-repeat="institution in vm.filteredInstitutions | filter:vm.query | limitTo:vm.limit">
 				<institution-card institution="institution" institution-class="vm.institutionClasses[institution.class_id-1].denomination"
 				 selected="institution.selected"></institution-card>

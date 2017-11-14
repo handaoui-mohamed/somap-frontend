@@ -5,21 +5,22 @@
 			<span layout="column" layout-align="center">Filtres:</span>
 			<md-input-container>
 				<label>Institutions</label>
-				<md-select ng-model="selectedInstitutionsId" ng-change="filterInstitutionClasses()" md-selected-text="(selectedInstitutionsId.length)+' Institutions'"
+				<md-select ng-model="selected.institutionClasses" ng-change="filterInstitutions()" md-selected-text="(selected.institutionClasses.length)+' Institutions'"
 				 multiple>
 					<md-optgroup label="Types d'institution">
-						<md-option ng-value="institutionClasse.id" ng-repeat="institutionClasse in institutionClasses" style="text-transform: capitalize">
-							{{institutionClasse.denomination}}</md-option>
+						<md-option ng-value="class.id" ng-repeat="class in institutionClasses" style="text-transform: capitalize">
+							{{class.denomination}}
+						</md-option>
 					</md-optgroup>
 				</md-select>
 			</md-input-container>
 			<md-input-container>
 				<label>Wilayas</label>
-				<md-select ng-model="selectedWilayasId" md-selected-text="(selectedWilayasId.length)+' Wilayas'" ng-change="filterWilayas()"
+				<md-select ng-model="selected.wilayas" md-selected-text="(selected.wilayas.length)+' Wilayas'" ng-change="filterInstitutions()"
 				 multiple>
 					<md-select-header>
-						<md-button ng-click="selectAll(true)">Tout</md-button>
-						<md-button ng-click="selectAll(false)">Aucun</md-button>
+						<md-button ng-click="selectWilayas(true)">Tout</md-button>
+						<md-button ng-click="selectWilayas(false)">Aucun</md-button>
 					</md-select-header>
 					<md-optgroup label="wilaya">
 						<md-option ng-value="wilaya.id" ng-repeat="wilaya in wilayas" style="text-transform: capitalize">
