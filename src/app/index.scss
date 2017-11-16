@@ -14,7 +14,8 @@
 // injector
 // endinjector
 md-dialog {
-    min-width: 50% !important;
+	min-width: 50% !important;
+	max-width: 100% !important;
 }
 
 md-dialog md-dialog-content {

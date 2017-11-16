@@ -80,14 +80,14 @@
 					$log.info("here")
 					institutions.forEach(function (institution) {
 						googleMap.markers[institution.id].setVisible(true);
-						getInstitution([institution.id - 1]).selected = true;
+						getInstitution(institution.id - 1).selected = true;
 					})
 				});
 
 				scope.$on('hideInstitutions', function () {
 					scope.institutions.forEach(function (institution) {
 						googleMap.markers[institution.id].setVisible = false;
-						getInstitution([institution.id - 1]).selected = false;
+						getInstitution(institution.id - 1).selected = false;
 					});
 				});
 

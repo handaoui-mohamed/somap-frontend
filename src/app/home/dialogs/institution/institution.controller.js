@@ -47,9 +47,9 @@
 		}
 
 		function addInstitution() {
-			$log(vm.institution);
+			$log.info(vm.institution);
 			InstitutionService.save(vm.institution, function (/*data*/) {
-				// uploadInstitutionFile(vm.institution_image,data.element.id)
+				if (vm.institution_image) uploadInstitutionFile(vm.institution_image, data.element.id);
 				Toast.message("L'institution en attente de validation, On vous remercie.");
 			}, function (errors) {
 				Toast.error(errors);
