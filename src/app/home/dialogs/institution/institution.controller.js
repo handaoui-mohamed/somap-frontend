@@ -5,7 +5,7 @@
 		.module("home")
 		.controller("IntitutionFormDialogController", IntitutionFormDialogController);
 
-	function IntitutionFormDialogController($scope, $mdDialog, $log, InstitutionService, WilayaService, InstitutionClassService, Toast, Upload, API_ENDPOINT) {
+	function IntitutionFormDialogController($scope, $mdDialog, $log, $timeout, NgMap, InstitutionService, WilayaService, InstitutionClassService, Toast, Upload, API_ENDPOINT) {
 		var vm = this;
 		vm.institution = {};
 		vm.wilayas = [];
@@ -25,6 +25,12 @@
 		}, function (errors) {
 			Toast.error(errors);
 		});
+
+
+		NgMap.getMap('new-institution-map').then(function (map) {
+			vm.map = map;
+			google.maps.event.trigger(vm.map, 'resize');
+		}).catch(function (error) { $log(error) });
 
 
 		vm.loadCommunes = loadCommunes;

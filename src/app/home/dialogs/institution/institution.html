@@ -98,7 +98,7 @@
 					Vérifier l'adresse
 				</md-button>
 			</div>
-			<ng-map id="new-institution-map" zoom="15" ng-click="dialVm.onMapClicked(event)" style="margin-bottom:20px;height:300px">
+			<ng-map id="new-institution-map" zoom="15" on-click="dialVm.onMapClicked(event)" style="margin-bottom:20px;height:300px">
 				<marker ng-if="dialVm.markers.length === 0" position="current" animation="Animation.BOUNCE" centered="true"></marker>
 				<marker ng-if="dialVm.markers.length > 0" animation="Animation.BOUNCE" ng-repeat="marker in dialVm.markers" id="{{marker.id}}"
 				 position="{{marker.lat+','+marker.lng}}" visible="true"></marker>
