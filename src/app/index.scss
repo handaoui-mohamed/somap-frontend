@@ -13,13 +13,18 @@
 
 // injector
 // endinjector
+
+html,body{
+	overflow-x: hidden;
+}
+
 md-dialog {
 	min-width: 50% !important;
 	max-width: 100% !important;
 }
 
 md-dialog md-dialog-content {
-    padding: 10px 50px;
+    padding: 10px 30px;
 }
 
 .institution-info label {
