@@ -19,7 +19,6 @@
 			insitutionClasses: []
 		};
 		vm.query = "";
-		vm.atHome = true;
 		vm.limit = 20;
 
 		// fetch Data from server

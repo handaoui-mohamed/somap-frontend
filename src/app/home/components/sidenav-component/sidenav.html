@@ -4,10 +4,10 @@
 		<div layout="row" layout-align="space-around">
 			<span layout="column" layout-align="center">Filtres:</span>
 			<md-input-container>
-				<label>Institutions</label>
-				<md-select ng-model="selected.institutionClasses" ng-change="filterInstitutions()" md-selected-text="(selected.institutionClasses.length)+' Institutions'"
+				<label>Etablissements</label>
+				<md-select ng-model="selected.institutionClasses" ng-change="filterInstitutions()" md-selected-text="(selected.institutionClasses.length)+' Etablissements'"
 				 multiple>
-					<md-optgroup label="Types d'institution">
+					<md-optgroup label="Types d'etablissement">
 						<md-option ng-value="class.id" ng-repeat="class in institutionClasses" style="text-transform: capitalize">
 							{{class.denomination}}
 						</md-option>

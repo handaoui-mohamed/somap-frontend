@@ -3,9 +3,9 @@
 
 	angular
 		.module("home")
-		.controller("InstitutionController", InstitutionController);
+		.controller("IntitutionFormDialogController", IntitutionFormDialogController);
 
-	function InstitutionController($scope, $log, InstitutionService, WilayaService, InstitutionClassService, Toast, Upload, API_ENDPOINT) {
+	function IntitutionFormDialogController($scope, $log, InstitutionService, WilayaService, InstitutionClassService, Toast, Upload, API_ENDPOINT) {
 		var vm = this;
 		vm.institution = {};
 		vm.wilayas = [];

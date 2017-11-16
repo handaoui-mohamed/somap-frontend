@@ -1,4 +1,4 @@
-<app-nav-bar query-text="vm.query" at-home="vm.atHome" show-institutions="vm.showInstitutions()"></app-nav-bar>
+<app-nav-bar query-text="vm.query" show-institutions="vm.showInstitutions()"></app-nav-bar>
 
 <!--ng-controller="AppCtrl" -->
 <div layout="column" ng-cloak style="height: calc(100% - (50px));">
@@ -15,13 +15,8 @@
 		</app-side-nav>
 
 		<md-content flex>
-			<a ng-click="vm.atHome=true" class="btn btn-default return-button" ng-if="!vm.atHome">
-				Retourner vers la Map
-			</a>
-			<div ui-view layout="row" layout-align="center center" ng-if="!vm.atHome">
-			</div>
-			<div layout="row" ng-show="vm.atHome">
-				<so-map at-home="vm.atHome" selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses" institutions="vm.filteredInstitutions"></so-map>
+			<div layout="row">
+				<main-map selected-marker="vm.selectedMarker" institution-classes="vm.institutionClasses" institutions="vm.filteredInstitutions"></main-map>
 			</div>
 		</md-content>
 	</section>

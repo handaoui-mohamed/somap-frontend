@@ -3,17 +3,16 @@
 
 	angular
 		.module("home")
-		.directive("soMap", soMap);
+		.directive("mainMap", mainMap);
 
-	function soMap(NgMap, $timeout, $log) {
+	function mainMap(NgMap, $timeout, $log, $mdDialog) {
 		return {
 			restrict: 'E',
 			replace: false,
 			templateUrl: 'app/home/components/map-component/map.html',
 			scope: {
 				institutions: '=',
-				institutionClasses: '=',
-				atHome: "="
+				institutionClasses: '='
 			},
 			link: function (scope) {
 				var googleMap;
@@ -23,6 +22,7 @@
 
 				scope.showInfoWindow = showInfoWindow;
 				scope.hideInfoWindow = hideInfoWindow;
+				scope.openInstitutionDetailsDialog = openInstitutionDetailsDialog;
 
 				function showInfoWindow(event, marker, clickedInMap) {
 					var position = clickedInMap ? googleMap.markers[marker.id].getPosition() : marker.getPosition();
@@ -39,6 +39,24 @@
 						googleMap.setCenter(new google.maps.LatLng(32, 2));
 						googleMap.setZoom(6);
 					}
+				}
+
+
+
+				function openInstitutionDetailsDialog(event, institution) {
+					$mdDialog.show({
+						controller: "InstitutionDetailsDialogController",
+						controllerAs: 'dialVm',
+						templateUrl: "app/home/dialogs/institution-detail/institution-detail.html",
+						parent: angular.element(document.body),
+						targetEvent: event,
+						clickOutsideToClose: true,
+						fullscreen: true,
+						locals: {
+							Institution: institution
+						}
+					}).then(function () {
+					}, function (msg) { });
 				}
 
 				scope.$on('showInstitutionMarker', function (event, markerId) {

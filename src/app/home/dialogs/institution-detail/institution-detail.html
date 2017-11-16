@@ -1,0 +1,14 @@
+<div layout="column" layout-align="center center" layout-fill>
+    <h1 style="text-align: center">Détail d'institution</h1>
+    <div>
+        <h3>{{dialVm.institution.denomination}}</h3>
+        <div>
+            <h3>{{dialVm.institutionClasses[dialVm.institution.class_id].denomination}}</h3>
+            <p>{{dialVm.institution.description}}</p>
+            <h4>Contacts</h4>
+            <p>Adresse: {{dialVm.institution.wilaya}}, {{dialVm.institution.commune.name}}, {{dialVm.institution.address}}<br>
+                <br>Téléphone: {{dialVm.institution.phone}}<br>Fax: {{dialVm.institution.fax}}</p>
+        </div>
+    </div>
+    <img src="{{dialVm.institution.picture.path}}" alt="" style="width:40%">
+</div>
