@@ -5,7 +5,7 @@
 		.module("home")
 		.controller("IntitutionFormDialogController", IntitutionFormDialogController);
 
-	function IntitutionFormDialogController($scope, $log, InstitutionService, WilayaService, InstitutionClassService, Toast, Upload, API_ENDPOINT) {
+	function IntitutionFormDialogController($scope, $mdDialog, $log, InstitutionService, WilayaService, InstitutionClassService, Toast, Upload, API_ENDPOINT) {
 		var vm = this;
 		vm.institution = {};
 		vm.wilayas = [];
@@ -31,6 +31,12 @@
 		vm.addInstitution = addInstitution;
 		vm.getCoordinates = getCoordinates;
 		vm.onMapClicked = onMapClicked;
+		vm.close = close;
+
+		function close() {
+			$mdDialog.hide();
+		}
+
 
 		function loadCommunes() {
 			if (vm.institution && vm.institution.wilaya_id) {

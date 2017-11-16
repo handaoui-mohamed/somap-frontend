@@ -1,16 +1,16 @@
 <md-dialog aria-label="Ajouter un etablissement">
-	<md-toolbar style="background-color:rgba(44, 48, 58, 0.9)">
+	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>Ajouter un etablissement</h2>
 			<span flex></span>
-			<md-button class="md-icon-button" ng-click="aboutVm.close()">
-				<span class="glyphicon glyphicon-remove"></span>
+			<md-button aria-label="close" class="md-icon-button" ng-click="dialVm.close()">
+				<img src="assets/icons/close.png" alt="close" style="width: 15px;padding-top: 5px;">
 			</md-button>
 		</div>
 	</md-toolbar>
 
-	<md-dialog-content>
-		<form name="institutionForm" novalidate class="institution-info">
+	<form name="institutionForm" novalidate class="institution-info">
+		<md-dialog-content>
 			<div layout="row">
 				<md-input-container flex>
 					<label>Dénomination</label>
@@ -120,11 +120,12 @@
 				</md-button>
 			</div>
 
-			<div layout="row" layout-align="center center">
-				<md-button aria-label="submit" type="submit" class="md-raised md-primary" ng-click="dialVm.addInstitution()" ng-disabled="dialVm.disabled || institutionForm.$invalid || institutionForm.$pristine">
-					Ajouter L'institution
-				</md-button>
-			</div>
-		</form>
-	</md-dialog-content>
+		</md-dialog-content>
+		<md-dialog-actions layout="row">
+			<span flex></span>
+			<md-button aria-label="submit" type="submit" class="md-raised md-primary" ng-click="dialVm.addInstitution()" ng-disabled="dialVm.disabled || institutionForm.$invalid || institutionForm.$pristine">
+				Ajouter L'institution
+			</md-button>
+		</md-dialog-actions>
+	</form>
 </md-dialog>

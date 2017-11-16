@@ -23,7 +23,7 @@
 				scope.openInstitutionFormDialog = function (event) {
 					$mdDialog.show({
 						controller: "IntitutionFormDialogController",
-						controllerAs: 'dialgVm',
+						controllerAs: 'dialVm',
 						templateUrl: "app/home/dialogs/institution/institution.html",
 						parent: angular.element(document.body),
 						targetEvent: event,
