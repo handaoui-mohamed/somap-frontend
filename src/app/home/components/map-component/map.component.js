@@ -42,7 +42,6 @@
 				}
 
 
-
 				function openInstitutionDetailsDialog(event, institution) {
 					$mdDialog.show({
 						controller: "InstitutionDetailsDialogController",
@@ -56,7 +55,7 @@
 							Institution: institution
 						}
 					}).then(function () {
-					}, function (msg) { });
+					}, function () { });
 				}
 
 				scope.$on('showInstitutionMarker', function (event, markerId) {
