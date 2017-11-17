@@ -1,10 +1,10 @@
-<md-dialog aria-label="Ajouter un etablissement">
+<md-dialog aria-label="Ajouter un etablissement" id="institution-dialog">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<h2>Ajouter un etablissement</h2>
 			<span flex></span>
 			<md-button aria-label="close" class="md-icon-button" ng-click="dialVm.close()">
-				<img src="assets/icons/close.png" alt="close" style="width: 15px;padding-top: 5px;">
+				<img src="assets/icons/close.png" alt="close" style="width: 15px;margin-top: 5px;">
 			</md-button>
 		</div>
 	</md-toolbar>
@@ -40,9 +40,9 @@
 
 			<div layout="row" flex>
 				<md-input-container flex>
-					<label>Type Institution</label>
+					<label>Type Etablissement</label>
 					<md-select ng-model="dialVm.institution.class_id" name="institutionclasse" required>
-						<md-optgroup label="Type Institution">
+						<md-optgroup label="Type Etablissement">
 							<md-option ng-value="institutionClasse.id" ng-repeat="institutionClasse in dialVm.institutionClasses" style="text-transform: capitalize">
 								{{institutionClasse.denomination}}
 							</md-option>
@@ -98,7 +98,7 @@
 					Vérifier l'adresse
 				</md-button>
 			</div>
-			<ng-map id="new-institution-map" zoom="15" on-click="dialVm.onMapClicked(event)" style="margin-bottom:20px;height:300px">
+			<ng-map id="new-institution-map" zoom="15" on-click="dialVm.onMapClicked(event)">
 				<marker ng-if="dialVm.markers.length === 0" position="current" animation="Animation.BOUNCE" centered="true"></marker>
 				<marker ng-if="dialVm.markers.length > 0" animation="Animation.BOUNCE" ng-repeat="marker in dialVm.markers" id="{{marker.id}}"
 				 position="{{marker.lat+','+marker.lng}}" visible="true"></marker>

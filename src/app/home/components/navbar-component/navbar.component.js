@@ -5,7 +5,7 @@
 		.module("home")
 		.directive("appNavBar", appNavBar);
 
-	function appNavBar($rootScope, $mdDialog) {
+	function appNavBar($rootScope, $mdDialog, $window, $translate) {
 		return {
 			restrict: 'E',
 			replace: true,
@@ -15,10 +15,12 @@
 				showInstitutions: "&"
 			},
 			link: function (scope) {
+				// get the selected language to select the flag
+				scope.selectedLanguage = $window.localStorage['language'] || $translate.preferredLanguage();
+
 				scope.toggleSideNav = function () {
 					$rootScope.$broadcast('toggleSideNav')
 				}
-
 
 				scope.openInstitutionFormDialog = function (event) {
 					$mdDialog.show({
@@ -31,6 +33,15 @@
 						fullscreen: true
 					}).then(function () {
 					}, function (msg) { });
+				}
+
+				scope.changeLanguage = function (lang) {
+					console.log("language", lang);
+					if (['fr', 'ar'].includes(lang)) {
+						$window.localStorage['language'] = lang;
+						scope.selectedLanguage = lang;
+						$translate.use(lang);
+					}
 				}
 			}
 		}

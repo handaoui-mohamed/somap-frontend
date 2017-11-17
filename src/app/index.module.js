@@ -11,6 +11,7 @@
             "ngAnimate",
             'ui.router',
             'ngFileUpload',
+            'pascalprecht.translate',
 
             //costum modules
             "home" 

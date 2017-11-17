@@ -28,6 +28,11 @@
 						</md-button>
 					</md-menu-item>
 					<!-- <md-menu-divider></md-menu-divider> -->
+					<md-menu-item>
+						<md-button ng-click="openInstitutionFormDialog(event)">
+							Ajouter un Etablissement
+						</md-button>
+					</md-menu-item>
 				</md-menu-content>
 			</md-menu>
 		</div>
@@ -36,6 +41,24 @@
 			<md-button ng-click="openInstitutionFormDialog(event)">
 				Ajouter un Etablissement
 			</md-button>
+
+			<md-menu>
+				<md-button aria-label="menu" class="md-icon-button menu-button" ng-click="$mdMenu.open(event)">
+					<img ng-src="assets/icons/{{selectedLanguage}}.png" alt="lang-menu">
+				</md-button>
+				<md-menu-content class="lang-menu-content">
+					<md-menu-item>
+						<md-button aria-label="lang-fr" ng-click="changeLanguage('fr')">
+							<img src="assets/icons/fr.png" alt="lang-fr">
+						</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button aria-label="lang-ar" ng-click="changeLanguage('ar')">
+							<img src="assets/icons/ar.png" alt="lang-ar">
+						</md-button>
+					</md-menu-item>
+				</md-menu-content>
+			</md-menu>
 		</div>
 	</div>
 </md-toolbar>

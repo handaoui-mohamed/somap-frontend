@@ -18,7 +18,8 @@
 				var googleMap;
 				NgMap.getMap('main-map').then(function (map) {
 					googleMap = map;
-				}).catch(function (error) { $log(error) });
+					google.maps.event.trigger(googleMap, 'resize');
+				}).catch(function (error) { $log.info(error) });
 
 				scope.showInfoWindow = showInfoWindow;
 				scope.hideInfoWindow = hideInfoWindow;
