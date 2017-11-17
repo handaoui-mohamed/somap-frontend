@@ -15,7 +15,6 @@
 				showInstitutions: "&"
 			},
 			link: function (scope) {
-				// get the selected language to select the flag
 				scope.selectedLanguage = $window.localStorage['language'] || $translate.preferredLanguage();
 
 				scope.toggleSideNav = function () {
@@ -36,7 +35,6 @@
 				}
 
 				scope.changeLanguage = function (lang) {
-					console.log("language", lang);
 					if (['fr', 'ar'].includes(lang)) {
 						$window.localStorage['language'] = lang;
 						scope.selectedLanguage = lang;

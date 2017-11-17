@@ -62,15 +62,38 @@
     top: 29px;
 }
 
-.lang-menu-content{
-	overflow: hidden;
-	min-width: 60px !important;
-	width: 60px;
-	padding: 0;
-	.md-button{
-		padding-right: 0 !important;
-	}
-	img{
-		margin: 8px auto !important;
-	}
+.lang-menu-content {
+    overflow: hidden;
+    min-width: 60px !important;
+    width: 60px;
+    padding: 0;
+    .md-button {
+        padding-right: 0 !important;
+    }
+    img {
+        margin: 8px auto !important;
+    }
+}
+
+
+.show-on-mobile {
+	display: none;
+}
+
+
+.hide-on-mobile {
+	display: block;
+}
+
+// support for smartphone
+@media only screen and (max-width: 640px) {
+    #search-container {
+		width: max-content;
+    }
+    .show-on-mobile {
+        display: block;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
 }
