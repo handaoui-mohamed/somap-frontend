@@ -5,5 +5,5 @@
         .module("home", [])
         .config(config);
 
-    function config($stateProvider) {}
+    function config() {}
 })();

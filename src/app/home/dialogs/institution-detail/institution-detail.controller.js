@@ -5,7 +5,7 @@
 		.module("home")
 		.controller("InstitutionDetailsDialogController", InstitutionDetailsDialogController);
 
-	function InstitutionDetailsDialogController($mdDialog, Institution, Toast) {
+	function InstitutionDetailsDialogController($mdDialog, Institution) {
 		var vm = this;
 		vm.institution = angular.copy(Institution);
 

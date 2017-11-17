@@ -77,25 +77,29 @@
 					}, 300);
 				});
 
+				scope.$on('showAllInstitutions', function () {
+					scope.institutions.forEach(function (institution) {
+						googleMap.markers[institution.id].setVisible(true);
+					})
+				});
+
 				scope.$on('showInstitutions', function (event, institutions) {
-					$log.info("here")
 					institutions.forEach(function (institution) {
 						googleMap.markers[institution.id].setVisible(true);
-						getInstitution(institution.id - 1).selected = true;
 					})
 				});
 
 				scope.$on('hideInstitutions', function () {
 					scope.institutions.forEach(function (institution) {
-						googleMap.markers[institution.id].setVisible = false;
-						getInstitution(institution.id - 1).selected = false;
+						googleMap.markers[institution.id].setVisible(false);
+						scope.institutions[getInstitutionIndex(institution.id)].selected = false;
 					});
 				});
 
-				function getInstitution(institutionId) {
+				function getInstitutionIndex(institutionId) {
 					return scope.institutions.findIndex(function (institution) {
 						return institution.id === institutionId;
-					}) || {};
+					}) || 0;
 				}
 			}
 		}

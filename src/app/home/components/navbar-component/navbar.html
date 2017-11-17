@@ -17,17 +17,6 @@
 					<img src="/assets/icons/menu.png" width="20" alt="menu">
 				</md-button>
 				<md-menu-content width="3">
-					<md-menu-item>
-						<md-button ng-click="showInstitutions()">
-							Afficher Tout
-						</md-button>
-					</md-menu-item>
-					<md-menu-item>
-						<md-button ng-click="showInstitutions()">
-							Cacher Tout
-						</md-button>
-					</md-menu-item>
-					<!-- <md-menu-divider></md-menu-divider> -->
 					<md-menu-item class="show-on-mobile">
 						<md-button ng-if="!$root.connnected" ng-click="openInstitutionFormDialog(event)">
 							Ajouter un Etablissement
@@ -35,6 +24,22 @@
 
 						<md-button ng-if="$root.connnected" ng-click="login(event)">
 							Se connecter
+						</md-button>
+					</md-menu-item>
+					<md-menu-divider class="show-on-mobile"></md-menu-divider>
+					<md-menu-item>
+						<md-button ng-click="showInstitutions()">
+							Afficher recherchés
+						</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button ng-click="showAllInstitutions()">
+							Afficher Tout
+						</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button ng-click="hideInstitutions()">
+							Cacher Tout
 						</md-button>
 					</md-menu-item>
 				</md-menu-content>

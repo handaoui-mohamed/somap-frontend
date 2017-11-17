@@ -3,9 +3,6 @@
     min-height: 40px;
     .md-toolbar-tools {
         padding-left: 5px;
-        div:nth-child() {
-            width: 400px;
-        }
     }
     .menu-button {
         margin: 0;
@@ -87,13 +84,16 @@
 
 // support for smartphone
 @media only screen and (max-width: 640px) {
-    #search-container {
-		width: max-content;
-    }
     .show-on-mobile {
         display: block;
     }
     .hide-on-mobile {
         display: none;
     }
+}
+
+@media only screen and (max-width: 410px) {
+    #search-container {
+		width: max-content;
+	}
 }

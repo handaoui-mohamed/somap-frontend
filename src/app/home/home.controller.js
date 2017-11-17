@@ -45,7 +45,7 @@
 		vm.showInstitutions = showInstitutions;
 
 		function showInstitutions() {
-			$rootScope.$broadcast("showInstitutions", vm.filteredInstitutions);
+			$rootScope.$broadcast("showInstitutions", $filter('filter')(vm.filteredInstitutions, vm.query));
 		}
 
 		function filterInstitutions() {

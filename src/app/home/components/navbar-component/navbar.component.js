@@ -18,7 +18,15 @@
 				scope.selectedLanguage = $window.localStorage['language'] || $translate.preferredLanguage();
 
 				scope.toggleSideNav = function () {
-					$rootScope.$broadcast('toggleSideNav')
+					$rootScope.$broadcast('toggleSideNav');
+				}
+
+				scope.showAllInstitutions = function () {
+					$rootScope.$broadcast('showAllInstitutions');
+				}
+
+				scope.hideInstitutions = function () {
+					$rootScope.$broadcast('hideInstitutions');
 				}
 
 				scope.openInstitutionFormDialog = function (event) {
@@ -31,7 +39,7 @@
 						clickOutsideToClose: true,
 						fullscreen: true
 					}).then(function () {
-					}, function (msg) { });
+					}, function () { });
 				}
 
 				scope.changeLanguage = function (lang) {
