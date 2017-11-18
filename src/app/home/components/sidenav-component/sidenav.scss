@@ -1,11 +1,9 @@
 app-side-nav,
 .app-side-nav {
-    md-sidenav {
-        height: calc(100vh - 50px) !important;
-    }
     md-sidenav md-content {
         overflow-x: hidden !important;
         overflow-y: scroll !important;
+        height: calc(100vh - (65px + 50px))!important;
     }
     .sidenav-toolbar .md-select-value .md-select-icon {
         color: white;
@@ -28,17 +26,23 @@ app-side-nav,
         md-select .md-select-value {
             border-bottom-color: rgba(255, 255, 255, 0.3);
         }
-	}
-	
-	button {
-		display: block;
-		width: 95%;
-		text-align: center
-	}
+    }
+    button {
+        display: block;
+        width: 95%;
+        text-align: center
+    }
 }
 
 .sidenav-toolbar {
     font-size: 15px;
     padding-top: 5px;
+    padding-left: 5px;
     min-height: 65px;
+    height: 65px;
+}
+
+.md-sidenav-left,
+md-sidenav {
+    top: 50px;
 }

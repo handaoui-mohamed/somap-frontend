@@ -5,7 +5,7 @@
 		.module("home")
 		.directive("appSideNav", appSideNav);
 
-	function appSideNav($rootScope, $mdSidenav, $log) {
+	function appSideNav($rootScope, $window, $mdSidenav, $log) {
 		return {
 			restrict: 'E',
 			replace: false,
@@ -18,11 +18,23 @@
 				filterInstitutions: "&"
 			},
 			link: function (scope) {
-				scope.openned = true;
+				var windowWidth = $window.innerWidth;
+				var MOBILE_WIDTH = 800;
+				scope.openned = (windowWidth > MOBILE_WIDTH);
+
+				angular.element($window).bind('resize', function () {
+					windowWidth = $window.innerWidth;
+				});
+
 				scope.$on('toggleSideNav', function () {
-					if (!scope.openned)
-						$mdSidenav("left").close();
-					scope.openned = !scope.openned;
+					if (windowWidth > MOBILE_WIDTH) {
+						if (!scope.openned)
+							$mdSidenav("left").close();
+						scope.openned = !scope.openned;
+					} else {
+						scope.openned = false;
+						$mdSidenav("left").toggle()
+					}
 				});
 
 				scope.selectWilayas = function (value) {
