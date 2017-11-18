@@ -5,7 +5,7 @@
 		.module("home")
 		.directive("mainMap", mainMap);
 
-	function mainMap(NgMap, $timeout, $log, $mdDialog) {
+	function mainMap(NgMap, $timeout, $interval, $log, $mdDialog) {
 		return {
 			restrict: 'E',
 			replace: false,
@@ -18,7 +18,10 @@
 				var googleMap;
 				NgMap.getMap('main-map').then(function (map) {
 					googleMap = map;
-					google.maps.event.trigger(googleMap, 'resize');
+					$interval(function(){
+						$log.info("resized")
+						google.maps.event.trigger(googleMap, 'resize');
+					}, 1000);
 				}).catch(function (error) { $log.info(error) });
 
 				scope.showInfoWindow = showInfoWindow;
@@ -70,13 +73,7 @@
 					marker.setVisible(false);
 					hideInfoWindow(event);
 				});
-
-				scope.$on('mapResized', function () {
-					$timeout(function () {
-						google.maps.event.trigger(googleMap, "resize");
-					}, 300);
-				});
-
+				
 				scope.$on('showAllInstitutions', function () {
 					scope.institutions.forEach(function (institution) {
 						googleMap.markers[institution.id].setVisible(true);

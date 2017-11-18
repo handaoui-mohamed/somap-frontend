@@ -23,7 +23,6 @@
 					if (!scope.openned)
 						$mdSidenav("left").close();
 					scope.openned = !scope.openned;
-					$rootScope.$broadcast('mapResized');
 				});
 
 				scope.selectWilayas = function (value) {
