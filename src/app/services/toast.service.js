@@ -1,23 +1,9 @@
 (function () {
-	"use strict";
+	'use strict';
 
 	angular
-		.module("somap")
-		.service("Toast", Toast)
-		.factory("UserService", UserService);
-
-	function UserService($resource, API_ENDPOINT) {
-		return $resource(API_ENDPOINT + 'users/:userId', { userId: '@id' }, {
-			'get': {
-				method: 'GET',
-				isArray: false
-			},
-			'update': {
-				method: 'PUT'
-			}
-		});
-	}
-
+		.module("services")
+		.service("Toast", Toast);
 
 	function Toast($mdToast) {
 		var toastObject = {}

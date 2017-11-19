@@ -26,7 +26,8 @@
 				url: '/wilayas',
 				controller: 'WilayaController as wilVm',
 				templateUrl: 'app/admin/views/wilayas/wilayas.html'
-			}).state('admin.communes', {
+			})
+			.state('admin.communes', {
 				url: '/communes',
 				controller: 'CommuneController as comVm',
 				templateUrl: 'app/admin/views/communes/communes.html'

@@ -13,7 +13,8 @@
             'ngFileUpload',
             'pascalprecht.translate',
 
-            //costum modules
+            //costum modules,
+			"services",
 			"home",
 			"admin",
 			"dialogs",

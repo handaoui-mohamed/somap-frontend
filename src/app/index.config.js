@@ -36,6 +36,7 @@
 				templateUrl: 'app/home/home.html'
 			})
 			.state('admin', {
+				abstract: true,
 				url: '/admin',
 				controller: 'AdminController as vm',
 				templateUrl: 'app/admin/admin.html'

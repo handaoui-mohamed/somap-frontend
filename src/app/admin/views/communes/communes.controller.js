@@ -13,4 +13,4 @@
 			vm.communes = data.elements;
 		}, function (error) { Toast.error(error) });
 	}
-})
+})();
