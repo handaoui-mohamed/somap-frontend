@@ -29,11 +29,17 @@
 
 
 		$locationProvider.html5Mode(true).hashPrefix('!');
-		$stateProvider.state('home', {
-			url: '/',
-			controller: 'HomeController as vm',
-			templateUrl: 'app/home/home.html'
-		});
+		$stateProvider
+			.state('home', {
+				url: '/',
+				controller: 'HomeController as vm',
+				templateUrl: 'app/home/home.html'
+			})
+			.state('admin', {
+				url: '/admin',
+				controller: 'AdminController as vm',
+				templateUrl: 'app/admin/admin.html'
+			});
 		$urlRouterProvider.otherwise('/'); // we can use 404 page
 
 		// angular - translate configuration

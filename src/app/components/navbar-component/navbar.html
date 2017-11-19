@@ -1,11 +1,10 @@
 <md-toolbar class="app-navbar">
 	<div class="md-toolbar-tools" layout="row">
 		<div layout="row" layout="center center">
-			<div id="nav-icon" ng-click="toggleSideNav()">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
+			<md-button id="menu-button" class="md-icon-button" aria-label="menu"ng-click="toggleSideNav()">
+				<md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
+			</md-button>
+
 			<div id="search-container" layout="column" layout-align="center">
 				<input id="searchInput" type="text" placeholder="Recharcher ..." ng-model="queryText" ng-model-options="{ debounce: 250 }">
 
@@ -47,6 +46,11 @@
 		</div>
 		<div layout-fill layout="row" layout-align="space-between center">
 			<span flex></span>
+			<!-- must be admin -->
+			<md-button ng-if="$root.currentUser" class="hide-on-mobile" ui-sref="admin">
+				Administrer
+			</md-button>
+
 			<md-button ng-if="$root.currentUser" class="hide-on-mobile" ng-click="openInstitutionFormDialog(event)">
 				Ajouter un Etablissement
 			</md-button>

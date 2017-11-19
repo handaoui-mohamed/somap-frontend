@@ -1,0 +1,28 @@
+#admin {
+    md-toolbar {
+        height: 50px;
+        min-height: 50px;
+    }
+    section {
+        height: calc(100vh - (50px));
+    }
+    .admin-sidenav-left {
+        box-shadow: -2px 12px 9px 3px #a3a2a2 !important;
+        max-width: 300px !important;
+        md-content {
+            height: 100% !important;
+			background-color: #ecf0f1;
+        }
+    }
+    .menu-button {
+        margin: 0;
+        width: 100%;
+        text-align: left;
+        padding: 5px 20px;
+        background-color: #ecf0f1;
+        color: #2c3e50;
+        font-weight: 600;
+        border-bottom: 1px solid #bdc3c7;
+        border-radius: 0;
+    }
+}

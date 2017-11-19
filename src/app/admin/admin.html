@@ -1,0 +1,37 @@
+<div layout="column" ng-cloak id="admin">
+	<md-toolbar class="md-hue-2">
+		<div class="md-toolbar-tools">
+			<md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleSideNav()">
+				<md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
+			</md-button>
+
+			<h2>SoMap Administration</h2>
+
+			<span flex></span>
+
+			<md-button aria-label="logout">
+				Se deconnecter
+			</md-button>
+		</div>
+	</md-toolbar>
+	<section layout="row" flex>
+		<md-sidenav class="admin-sidenav-left" md-component-id="left" md-is-locked-open="vm.isLockedOpen">
+
+			<md-toolbar class="md-theme-indigo">
+				<h1 class="md-toolbar-tools">Gestion</h1>
+			</md-toolbar>
+			<md-content>
+				<md-button class="menu-button">Utilisateurs</md-button>
+				<md-button class="menu-button">Types d'établissement</md-button>
+				<md-button class="menu-button">établissements</md-button>
+				<md-button class="menu-button">Wilayas</md-button>
+				<md-button class="menu-button">communes</md-button>
+				<md-button class="menu-button">mon compte</md-button>
+			</md-content>
+		</md-sidenav>
+
+		<md-content flex layout-padding>
+			<ui-view></ui-view>
+		</md-content>
+	</section>
+</div>

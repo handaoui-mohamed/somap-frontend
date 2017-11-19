@@ -1,6 +1,9 @@
-(function(){
+(function () {
 	'use strict';
 
 	angular
-		.module("admin",[]);
+		.module("admin", [])
+		.config(config);
+
+	function config() { }
 })();
