@@ -11,7 +11,7 @@
         max-width: 300px !important;
         md-content {
             height: 100% !important;
-			background-color: #ecf0f1;
+            background-color: #ecf0f1;
         }
     }
     .menu-button {
@@ -24,5 +24,8 @@
         font-weight: 600;
         border-bottom: 1px solid #bdc3c7;
         border-radius: 0;
+    }
+    .menu-button:hover {
+        background-color: #bbc0c2;
     }
 }

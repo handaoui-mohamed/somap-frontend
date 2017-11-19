@@ -21,12 +21,20 @@
 				<h1 class="md-toolbar-tools">Gestion</h1>
 			</md-toolbar>
 			<md-content>
-				<md-button class="menu-button">Utilisateurs</md-button>
-				<md-button class="menu-button">Types d'établissement</md-button>
-				<md-button class="menu-button">établissements</md-button>
-				<md-button class="menu-button">Wilayas</md-button>
-				<md-button class="menu-button">communes</md-button>
-				<md-button class="menu-button">mon compte</md-button>
+				<md-button class="menu-button" ui-sref="admin.users">
+					<md-icon md-svg-icon="assets/icons/users.svg"></md-icon> Utilisateurs
+				</md-button>
+				<md-button class="menu-button" ui-sref="admin.institution_classes">
+					<md-icon></md-icon> Types d'établissement</md-button>
+				<md-button class="menu-button" ui-sref="admin.institutions">
+					<md-icon></md-icon> établissements</md-button>
+				<md-button class="menu-button" ui-sref="admin.wilayas">
+					<md-icon></md-icon> Wilayas</md-button>
+				<md-button class="menu-button" ui-sref="admin.communes">
+					<md-icon></md-icon> communes</md-button>
+				<md-button class="menu-button">
+					<md-icon md-svg-icon="assets/icons/settings.svg"></md-icon> mon compte
+				</md-button>
 			</md-content>
 		</md-sidenav>
 
