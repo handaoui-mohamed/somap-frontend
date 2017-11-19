@@ -42,6 +42,19 @@
 					}, function () { });
 				}
 
+				scope.openAuthDialog = function (event) {
+					$mdDialog.show({
+						controller: "AuthDialogController",
+						controllerAs: 'dialVm',
+						templateUrl: "app/dialogs/auth/auth.html",
+						parent: angular.element(document.body),
+						targetEvent: event,
+						clickOutsideToClose: true
+					}).then(function () {
+					}, function () { });
+				}
+
+
 				scope.changeLanguage = function (lang) {
 					if (['fr', 'ar'].includes(lang)) {
 						$window.localStorage['language'] = lang;

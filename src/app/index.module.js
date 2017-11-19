@@ -15,6 +15,7 @@
 
             //costum modules
 			"home",
+			"admin",
 			"dialogs",
 			"components"
         ]);
