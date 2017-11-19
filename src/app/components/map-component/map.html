@@ -2,7 +2,7 @@
 	<div id="map-canvas">
 		<map id="main-map" center="32, 2" zoom="6" on-click="hideInfoWindow(event)" style="height: 100%">
 			<marker ng-repeat="marker in institutions" id="{{marker.id}}" on-click="showInfoWindow(event, marker, true)" position="{{marker.position.lat+','+marker.position.lng}}"
-			 title="{{marker.denomination}}" icon="{{institutionClasses[marker.class_id -1].icon_url}}" visible="true"></marker>
+			 title="{{marker.denomination}}" icon="{{icons[marker.class_id -1]}}" visible="true"></marker>
 
 			<info-window id="myInfoWindow" max-width="500" style="text-transform: capitalize">
 				<div id="iw-container" ng-non-bindable>

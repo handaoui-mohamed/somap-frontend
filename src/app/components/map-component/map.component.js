@@ -18,11 +18,19 @@
 				var googleMap;
 				NgMap.getMap('main-map').then(function (map) {
 					googleMap = map;
-					$interval(function(){
+					$interval(function () {
 						$log.info("resized")
 						google.maps.event.trigger(googleMap, 'resize');
 					}, 1000);
 				}).catch(function (error) { $log.info(error) });
+
+				scope.icons = [
+					"assets/images/blue-dot.png",
+					"assets/images/red-dot.png",
+					"assets/images/green-dot.png",
+					"assets/images/yellow-dot.png",
+					"assets/images/purple-dot.png"
+				]
 
 				scope.showInfoWindow = showInfoWindow;
 				scope.hideInfoWindow = hideInfoWindow;
@@ -73,7 +81,7 @@
 					marker.setVisible(false);
 					hideInfoWindow(event);
 				});
-				
+
 				scope.$on('showAllInstitutions', function () {
 					scope.institutions.forEach(function (institution) {
 						googleMap.markers[institution.id].setVisible(true);
