@@ -9,7 +9,7 @@
 		return {
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'app/home/components/navbar-component/navbar.html',
+			templateUrl: 'app/components/navbar-component/navbar.html',
 			scope: {
 				queryText: "=",
 				showInstitutions: "&"
@@ -33,7 +33,7 @@
 					$mdDialog.show({
 						controller: "IntitutionFormDialogController",
 						controllerAs: 'dialVm',
-						templateUrl: "app/home/dialogs/institution/institution.html",
+						templateUrl: "app/dialogs/institution/institution.html",
 						parent: angular.element(document.body),
 						targetEvent: event,
 						clickOutsideToClose: true,

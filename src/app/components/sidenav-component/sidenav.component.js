@@ -10,7 +10,7 @@
 			restrict: 'E',
 			replace: false,
 			transclude: true,
-			templateUrl: 'app/home/components/sidenav-component/sidenav.html',
+			templateUrl: 'app/components/sidenav-component/sidenav.html',
 			scope: {
 				institutionClasses: "=",
 				wilayas: "=",

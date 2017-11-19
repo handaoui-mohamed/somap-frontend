@@ -9,7 +9,7 @@
 		return {
 			restrict: 'E',
 			replace: false,
-			templateUrl: 'app/home/components/map-component/map.html',
+			templateUrl: 'app/components/map-component/map.html',
 			scope: {
 				institutions: '=',
 				institutionClasses: '='
@@ -50,7 +50,7 @@
 					$mdDialog.show({
 						controller: "InstitutionDetailsDialogController",
 						controllerAs: 'dialVm',
-						templateUrl: "app/home/dialogs/institution-detail/institution-detail.html",
+						templateUrl: "app/dialogs/institution-detail/institution-detail.html",
 						parent: angular.element(document.body),
 						targetEvent: event,
 						clickOutsideToClose: true,

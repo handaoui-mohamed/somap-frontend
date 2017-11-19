@@ -9,7 +9,7 @@
 		return {
 			restrict: 'E',
 			replace: true,
-			templateUrl: 'app/home/components/institution-component/institution.html',
+			templateUrl: 'app/components/institution-component/institution.html',
 			scope: {
 				institution: '=',
 				institutionClass: '=',
