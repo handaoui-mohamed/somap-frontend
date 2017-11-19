@@ -7,15 +7,12 @@
 
 	function AdminController($auth, $window, $state, $mdSidenav) {
 		var vm = this;
-		vm.isLockedOpen = true;
 
 		vm.toggleSideNav = toggleSideNav;
 		vm.logout = logout;
 
 		function toggleSideNav() {
-			if (!vm.isLockedOpen)
-				$mdSidenav("left").close();
-			vm.isLockedOpen = !vm.isLockedOpen;
+			$mdSidenav("left").toggle();
 		}
 
 		function logout() {

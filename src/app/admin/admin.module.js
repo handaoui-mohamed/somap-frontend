@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module("admin", [])
+		.module("admin", ['md.data.table'])
 		.config(config);
 
 	function config($stateProvider) {
