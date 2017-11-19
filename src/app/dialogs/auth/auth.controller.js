@@ -20,7 +20,7 @@
 			$auth.login(vm.user, { url: API_ENDPOINT + 'login' }).then(function (response) {
 				if (!response.data.errors) {
 					Toast.message('Connexion avec succès');
-					$window.localStorage['current_user'] = response.data.user._id;
+					$window.localStorage['current_user'] = response.data.user.id;
 					$rootScope.currentUser = response.data.user;
 					close();
 				} else {
