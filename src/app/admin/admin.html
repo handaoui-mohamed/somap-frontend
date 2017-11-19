@@ -4,12 +4,9 @@
 			<md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleSideNav()">
 				<md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
 			</md-button>
-
 			<h2>SoMap Administration</h2>
-
 			<span flex></span>
-
-			<md-button aria-label="logout">
+			<md-button aria-label="logout" ng-click="vm.logout()">
 				Se deconnecter
 			</md-button>
 		</div>
@@ -33,7 +30,7 @@
 				<md-button class="menu-button" ui-sref="admin.communes">
 					<md-icon></md-icon> communes</md-button>
 				<md-button class="menu-button">
-					<md-icon md-svg-icon="assets/icons/settings.svg"></md-icon> mon compte
+					<md-icon md-svg-icon="assets/icons/settings.svg"></md-icon> Paramètre
 				</md-button>
 			</md-content>
 		</md-sidenav>
