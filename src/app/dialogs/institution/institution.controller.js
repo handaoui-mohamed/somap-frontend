@@ -2,7 +2,7 @@
 	"use strict";
 
 	angular
-		.module("home")
+		.module("dialogs")
 		.controller("IntitutionFormDialogController", IntitutionFormDialogController);
 
 	function IntitutionFormDialogController($scope, $mdDialog, $log, $timeout, NgMap, InstitutionService, WilayaService, InstitutionClassService, Toast, Upload, API_ENDPOINT) {

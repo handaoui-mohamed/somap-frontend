@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module("home")
+		.module("components")
 		.directive("institutionCard", institutionCard);
 
 	function institutionCard($rootScope) {

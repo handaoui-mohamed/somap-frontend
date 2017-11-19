@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module("home")
+		.module("dialogs")
 		.controller("InstitutionDetailsDialogController", InstitutionDetailsDialogController);
 
 	function InstitutionDetailsDialogController($mdDialog, Institution) {

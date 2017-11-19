@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module("somap")
+        .module("dialogs")
         .controller("AboutDialogController",AboutDialogController);
 
     function AboutDialogController($mdDialog){

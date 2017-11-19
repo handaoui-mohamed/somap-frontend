@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module("home")
+		.module("components")
 		.directive("appSideNav", appSideNav);
 
 	function appSideNav($rootScope, $window, $mdSidenav, $log) {

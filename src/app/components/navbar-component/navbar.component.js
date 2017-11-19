@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module("home")
+		.module("components")
 		.directive("appNavBar", appNavBar);
 
 	function appNavBar($rootScope, $mdDialog, $window, $translate) {

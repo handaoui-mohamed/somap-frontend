@@ -14,6 +14,8 @@
             'pascalprecht.translate',
 
             //costum modules
-            "home" 
+			"home",
+			"dialogs",
+			"components"
         ]);
 })();

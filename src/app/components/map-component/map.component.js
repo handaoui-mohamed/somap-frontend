@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module("home")
+		.module("components")
 		.directive("mainMap", mainMap);
 
 	function mainMap(NgMap, $timeout, $interval, $log, $mdDialog) {

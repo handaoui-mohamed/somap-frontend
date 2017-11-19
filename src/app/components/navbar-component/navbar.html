@@ -18,11 +18,11 @@
 				</md-button>
 				<md-menu-content width="3">
 					<md-menu-item class="show-on-mobile">
-						<md-button ng-if="!$root.connnected" ng-click="openInstitutionFormDialog(event)">
+						<md-button ng-if="$root.connnected" ng-click="openInstitutionFormDialog(event)">
 							Ajouter un Etablissement
 						</md-button>
 
-						<md-button ng-if="$root.connnected" ng-click="login(event)">
+						<md-button ng-if="!$root.connnected" ng-click="login(event)">
 							Se connecter
 						</md-button>
 					</md-menu-item>
@@ -47,11 +47,11 @@
 		</div>
 		<div layout-fill layout="row" layout-align="space-between center">
 			<span flex></span>
-			<md-button ng-if="!$root.connnected" class="hide-on-mobile" ng-click="openInstitutionFormDialog(event)">
+			<md-button ng-if="$root.connnected" class="hide-on-mobile" ng-click="openInstitutionFormDialog(event)">
 				Ajouter un Etablissement
 			</md-button>
 
-			<md-button ng-if="$root.connnected" class="hide-on-mobile" ng-click="login(event)">
+			<md-button ng-if="!$root.connnected" class="hide-on-mobile" ng-click="login(event)">
 				Se connecter
 			</md-button>
 
