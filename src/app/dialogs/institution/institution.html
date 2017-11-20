@@ -1,7 +1,9 @@
-<md-dialog aria-label="Ajouter un etablissement" id="institution-dialog">
+<md-dialog aria-label="Ajouter un etablissement" id="institution-dialog" class="custom-dialog">
 	<md-toolbar>
 		<div class="md-toolbar-tools">
-			<h2>Ajouter un etablissement</h2>
+			<h2>
+				<span ng-if="!dialVm.update">Ajouter un </span>
+				<span ng-if="dialVm.update">Modifier l'</span>établissement</h2>
 			<span flex></span>
 			<md-button aria-label="close" class="md-icon-button" ng-click="dialVm.close()">
 				<img src="assets/icons/close.png" alt="close" style="width: 15px;margin-top: 5px;">
@@ -14,9 +16,8 @@
 			<div layout="row">
 				<md-input-container flex>
 					<label>Dénomination</label>
-					<input type="text" name="denomination" ng-model="dialVm.institution.denomination" required>
-					<div ng-messages="institutionForm.denomination.$error" ng-if="institutionForm.denomination.$touched || institutionForm.$submitted"
-					 role="alert">
+					<input type="text" name="name" ng-model="dialVm.institution.name" required>
+					<div ng-messages="institutionForm.name.$error" ng-if="institutionForm.name.$touched || institutionForm.$submitted" role="alert">
 						<div ng-message="required">Ce champ est obligatoire.</div>
 					</div>
 				</md-input-container>
@@ -44,7 +45,7 @@
 					<md-select ng-model="dialVm.institution.class_id" name="institutionclasse" required>
 						<md-optgroup label="Type Etablissement">
 							<md-option ng-value="institutionClasse.id" ng-repeat="institutionClasse in dialVm.institutionClasses" style="text-transform: capitalize">
-								{{institutionClasse.denomination}}
+								{{institutionClasse.name}}
 							</md-option>
 						</md-optgroup>
 					</md-select>
@@ -124,8 +125,9 @@
 		</md-dialog-content>
 		<md-dialog-actions layout="row">
 			<span flex></span>
-			<md-button aria-label="submit" type="submit" class="md-raised md-primary" ng-click="dialVm.addInstitution()" ng-disabled="dialVm.disabled || institutionForm.$invalid || institutionForm.$pristine">
-				Ajouter L'institution
+			<md-button aria-label="submit" type="submit" class="md-raised md-primary" ng-click="dialVm.save()" ng-disabled="dialVm.disabled || institutionForm.$invalid || institutionForm.$pristine">
+				<span ng-if="!dialVm.update">Ajouter</span>
+				<span ng-if="dialVm.update">Modifier</span> L'établissement
 			</md-button>
 		</md-dialog-actions>
 	</form>

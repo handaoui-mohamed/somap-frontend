@@ -37,7 +37,10 @@
 						parent: angular.element(document.body),
 						targetEvent: event,
 						clickOutsideToClose: true,
-						fullscreen: true
+						fullscreen: true,
+						locals: {
+							Institution: null
+						}
 					}).then(function () {
 					}, function () { });
 				}

@@ -5,14 +5,20 @@
 		.module("dialogs")
 		.controller("IntitutionFormDialogController", IntitutionFormDialogController);
 
-	function IntitutionFormDialogController($scope, $mdDialog, $log, $timeout, NgMap, InstitutionService, WilayaService, InstitutionClassService, Toast, Upload, API_ENDPOINT) {
+	function IntitutionFormDialogController($scope, $mdDialog, $log, $timeout, NgMap, Institution, InstitutionService, WilayaService, InstitutionClassService, Toast, Upload, API_ENDPOINT) {
 		var vm = this;
-		vm.institution = {};
+		vm.institution = angular.copy(Institution);
+		$log.info("update", vm.institution);
 		vm.wilayas = [];
 		vm.markers = [];
 		vm.institutionClasses = [];
 		vm.selectedWilaya = [];
 		vm.institution_image = null;
+		
+		if(vm.institution){
+			vm.update = true;
+			loadCommunes();
+		}
 
 		WilayaService.get(function (data) {
 			vm.wilayas = data.elements;
@@ -33,6 +39,7 @@
 		}).catch(function (error) { $log(error) });
 
 
+		vm.saveChanges = saveChanges;
 		vm.loadCommunes = loadCommunes;
 		vm.addInstitution = addInstitution;
 		vm.getCoordinates = getCoordinates;
@@ -52,8 +59,19 @@
 			}
 		}
 
+		function saveChanges() {
+			vm.update ? updateInstitution() : addInstitution();
+		}
+
+		function updateInstitution() {
+			Institution.update({ institutionId: vm.institution.id }, function (data) {
+				if (vm.institution_image) uploadInstitutionFile(vm.institution_image, data.element.id);
+				Institution = data.elements;
+				close();
+			}, function (error) { Toast.error(error) });
+		}
+
 		function addInstitution() {
-			$log.info(vm.institution);
 			InstitutionService.save(vm.institution, function (data) {
 				if (vm.institution_image) uploadInstitutionFile(vm.institution_image, data.element.id);
 				Toast.message("L'institution en attente de validation, On vous remercie.");

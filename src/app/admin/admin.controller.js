@@ -5,7 +5,7 @@
 		.module("admin")
 		.controller("AdminController", AdminController);
 
-	function AdminController($auth, $window, $state, $mdSidenav) {
+	function AdminController($rootScope, $auth, $window, $state, $mdSidenav) {
 		var vm = this;
 
 		vm.toggleSideNav = toggleSideNav;
@@ -18,6 +18,7 @@
 		function logout() {
 			$auth.logout();
 			$window.localStorage.removeItem('current_user');
+			delete $rootScope.currentUser;
 			$state.go('home');
 		}
 	}

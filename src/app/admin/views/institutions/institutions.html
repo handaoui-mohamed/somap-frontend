@@ -16,7 +16,7 @@
 					<th md-column>Commune</th>
 					<th md-column>Adresse</th>
 					<th md-column>Contacts</th>
-					<th md-column>Validé</th>
+					<th md-column>Valider</th>
 					<th md-column></th>
 				</tr>
 			</thead>
@@ -29,10 +29,12 @@
 					<td md-cell md-truncate>{{institution.address}}</td>
 					<td md-cell md-truncate>{{institution.phone}}</td>
 					<td class="button-cell" md-cell md-truncate>
-						<md-icon ng-if="institution.validated" md-svg-icon="assets/icons/checked.svg"></md-icon>
+						<md-button class="md-icon-button" ng-class="{'validated': institution.validated}" aria-label="cheched" ng-click="instVm.showConfirmationDialog($event, institution)">
+							<md-icon md-svg-icon="assets/icons/checked.svg"></md-icon>
+						</md-button>
 					</td>
 					<td class="button-cell" md-cell md-truncate>
-						<md-button class="md-icon-button" aria-label="details" ng-click="instVm.openInstitutionDialog(institution)">
+						<md-button class="md-icon-button" aria-label="details" ng-click="instVm.openInstitutionDialog($event, institution)">
 							<md-icon md-svg-icon="assets/icons/details.svg"></md-icon>
 						</md-button>
 					</td>

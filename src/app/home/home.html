@@ -6,7 +6,7 @@
 		<app-side-nav institution-classes="vm.institutionClasses" wilayas="vm.wilayas" filter-institutions="vm.filterInstitutions()"
 		 selected-items="vm.selected">
 			<div ng-repeat="institution in vm.filteredInstitutions | filter:vm.query | limitTo:vm.limit">
-				<institution-card institution="institution" institution-class="vm.institutionClasses[institution.class_id-1].denomination"
+				<institution-card institution="institution" institution-class="vm.institutionClasses[institution.class_id-1].name"
 				 selected="institution.selected"></institution-card>
 			</div>
 			<md-button class="md-raised md-primary" ng-hide="vm.limit > vm.filteredInstitutions.length" ng-click="vm.limit = vm.limit + 10">
