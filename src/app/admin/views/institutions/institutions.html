@@ -1,7 +1,13 @@
-<div class="md-whiteframe-4dp">
+<div class="md-whiteframe-4dp" id="institutions">
 	<md-toolbar class="md-table-toolbar md-default">
 		<div class="md-toolbar-tools">
 			<span>Etablissements</span>
+			<span flex></span>
+			<div id="search-container" layout="column" layout-align="center">
+				<input id="searchInput" type="text" placeholder="Recharcher ..." ng-model="instVm.search" ng-model-options="{ debounce: 250 }">
+
+				<img for="searchInput" src="/assets/icons/search.png" alt="search">
+			</div>
 		</div>
 	</md-toolbar>
 
