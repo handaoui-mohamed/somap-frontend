@@ -19,7 +19,7 @@
 
 		function openWilayaDialog(event, wilaya) {
 			$mdDialog.show({
-				controller: "WilayaFormDialogController",
+				controller: "WilayaDialogController",
 				controllerAs: 'dialVm',
 				templateUrl: "app/admin/dialogs/wilaya/wilaya.html",
 				parent: angular.element(document.body),
@@ -34,11 +34,9 @@
 				if (isNew) {
 					vm.wilayas.unshift(wil);
 				} else {
-					for (var key in wilaya) {
-						if (wilaya.hasOwnProperty(key)) {
-							wilaya[key] = wil[key];
-						}
-					}
+					angular.forEach(commune, function (value, key) {
+						wilaya[key] = wil[key];
+					});
 				}
 			}, function () { });
 		}

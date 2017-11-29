@@ -20,7 +20,7 @@
 			$mdDialog.show({
 				controller: "UserDialogController",
 				controllerAs: 'dialVm',
-				templateUrl: "app/admin/dialogs/user-dialog/user-dialog.html",
+				templateUrl: "app/admin/dialogs/user/user.html",
 				parent: angular.element(document.body),
 				targetEvent: event,
 				clickOutsideToClose: true,
@@ -33,11 +33,9 @@
 				if (isNew) {
 					vm.users.unshift(usr);
 				} else {
-					for (var key in user) {
-						if (user.hasOwnProperty(key)) {
-							user[key] = usr[key];
-						}
-					}
+					angular.forEach(commune, function (value, key) {
+						user[key] = usr[key];
+					});
 				}
 			}, function () { });
 		}

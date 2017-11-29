@@ -19,7 +19,7 @@
 
 		function openInstitutionClassDialog(event, institutionClass) {
 			$mdDialog.show({
-				controller: "IntitutionClassFormDialogController",
+				controller: "IntitutionClassDialogController",
 				controllerAs: 'dialVm',
 				templateUrl: "app/admin/dialogs/institution-class/institution-class.html",
 				parent: angular.element(document.body),
@@ -34,11 +34,9 @@
 				if (isNew) {
 					vm.institutionClasses.unshift(instClass);
 				} else {
-					for (var key in institutionClass) {
-						if (institutionClass.hasOwnProperty(key)) {
-							institutionClass[key] = instClass[key];
-						}
-					}
+					angular.forEach(commune, function (value, key) {
+						institutionClass[key] = instClass[key];
+					});
 				}
 			}, function () { });
 		}

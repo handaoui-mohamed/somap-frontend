@@ -35,11 +35,9 @@
 				if (isNew) {
 					vm.institutions.unshift(inst);
 				} else {
-					for (var key in institution) {
-						if (institution.hasOwnProperty(key)) {
-							institution[key] = inst[key];
-						}
-					}
+					angular.forEach(commune, function (value, key) {
+						institution[key] = inst[key];
+					});
 				}
 			}, function () { });
 		}
