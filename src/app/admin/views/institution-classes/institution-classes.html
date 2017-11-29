@@ -1,1 +1,45 @@
-institution classes
+<div class="md-whiteframe-4dp" id="institutions">
+	<md-toolbar class="md-table-toolbar md-default">
+		<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+			<span>Type d'établissements</span>
+			<div id="search-container" layout="column" layout-align="center" flex>
+				<input id="searchInput" type="text" placeholder="Rechercher ..." ng-model="incVm.search" ng-model-options="{ debounce: 250 }">
+
+				<img for="searchInput" src="/assets/icons/search.png" alt="search">
+			</div>
+			<md-button aria-label="button-label" class="md-raised md-warn" ng-click="incVm.openInstitutionClassDialog()">
+				<md-icon md-svg-icon="assets/icons/add.svg"></md-icon>
+				Ajouter Type
+			</md-button>
+		</div>
+	</md-toolbar>
+
+	<md-table-container>
+		<table md-table md-progress="incVm.promise">
+			<thead md-head>
+				<tr md-row>
+					<th md-column>Denomination</th>
+					<th md-column>Description</th>
+					<th md-column></th>
+				</tr>
+			</thead>
+			<tbody md-body>
+				<tr md-row ng-repeat="instClass in incVm.institutionClasses | filter: incVm.search | limitTo: incVm.query.limit : (incVm.query.page -1) * incVm.query.limit">
+					<td md-cell md-truncate>{{instClass.name}}</td>
+					<td md-cell md-truncate>{{instClass.description}}</td>
+					<td class="button-cell" md-cell md-truncate>
+						<md-button class="md-icon-button" aria-label="details" ng-click="incVm.openInstitutionClassDialog($event, instClass)">
+							<md-icon md-svg-icon="assets/icons/details.svg"></md-icon>
+						</md-button>
+						<md-button class="md-icon-button" aria-label="details" ng-click="incVm.deleteInstitutionClassDialog($event, instClass.id, $index)">
+							<md-icon md-svg-icon="assets/icons/delete.svg"></md-icon>
+						</md-button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</md-table-container>
+
+	<md-table-pagination md-limit="incVm.query.limit" md-limit-options="[5, 10, 15]" md-page="incVm.query.page" md-total="{{incVm.institutionClasses.length}}"
+	 md-page-select></md-table-pagination>
+</div>

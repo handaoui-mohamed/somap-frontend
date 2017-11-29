@@ -1,17 +1,16 @@
 <div class="md-whiteframe-4dp" id="institutions">
 	<md-toolbar class="md-table-toolbar md-default">
-		<div class="md-toolbar-tools">
+		<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+			<span>Etablissements</span>
+			<div id="search-container" layout="column" layout-align="center" flex>
+				<input id="searchInput" type="text" placeholder="Rechercher ..." ng-model="instVm.search" ng-model-options="{ debounce: 250 }">
+
+				<img for="searchInput" src="/assets/icons/search.png" alt="search">
+			</div>
 			<md-button aria-label="button-label" class="md-raised md-warn" ng-click="instVm.openInstitutionDialog()">
 				<md-icon md-svg-icon="assets/icons/add.svg"></md-icon>
 				Ajouter etablissement
 			</md-button>
-			<span>Etablissements</span>
-			<span flex></span>
-			<div id="search-container" layout="column" layout-align="center">
-				<input id="searchInput" type="text" placeholder="Recharcher ..." ng-model="instVm.search" ng-model-options="{ debounce: 250 }">
-
-				<img for="searchInput" src="/assets/icons/search.png" alt="search">
-			</div>
 		</div>
 	</md-toolbar>
 
