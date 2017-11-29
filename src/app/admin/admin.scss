@@ -39,5 +39,12 @@
         width: 75px;
         padding: 0;
         min-width: 40px;
-    }
+	}
+	
+	.md-warn{
+		color: #fff !important;
+		md-icon{
+			padding: 3px;
+		}
+	}
 }

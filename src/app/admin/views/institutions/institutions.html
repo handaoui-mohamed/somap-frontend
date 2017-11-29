@@ -1,6 +1,10 @@
 <div class="md-whiteframe-4dp" id="institutions">
 	<md-toolbar class="md-table-toolbar md-default">
 		<div class="md-toolbar-tools">
+			<md-button aria-label="button-label" class="md-raised md-warn" ng-click="instVm.openInstitutionDialog()">
+				<md-icon md-svg-icon="assets/icons/add.svg"></md-icon>
+				Ajouter etablissement
+			</md-button>
 			<span>Etablissements</span>
 			<span flex></span>
 			<div id="search-container" layout="column" layout-align="center">
@@ -11,7 +15,6 @@
 		</div>
 	</md-toolbar>
 
-	<!-- exact table from live demo -->
 	<md-table-container>
 		<table md-table md-progress="instVm.promise">
 			<thead md-head>
@@ -42,6 +45,9 @@
 					<td class="button-cell" md-cell md-truncate>
 						<md-button class="md-icon-button" aria-label="details" ng-click="instVm.openInstitutionDialog($event, institution)">
 							<md-icon md-svg-icon="assets/icons/details.svg"></md-icon>
+						</md-button>
+						<md-button class="md-icon-button" aria-label="details" ng-click="instVm.deleteInstitutionDialog($event, institution.id, $index)">
+							<md-icon md-svg-icon="assets/icons/delete.svg"></md-icon>
 						</md-button>
 					</td>
 				</tr>

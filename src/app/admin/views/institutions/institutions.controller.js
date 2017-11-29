@@ -16,6 +16,7 @@
 
 		vm.openInstitutionDialog = openInstitutionDialog;
 		vm.showConfirmationDialog = showConfirmationDialog;
+		vm.deleteInstitutionDialog = deleteInstitutionDialog;
 
 		function openInstitutionDialog(event, institution) {
 			$mdDialog.show({
@@ -30,7 +31,16 @@
 				locals: {
 					Institution: institution
 				}
-			}).then(function () {
+			}).then(function (inst, isNew) {
+				if (isNew) {
+					vm.institutions.unshift(inst);
+				} else {
+					for (var key in institution) {
+						if (institution.hasOwnProperty(key)) {
+							institution[key] = inst[key];
+						}
+					}
+				}
 			}, function () { });
 		}
 
@@ -49,6 +59,21 @@
 				inst.latitude = inst.position.lng;
 				InstitutionService.update({ institutionId: institution.id }, inst, function (data) {
 					institution.validated = data.element.validated;
+				}, function (error) { Toast.error(error) })
+			}, function () { });
+		}
+
+		function deleteInstitutionDialog(event, InstitutionId, index) {
+			var confirm = $mdDialog.confirm()
+				.title('Suppression!')
+				.textContent('Voulez vous supprimer cet etablissement?')
+				.ariaLabel('validation')
+				.targetEvent(event)
+				.ok('Confirmer')
+				.cancel('Annuler');
+			$mdDialog.show(confirm).then(function () {
+				InstitutionService.delete({ institutionId: InstitutionId }, function () {
+					vm.institutions.slice(index, 1);
 				}, function (error) { Toast.error(error) })
 			}, function () { });
 		}

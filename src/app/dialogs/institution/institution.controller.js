@@ -14,8 +14,8 @@
 		vm.institutionClasses = [];
 		vm.selectedWilaya = [];
 		vm.institution_image = null;
-		
-		if(vm.institution){
+
+		if (vm.institution) {
 			vm.update = true;
 			loadCommunes();
 		}
@@ -66,8 +66,8 @@
 		function updateInstitution() {
 			Institution.update({ institutionId: vm.institution.id }, function (data) {
 				if (vm.institution_image) uploadInstitutionFile(vm.institution_image, data.element.id);
-				Institution = data.elements;
-				close();
+				Toast.message("L'institution a été modifier.");
+				$mdDialog.hide(data.element, true);
 			}, function (error) { Toast.error(error) });
 		}
 
@@ -75,6 +75,7 @@
 			InstitutionService.save(vm.institution, function (data) {
 				if (vm.institution_image) uploadInstitutionFile(vm.institution_image, data.element.id);
 				Toast.message("L'institution en attente de validation, On vous remercie.");
+				$mdDialog.hide(data.element);
 			}, function (errors) {
 				Toast.error(errors);
 			});
