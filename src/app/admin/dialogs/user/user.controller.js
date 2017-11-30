@@ -9,6 +9,7 @@
 		var vm = this;
 		vm.user = angular.copy(User);
 		vm.isUpdate = !!vm.user;
+		vm.wilayas = [];
 
 		WilayaService.get(function (data) {
 			vm.wilayas = data.elements;
@@ -27,13 +28,15 @@
 
 		function update() {
 			if (!vm.changePassword) delete vm.user.password;
-			UserService.save(vm.user, function (data) {
+			UserService.save({ userId: vm.user.id }, vm.user, function (data) {
+				Toast.message("L'utilisateur a été modifié.");
 				$mdDialog.hide(data.element);
 			}, function (error) { Toast.error(error) });
 		}
 
 		function add() {
 			UserService.save(vm.user, function (data) {
+				Toast.message("L'utilisateur a été ajouté.");
 				$mdDialog.hide(data.element, true);
 			}, function (error) { Toast.error(error) });
 		}

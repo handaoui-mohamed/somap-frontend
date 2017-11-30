@@ -70,7 +70,7 @@
 				</md-input-container>
 				<md-input-container flex>
 					<label>Confirmer mot de passe</label>
-					<input type="password" name="confirm_password" minlength="8" pattern="^({{acVm.account.password}})$" ng-model="dialVm.password"
+					<input type="password" name="confirm_password" minlength="8" pattern="^({{dialVm.user.password}})$" ng-model="dialVm.password"
 					 required>
 					<div ng-messages="authForm.confirm_password.$error" ng-if="authForm.confirm_password.$touched || authForm.$submitted" role="alert">
 						<div ng-message="required">Ce champ est obligatoire.</div>

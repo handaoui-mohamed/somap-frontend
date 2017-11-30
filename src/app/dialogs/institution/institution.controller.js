@@ -66,7 +66,7 @@
 		function updateInstitution() {
 			Institution.update({ institutionId: vm.institution.id }, function (data) {
 				if (vm.institution_image) uploadInstitutionFile(vm.institution_image, data.element.id);
-				Toast.message("L'institution a été modifier.");
+				Toast.message("L'institution a été modifié.");
 				$mdDialog.hide(data.element, true);
 			}, function (error) { Toast.error(error) });
 		}
