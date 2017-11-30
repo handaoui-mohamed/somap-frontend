@@ -67,7 +67,7 @@
 			Institution.update({ institutionId: vm.institution.id }, function (data) {
 				if (vm.institution_image) uploadInstitutionFile(vm.institution_image, data.element.id);
 				Toast.message("L'institution a été modifié.");
-				$mdDialog.hide(data.element, true);
+				$mdDialog.hide({ institution: data.element, isNew: true });
 			}, function (error) { Toast.error(error) });
 		}
 
@@ -75,7 +75,7 @@
 			InstitutionService.save(vm.institution, function (data) {
 				if (vm.institution_image) uploadInstitutionFile(vm.institution_image, data.element.id);
 				Toast.message("L'institution en attente de validation, On vous remercie.");
-				$mdDialog.hide(data.element);
+				$mdDialog.hide({ institution: data.element });
 			}, function (errors) {
 				Toast.error(errors);
 			});

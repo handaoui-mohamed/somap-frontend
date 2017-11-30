@@ -14,7 +14,7 @@
 		vm.close = close;
 
 		function close() {
-			$mdDialog.hide();
+			$mdDialog.cancel();
 		}
 
 		function save() {
@@ -22,16 +22,16 @@
 		}
 
 		function update() {
-			WilayaService.save({ wilayaId: vm.wilaya.id }, vm.wilaya, function (data) {
+			WilayaService.update({ wilayaId: vm.wilaya.id }, vm.wilaya, function (data) {
 				Toast.message("La wilaya a été modifié.");
-				$mdDialog.hide(data.element);
+				$mdDialog.hide({ wilaya: data.element });
 			}, function (error) { Toast.error(error) });
 		}
 
 		function add() {
 			WilayaService.save(vm.wilaya, function (data) {
 				Toast.message("La wilaya a été ajouté.");
-				$mdDialog.hide(data.element, true);
+				$mdDialog.hide({ wilaya: data.element, isNew: true });
 			}, function (error) { Toast.error(error) });
 		}
 	}

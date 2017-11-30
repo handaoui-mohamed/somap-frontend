@@ -30,12 +30,12 @@
 				locals: {
 					Wilaya: wilaya
 				}
-			}).then(function (wil, isNew) {
-				if (isNew) {
-					vm.wilayas.unshift(wil);
+			}).then(function (data) {
+				if (data.isNew) {
+					vm.wilayas.unshift(data.wilaya);
 				} else {
-					angular.forEach(commune, function (value, key) {
-						wilaya[key] = wil[key];
+					angular.forEach(wilaya, function (value, key) {
+						wilaya[key] = data.wilaya[key];
 					});
 				}
 			}, function () { });
@@ -51,7 +51,7 @@
 				.cancel('Annuler');
 			$mdDialog.show(confirm).then(function () {
 				WilayaService.delete({ wilayaId: wilayaId }, function () {
-					vm.wilayas.slice(index, 1);
+					vm.wilayas.splice(index, 1);
 				}, function (error) { Toast.error(error) })
 			}, function () { });
 		}

@@ -30,12 +30,12 @@
 				locals: {
 					InstitutionClass: institutionClass
 				}
-			}).then(function (instClass, isNew) {
-				if (isNew) {
-					vm.institutionClasses.unshift(instClass);
+			}).then(function (data) {
+				if (data.isNew) {
+					vm.institutionClasses.unshift(data.institutionClass);
 				} else {
-					angular.forEach(commune, function (value, key) {
-						institutionClass[key] = instClass[key];
+					angular.forEach(institutionClass, function (value, key) {
+						institutionClass[key] = data.institutionClass[key];
 					});
 				}
 			}, function () { });
@@ -51,7 +51,7 @@
 				.cancel('Annuler');
 			$mdDialog.show(confirm).then(function () {
 				InstitutionClassService.delete({ InstitutionClassId: InstitutionClassId }, function () {
-					vm.InstitutionClasses.slice(index, 1);
+					vm.InstitutionClasses.splice(index, 1);
 				}, function (error) { Toast.error(error) })
 			}, function () { });
 		}

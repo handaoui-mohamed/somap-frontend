@@ -8,6 +8,7 @@
 	function UserController($mdDialog, Toast, UserService) {
 		var vm = this;
 		vm.users = [];
+		vm.query = { limit: 10, page: 1 };
 
 		UserService.get(function (data) {
 			vm.users = data.elements;
@@ -29,12 +30,12 @@
 				locals: {
 					User: user
 				}
-			}).then(function (usr, isNew) {
-				if (isNew) {
-					vm.users.unshift(usr);
+			}).then(function (data) {
+				if (data.isNew) {
+					vm.users.unshift(data.user);
 				} else {
-					angular.forEach(commune, function (value, key) {
-						user[key] = usr[key];
+					angular.forEach(user, function (value, key) {
+						user[key] = data.user[key];
 					});
 				}
 			}, function () { });
@@ -50,7 +51,7 @@
 				.cancel('Annuler');
 			$mdDialog.show(confirm).then(function () {
 				UserService.delete({ userId: userId }, function () {
-					vm.users.slice(index, 1);
+					vm.users.splice(index, 1);
 				}, function (error) { Toast.error(error) })
 			}, function () { });
 		}

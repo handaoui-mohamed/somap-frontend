@@ -31,12 +31,12 @@
 				locals: {
 					Commune: commune
 				}
-			}).then(function (cmn, isNew) {
-				if (isNew) {
-					vm.communes.unshift(cmn);
+			}).then(function (data) {
+				if (data.isNew) {
+					vm.communes.unshift(data.commune);
 				} else {
 					angular.forEach(commune, function (value, key) {
-						commune[key] = cmn[key];
+						commune[key] = data.commune[key];
 					});
 				}
 			}, function () { });
@@ -52,7 +52,7 @@
 				.cancel('Annuler');
 			$mdDialog.show(confirm).then(function () {
 				CommuneService.delete({ communeId: communeId }, function () {
-					vm.communes.slice(index, 1);
+					vm.communes.splice(index, 1);
 				}, function (error) { Toast.error(error) })
 			}, function () { });
 		}

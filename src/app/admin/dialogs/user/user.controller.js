@@ -19,7 +19,7 @@
 		vm.close = close;
 
 		function close() {
-			$mdDialog.hide();
+			$mdDialog.cancel();
 		}
 
 		function save() {
@@ -28,16 +28,16 @@
 
 		function update() {
 			if (!vm.changePassword) delete vm.user.password;
-			UserService.save({ userId: vm.user.id }, vm.user, function (data) {
+			UserService.update({ userId: vm.user.id }, vm.user, function (data) {
 				Toast.message("L'utilisateur a été modifié.");
-				$mdDialog.hide(data.element);
+				$mdDialog.hide({ user: data.element });
 			}, function (error) { Toast.error(error) });
 		}
 
 		function add() {
 			UserService.save(vm.user, function (data) {
 				Toast.message("L'utilisateur a été ajouté.");
-				$mdDialog.hide(data.element, true);
+				$mdDialog.hide({ user: data.element, isNew: true });
 			}, function (error) { Toast.error(error) });
 		}
 	}

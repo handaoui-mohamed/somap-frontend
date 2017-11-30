@@ -14,7 +14,7 @@
 		vm.close = close;
 
 		function close() {
-			$mdDialog.hide();
+			$mdDialog.cancel();
 		}
 
 		function save() {
@@ -22,16 +22,16 @@
 		}
 
 		function update() {
-			InstitutionClassService.save({ institutionClassId: vm.institutionClass.id }, vm.institutionClass, function (data) {
+			InstitutionClassService.update({ institutionClassId: vm.institutionClass.id }, vm.institutionClass, function (data) {
 				Toast.message("Le type d'établissement a été modifié.");
-				$mdDialog.hide(data.element);
+				$mdDialog.hide({ institutionClass: data.element });
 			}, function (error) { Toast.error(error) });
 		}
 
 		function add() {
 			InstitutionClassService.save(vm.institutionClass, function (data) {
 				Toast.message("Le type d'établissement a été ajouté.");
-				$mdDialog.hide(data.element, true);
+				$mdDialog.hide({ institutionClass: data.element, isNew: true });
 			}, function (error) { Toast.error(error) });
 		}
 	}

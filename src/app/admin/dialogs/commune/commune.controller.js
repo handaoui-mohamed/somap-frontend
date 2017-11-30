@@ -19,7 +19,7 @@
 		vm.close = close;
 
 		function close() {
-			$mdDialog.hide();
+			$mdDialog.cancel();
 		}
 
 		function save() {
@@ -27,16 +27,16 @@
 		}
 
 		function update() {
-			CommuneService.save({ communeId: vm.commune.id }, vm.commune, function (data) {
+			CommuneService.update({ communeId: vm.commune.id }, vm.commune, function (data) {
 				Toast.message("La commune a été modifié.");
-				$mdDialog.hide(data.element);
+				$mdDialog.hide({ commune: data.element });
 			}, function (error) { Toast.error(error) });
 		}
 
 		function add() {
 			CommuneService.save(vm.commune, function (data) {
 				Toast.message("La commune a été ajouté.");
-				$mdDialog.hide(data.element, true);
+				$mdDialog.hide({ commune: data.element, isNew: true });
 			}, function (error) { Toast.error(error) });
 		}
 	}
