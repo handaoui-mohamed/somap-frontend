@@ -20,6 +20,7 @@
 				<tr md-row>
 					<th md-column>Numéro</th>
 					<th md-column>Nom</th>
+					<th md-column>Code postal</th>
 					<th md-column>Wilaya</th>
 					<th md-column>Code Wilaya</th>
 					<th md-column></th>
@@ -29,6 +30,7 @@
 				<tr md-row ng-repeat="commune in comVm.communes | filter: comVm.search | limitTo: comVm.query.limit : (comVm.query.page -1) * comVm.query.limit">
 					<td md-cell md-truncate>{{commune.id}}</td>
 					<td md-cell md-truncate>{{commune.name}}</td>
+					<td md-cell md-truncate>{{commune.zip_code}}</td>
 					<td md-cell md-truncate>{{commune.wilaya.name}}</td>
 					<td md-cell md-truncate>{{commune.wilaya.id}}</td>
 					<td class="button-cell" md-cell md-truncate>
