@@ -8,13 +8,13 @@
 			</md-button>
 		</div>
 	</md-toolbar>
-	<form name="authForm" novalidate>
+	<form name="formDialog" novalidate>
 		<md-dialog-content>
 			<div layout="row">
 				<md-input-container flex>
 					<label>Nom d'utilisation</label>
 					<input type="text" name="username" ng-model="dialVm.user.username" required>
-					<div ng-messages="authForm.username.$error" ng-if="authForm.username.$touched || authForm.$submitted" role="alert">
+					<div ng-messages="formDialog.username.$error" ng-if="formDialog.username.$touched || formDialog.$submitted" role="alert">
 						<div ng-message="required">Ce champ est obligatoire.</div>
 					</div>
 				</md-input-container>
@@ -22,7 +22,7 @@
 				<md-input-container flex>
 					<label>Email</label>
 					<input type="text" name="email" ng-model="dialVm.user.email" required>
-					<div ng-messages="authForm.email.$error" ng-if="authForm.email.$touched || authForm.$submitted" role="alert">
+					<div ng-messages="formDialog.email.$error" ng-if="formDialog.email.$touched || formDialog.$submitted" role="alert">
 						<div ng-message="required">Ce champ est obligatoire.</div>
 					</div>
 				</md-input-container>
@@ -63,7 +63,7 @@
 				<md-input-container flex>
 					<label>Mot de passe</label>
 					<input type="password" name="password" ng-model="dialVm.user.password" minlength="8" required>
-					<div ng-messages="authForm.password.$error" ng-if="authForm.password.$touched || authForm.$submitted" role="alert">
+					<div ng-messages="formDialog.password.$error" ng-if="formDialog.password.$touched || formDialog.$submitted" role="alert">
 						<div ng-message="required">Ce champ est obligatoire.</div>
 						<div ng-message="minLength">Au moins 8 caractères sont requis</div>
 					</div>
@@ -72,7 +72,7 @@
 					<label>Confirmer mot de passe</label>
 					<input type="password" name="confirm_password" minlength="8" pattern="^({{dialVm.user.password}})$" ng-model="dialVm.password"
 					 required>
-					<div ng-messages="authForm.confirm_password.$error" ng-if="authForm.confirm_password.$touched || authForm.$submitted" role="alert">
+					<div ng-messages="formDialog.confirm_password.$error" ng-if="formDialog.confirm_password.$touched || formDialog.$submitted" role="alert">
 						<div ng-message="required">Ce champ est obligatoire.</div>
 						<div ng-message="minLength">Au moins 8 caractères sont requis</div>
 						<div ng-message="pattern">Les mots de passe doivent correspondre</div>
@@ -87,7 +87,7 @@
 				Fermer
 			</md-button>
 
-			<md-button aria-label="submit" type="submit" class="md-raised md-primary" ng-click="dialVm.save()" ng-disabled="dialVm.disablelogin || authForm.$invalid || authForm.$pristine">
+			<md-button aria-label="submit" type="submit" class="md-raised md-primary" ng-click="dialVm.save()" ng-disabled="dialVm.disablelogin || formDialog.$invalid || formDialog.$pristine">
 				{{dialVm.isUpdate ? 'Modifier' : 'Ajouter' }}
 			</md-button>
 		</md-dialog-actions>
