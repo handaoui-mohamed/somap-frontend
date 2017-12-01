@@ -51,6 +51,7 @@
 				.cancel('Annuler');
 			$mdDialog.show(confirm).then(function () {
 				UserService.delete({ userId: userId }, function () {
+                    index = vm.users.findIndex(function (user) { return user.id === wilayaId });
 					vm.users.splice(index, 1);
 				}, function (error) { Toast.error(error) })
 			}, function () { });
