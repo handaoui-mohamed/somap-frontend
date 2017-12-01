@@ -50,8 +50,8 @@
 
 		function filterInstitutions() {
 			vm.filteredInstitutions = vm.institutions.filter(function (institution) {
-				return vm.selected.institutionClasses.includes(institution.class_id) &&
-					vm.selected.wilayas.includes(institution.wilaya_id);
+				return vm.selected.institutionClasses.includes(institution.class.id) &&
+					vm.selected.wilayas.includes(institution.wilaya.id);
 			});
 			vm.filteredInstitutions = $filter('filter')(vm.filteredInstitutions, vm.query);
 			return vm.filteredInstitutions;

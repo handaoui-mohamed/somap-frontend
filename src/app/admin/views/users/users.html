@@ -1,7 +1,7 @@
 <div class="md-whiteframe-4dp" id="institutions">
 	<md-toolbar class="md-table-toolbar md-default">
 		<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-			<span>Wilayas</span>
+			<span>Utilisateurs</span>
 			<div id="search-container" layout="column" layout-align="center" flex>
 				<input id="searchInput" type="text" placeholder="Rechercher ..." ng-model="userVm.search" ng-model-options="{ debounce: 250 }">
 
@@ -29,7 +29,7 @@
 			</thead>
 			<tbody md-body>
 				<tr md-row ng-if="user.id !== $root.currentUser.id" ng-repeat="user in userVm.users | filter: userVm.search | limitTo: userVm.query.limit : (userVm.query.page -1) * userVm.query.limit">
-					<td md-cell md-truncate>{{$index+1}}</td>
+					<td md-cell md-truncate>{{$index}}</td>
 					<td md-cell md-truncate>{{user.username}}</td>
 					<td md-cell md-truncate>{{user.email}}</td>
 					<td md-cell md-truncate>{{user.wilaya.name}}</td>

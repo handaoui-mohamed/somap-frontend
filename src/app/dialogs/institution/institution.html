@@ -42,7 +42,7 @@
 			<div layout="row" flex>
 				<md-input-container flex>
 					<label>Type Etablissement</label>
-					<md-select ng-model="dialVm.institution.class_id" name="institutionclasse" required>
+					<md-select ng-model="dialVm.institution.class.id" name="institutionclasse" required>
 						<md-optgroup label="Type Etablissement">
 							<md-option ng-value="institutionClasse.id" ng-repeat="institutionClasse in dialVm.institutionClasses" style="text-transform: capitalize">
 								{{institutionClasse.name}}
@@ -57,7 +57,7 @@
 
 				<md-input-container flex>
 					<label>Wilayas</label>
-					<md-select ng-model="dialVm.institution.wilaya_id" name="wilaya" required>
+					<md-select ng-model="dialVm.institution.wilaya.id" name="wilaya" required>
 						<md-optgroup label="wilaya">
 							<md-option ng-value="wilaya.id" ng-repeat="wilaya in dialVm.wilayas" style="text-transform: capitalize">
 								{{wilaya.name}}
@@ -72,7 +72,7 @@
 
 				<md-input-container flex>
 					<label>Communes</label>
-					<md-select ng-model="dialVm.institution.commune_id" md-on-open="dialVm.loadCommunes()" name="commune" required>
+					<md-select ng-model="dialVm.institution.commune.id" md-on-open="dialVm.loadCommunes()" name="commune" required>
 						<md-optgroup label="commune">
 							<md-option ng-value="commune.id" ng-repeat="commune in dialVm.selectedWilaya.communes" style="text-transform: capitalize">
 								{{commune.name}}
