@@ -5,12 +5,12 @@
         .module("admin")
         .controller("InstitutionController", InstitutionController);
 
-    function InstitutionController($mdDialog, InstitutionService, Toast) {
+    function InstitutionController($mdDialog, API_ENDPOINT, $resource, InstitutionService, Toast) {
         var vm = this;
         vm.institutions = [];
         vm.query = { limit: 10, page: 1 };
 
-        vm.promise = InstitutionService.get(function (data) {
+        vm.promise = $resource(API_ENDPOINT + 'admin/institutions').get(function (data) {
             vm.institutions = data.elements;
         }, function (error) { Toast.error(error) }).$promise;
 
