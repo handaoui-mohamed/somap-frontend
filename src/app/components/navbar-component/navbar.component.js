@@ -5,7 +5,7 @@
         .module("components")
         .directive("appNavBar", appNavBar);
 
-    function appNavBar($rootScope, $mdDialog, $window, $auth, $translate) {
+    function appNavBar($rootScope, $mdDialog, $window, $auth, $translate, UserDetails) {
         return {
             restrict: 'E',
             replace: true,
@@ -16,6 +16,8 @@
             },
             link: function (scope) {
                 scope.selectedLanguage = $window.localStorage['language'] || $translate.preferredLanguage();
+
+                scope.logout = UserDetails.logout;
 
                 scope.toggleSideNav = function () {
                     $rootScope.$broadcast('toggleSideNav');
@@ -29,12 +31,7 @@
                     $rootScope.$broadcast('hideInstitutions');
                 }
 
-
-                scope.logout = function logout() {
-                    $auth.logout();
-                    $window.localStorage.removeItem('current_user');
-                    delete $rootScope.currentUser;
-                }
+                scope.logout = UserDetails.logout;
 
                 scope.openInstitutionFormDialog = function (event) {
                     $mdDialog.show({

@@ -53,6 +53,7 @@
             savePreviousState();
             $window.localStorage.removeItem('current_user');
             $auth.logout();
+            delete $rootScope.currentUser;
             $state.go('home');
         }
 
