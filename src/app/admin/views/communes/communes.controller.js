@@ -52,7 +52,7 @@
 				.cancel('Annuler');
 			$mdDialog.show(confirm).then(function () {
 				CommuneService.delete({ communeId: communeId }, function () {
-                    index = vm.communes.findIndex(function (commune) { return commune.id === communeId });
+                    var index = vm.communes.findIndex(function (commune) { return commune.id === communeId });
 					vm.communes.splice(index, 1);
 				}, function (error) { Toast.error(error) })
 			}, function () { });

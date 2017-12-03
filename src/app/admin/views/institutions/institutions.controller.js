@@ -71,7 +71,7 @@
                 .cancel('Annuler');
             $mdDialog.show(confirm).then(function () {
                 InstitutionService.delete({ institutionId: institutionId }, function () {
-                    index = vm.institutions.findIndex(function (institution) { return institution.id === institutionId });
+                    var index = vm.institutions.findIndex(function (institution) { return institution.id === institutionId });
                     vm.institutions.splice(index, 1);
                 }, function (error) { Toast.error(error) })
             }, function () { });

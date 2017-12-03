@@ -41,7 +41,7 @@
             }, function () { });
         }
 
-        function deleteInstitutionClassDialog(event, InstitutionClassId) {
+        function deleteInstitutionClassDialog(event, institutionClassId) {
             var confirm = $mdDialog.confirm()
                 .title('Suppression!')
                 .textContent('Voulez vous supprimer ce type d\'établissement?')
@@ -50,8 +50,8 @@
                 .ok('Confirmer')
                 .cancel('Annuler');
             $mdDialog.show(confirm).then(function () {
-                InstitutionClassService.delete({ InstitutionClassId: InstitutionClassId }, function () {
-                    index = vm.institutionClasses.findIndex(function (institutionClass) { return institutionClass.id === institutionClassId });
+                InstitutionClassService.delete({ InstitutionClassId: institutionClassId }, function () {
+                    var index = vm.institutionClasses.findIndex(function (institutionClass) { return institutionClass.id === institutionClassId });
                     vm.InstitutionClasses.splice(index, 1);
                 }, function (error) { Toast.error(error) })
             }, function () { });

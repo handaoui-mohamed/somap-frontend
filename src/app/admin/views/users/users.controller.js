@@ -41,7 +41,7 @@
 			}, function () { });
 		}
 
-		function deleteUserDialog(event, userId, index) {
+		function deleteUserDialog(event, userId) {
 			var confirm = $mdDialog.confirm()
 				.title('Suppression!')
 				.textContent('Voulez vous supprimer cet utilisateur ?')
@@ -51,7 +51,7 @@
 				.cancel('Annuler');
 			$mdDialog.show(confirm).then(function () {
 				UserService.delete({ userId: userId }, function () {
-                    index = vm.users.findIndex(function (user) { return user.id === wilayaId });
+                    var index = vm.users.findIndex(function (user) { return user.id === userId });
 					vm.users.splice(index, 1);
 				}, function (error) { Toast.error(error) })
 			}, function () { });

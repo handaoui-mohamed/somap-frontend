@@ -53,7 +53,7 @@
         <div layout-fill layout="row" layout-align="space-between center">
             <span flex></span>
             <!-- must be admin -->
-            <md-button ng-if="$root.currentUser" class="hide-on-mobile" ui-sref="admin.institutions">
+            <md-button admin-required class="hide-on-mobile" ui-sref="admin.institutions">
                 Administrer
             </md-button>
 

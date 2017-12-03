@@ -51,7 +51,7 @@
                 .cancel('Annuler');
             $mdDialog.show(confirm).then(function () {
                 WilayaService.delete({ wilayaId: wilayaId }, function () {
-                    index = vm.wilayas.findIndex(function (wilaya) { return wilaya.id === wilayaId });
+                    var index = vm.wilayas.findIndex(function (wilaya) { return wilaya.id === wilayaId });
                     vm.wilayas.splice(index, 1);
                 }, function (error) { Toast.error(error) })
             }, function () { });
