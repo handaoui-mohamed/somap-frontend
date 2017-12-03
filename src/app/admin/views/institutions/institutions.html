@@ -1,0 +1,59 @@
+<div class="md-whiteframe-4dp" id="institutions">
+    <md-toolbar class="md-table-toolbar md-default">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <span>Etablissements</span>
+            <div id="search-container" layout="column" layout-align="center" flex>
+                <input id="searchInput" type="text" placeholder="Rechercher ..." ng-model="instVm.search" ng-model-options="{ debounce: 250 }">
+
+                <img for="searchInput" src="/assets/icons/search.png" alt="search">
+            </div>
+            <md-button aria-label="button-label" class="md-raised md-warn" ng-click="instVm.openInstitutionDialog()">
+                <md-icon md-svg-icon="assets/icons/add.svg"></md-icon>
+                Ajouter
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-table-container>
+        <table md-table md-progress="instVm.promise">
+            <thead md-head>
+                <tr md-row>
+                    <th md-column>Denomination</th>
+                    <th md-column>Type</th>
+                    <th md-column>Wilaya</th>
+                    <th md-column>Commune</th>
+                    <th md-column>Adresse</th>
+                    <th md-column>Contacts</th>
+                    <th md-column>Valider</th>
+                    <th md-column></th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="institution in instVm.institutions | filter: instVm.search | limitTo: instVm.query.limit : (instVm.query.page -1) * instVm.query.limit">
+                    <td md-cell md-truncate>{{institution.name}}</td>
+                    <td md-cell md-truncate>{{institution.class.name}}</td>
+                    <td md-cell md-truncate>{{institution.wilaya.name}}</td>
+                    <td md-cell md-truncate>{{institution.commune.name}}</td>
+                    <td md-cell md-truncate>{{institution.address}}</td>
+                    <td md-cell md-truncate>{{institution.phone}}</td>
+                    <td class="button-cell" md-cell md-truncate>
+                        <md-button class="md-icon-button" ng-class="{'validated': institution.validated}" aria-label="cheched" ng-click="instVm.showConfirmationDialog($event, institution)">
+                            <md-icon md-svg-icon="assets/icons/checked.svg"></md-icon>
+                        </md-button>
+                    </td>
+                    <td class="button-cell" md-cell md-truncate>
+                        <md-button class="md-icon-button" aria-label="details" ng-click="instVm.openInstitutionDialog($event, institution)">
+                            <md-icon md-svg-icon="assets/icons/details.svg"></md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" aria-label="details" ng-click="instVm.deleteInstitutionDialog($event, institution.id)">
+                            <md-icon md-svg-icon="assets/icons/delete.svg"></md-icon>
+                        </md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="instVm.query.limit" md-limit-options="[5, 10, 15]" md-page="instVm.query.page" md-total="{{instVm.institutions.length}}"
+        md-page-select></md-table-pagination>
+</div>

@@ -1,0 +1,53 @@
+<div class="md-whiteframe-4dp" id="institutions">
+	<md-toolbar class="md-table-toolbar md-default">
+		<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+			<span>Utilisateurs</span>
+			<div id="search-container" layout="column" layout-align="center" flex>
+				<input id="searchInput" type="text" placeholder="Rechercher ..." ng-model="userVm.search" ng-model-options="{ debounce: 250 }">
+
+				<img for="searchInput" src="/assets/icons/search.png" alt="search">
+			</div>
+			<md-button aria-label="button-label" class="md-raised md-warn" ng-click="userVm.openUserDialog()">
+				<md-icon md-svg-icon="assets/icons/add.svg"></md-icon>
+				Ajouter
+			</md-button>
+		</div>
+	</md-toolbar>
+
+	<md-table-container>
+		<table md-table md-progress="userVm.promise">
+			<thead md-head>
+				<tr md-row>
+					<th md-column>N°</th>
+					<th md-column>Nom d'utilisateur</th>
+					<th md-column>Email</th>
+					<th md-column>Wilaya</th>
+					<th md-column>Adresse</th>
+					<th md-column>Téléphone</th>
+					<th md-column></th>
+				</tr>
+			</thead>
+			<tbody md-body>
+				<tr md-row ng-if="user.id !== $root.currentUser.id" ng-repeat="user in userVm.users | filter: userVm.search | limitTo: userVm.query.limit : (userVm.query.page -1) * userVm.query.limit">
+					<td md-cell md-truncate>{{$index}}</td>
+					<td md-cell md-truncate>{{user.username}}</td>
+					<td md-cell md-truncate>{{user.email}}</td>
+					<td md-cell md-truncate>{{user.wilaya.name}}</td>
+					<td md-cell md-truncate>{{user.address}}</td>
+					<td md-cell md-truncate>{{user.phone}}</td>
+					<td class="button-cell" md-cell md-truncate>
+						<md-button class="md-icon-button" aria-label="details" ng-click="userVm.openUserDialog($event, user)">
+							<md-icon md-svg-icon="assets/icons/details.svg"></md-icon>
+						</md-button>
+						<md-button class="md-icon-button" aria-label="details" ng-click="userVm.deleteUserDialog($event, user.id)">
+							<md-icon md-svg-icon="assets/icons/delete.svg"></md-icon>
+						</md-button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</md-table-container>
+
+	<md-table-pagination md-limit="userVm.query.limit" md-limit-options="[5, 10, 15]" md-page="userVm.query.page" md-total="{{userVm.users.length}}"
+	 md-page-select></md-table-pagination>
+</div>

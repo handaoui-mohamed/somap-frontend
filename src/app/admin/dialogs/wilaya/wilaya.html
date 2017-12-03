@@ -1,0 +1,37 @@
+<md-dialog aria-label="connect">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{dialVm.isUpdate ? 'Modifier la' : 'Ajouter une' }} wilaya</h2>
+			<span flex></span>
+			<md-button aria-label="close" class="md-icon-button" ng-click="dialVm.close()">
+				<img src="assets/icons/close.png" alt="close" style="width: 15px;padding-top: 5px;">
+			</md-button>
+		</div>
+	</md-toolbar>
+	<form name="formDialog" novalidate>
+		<md-dialog-content>
+			<div layout="row">
+				<md-input-container flex>
+					<label>Nom de la wilaya</label>
+					<input type="text" name="wilaya" ng-model="dialVm.wilaya.name">
+				</md-input-container>
+
+				<md-input-container flex>
+					<label>Code Wilaya</label>
+					<input type="number" name="code" ng-model="dialVm.wilaya.code">
+				</md-input-container>
+			</div>
+		</md-dialog-content>
+
+		<md-dialog-actions layout="row">
+			<span flex></span>
+			<md-button aria-label="cancel" class="md-raised md-default" ng-click="dialVm.close()">
+				Fermer
+			</md-button>
+
+			<md-button aria-label="submit" type="submit" class="md-raised md-primary" ng-click="dialVm.save()" ng-disabled="dialVm.disablelogin || formDialog.$invalid || formDialog.$pristine">
+				{{dialVm.isUpdate ? 'Modifier' : 'Ajouter' }}
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>

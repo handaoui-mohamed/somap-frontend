@@ -1,0 +1,45 @@
+<md-dialog aria-label="connect" style="min-width: 350px !important;">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Se connecter</h2>
+			<span flex></span>
+			<md-button aria-label="close" class="md-icon-button" ng-click="dialVm.close()">
+				<img src="assets/icons/close.png" alt="close" style="width: 15px;padding-top: 5px;">
+			</md-button>
+		</div>
+	</md-toolbar>
+	<form name="authForm" novalidate>
+		<md-dialog-content>
+			<div layout="row">
+				<md-input-container flex>
+					<label>Nom d'utilisation</label>
+					<input type="text" name="username" ng-model="dialVm.user.username" required>
+					<div ng-messages="authForm.username.$error" ng-if="authForm.username.$touched || authForm.$submitted" role="alert">
+						<div ng-message="required">Ce champ est obligatoire.</div>
+					</div>
+				</md-input-container>
+			</div>
+
+			<div layout="row">
+				<md-input-container flex>
+					<label>Mot de passe</label>
+					<input type="password" name="password" ng-model="dialVm.user.password" required>
+					<div ng-messages="authForm.password.$error" ng-if="authForm.password.$touched || authForm.$submitted" role="alert">
+						<div ng-message="required">Ce champ est obligatoire.</div>
+					</div>
+				</md-input-container>
+			</div>
+		</md-dialog-content>
+
+		<md-dialog-actions layout="row">
+			<span flex></span>
+			<md-button aria-label="cancel" class="md-raised md-default" ng-click="dialVm.close()">
+				Fermer
+			</md-button>
+
+			<md-button aria-label="submit" type="submit" class="md-raised md-primary" ng-click="dialVm.login()" ng-disabled="dialVm.disablelogin || authForm.$invalid || authForm.$pristine">
+				Se connecter
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>

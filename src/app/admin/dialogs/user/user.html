@@ -1,0 +1,95 @@
+<md-dialog aria-label="connect">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>{{dialVm.isUpdate ? 'Modifier' : 'Ajouter' }} utilisateur</h2>
+			<span flex></span>
+			<md-button aria-label="close" class="md-icon-button" ng-click="dialVm.close()">
+				<img src="assets/icons/close.png" alt="close" style="width: 15px;padding-top: 5px;">
+			</md-button>
+		</div>
+	</md-toolbar>
+	<form name="formDialog" novalidate>
+		<md-dialog-content>
+			<div layout="row">
+				<md-input-container flex>
+					<label>Nom d'utilisation</label>
+					<input type="text" name="username" ng-model="dialVm.user.username" required>
+					<div ng-messages="formDialog.username.$error" ng-if="formDialog.username.$touched || formDialog.$submitted" role="alert">
+						<div ng-message="required">Ce champ est obligatoire.</div>
+					</div>
+				</md-input-container>
+
+				<md-input-container flex>
+					<label>Email</label>
+					<input type="text" name="email" ng-model="dialVm.user.email" required>
+					<div ng-messages="formDialog.email.$error" ng-if="formDialog.email.$touched || formDialog.$submitted" role="alert">
+						<div ng-message="required">Ce champ est obligatoire.</div>
+					</div>
+				</md-input-container>
+			</div>
+
+
+			<div layout="row">
+				<md-input-container>
+					<label>Wilayas</label>
+					<md-select ng-model="dialVm.user.wilaya.id" name="wilaya" required>
+						<md-optgroup label="wilaya">
+							<md-option ng-value="wilaya.id" ng-repeat="wilaya in dialVm.wilayas" style="text-transform: capitalize">
+								{{wilaya.name}}
+							</md-option>
+						</md-optgroup>
+					</md-select>
+				</md-input-container>
+
+				<md-input-container flex>
+					<label>Adresse</label>
+					<input type="text" name="address" ng-model="dialVm.user.address">
+				</md-input-container>
+
+				<md-input-container flex>
+					<label>Téléphone</label>
+					<input type="text" name="phone" ng-model="dialVm.user.phone">
+				</md-input-container>
+			</div>
+
+
+			<div layout="row" ng-if="dialVm.isUpdate">
+				<md-button aria-label="changepass" class="md-raised md-warn pass-button" ng-click="dialVm.changePassword = !dialVm.changePassword"
+				 style="margin-left:0">
+					Modifier mot de passe
+				</md-button>
+			</div>
+			<div layout="row" ng-if="dialVm.changePassword || !dialVm.isUpdate">
+				<md-input-container flex>
+					<label>Mot de passe</label>
+					<input type="password" name="password" ng-model="dialVm.user.password" minlength="8" required>
+					<div ng-messages="formDialog.password.$error" ng-if="formDialog.password.$touched || formDialog.$submitted" role="alert">
+						<div ng-message="required">Ce champ est obligatoire.</div>
+						<div ng-message="minLength">Au moins 8 caractères sont requis</div>
+					</div>
+				</md-input-container>
+				<md-input-container flex>
+					<label>Confirmer mot de passe</label>
+					<input type="password" name="confirm_password" minlength="8" pattern="^({{dialVm.user.password}})$" ng-model="dialVm.password"
+					 required>
+					<div ng-messages="formDialog.confirm_password.$error" ng-if="formDialog.confirm_password.$touched || formDialog.$submitted" role="alert">
+						<div ng-message="required">Ce champ est obligatoire.</div>
+						<div ng-message="minLength">Au moins 8 caractères sont requis</div>
+						<div ng-message="pattern">Les mots de passe doivent correspondre</div>
+					</div>
+				</md-input-container>
+			</div>
+		</md-dialog-content>
+
+		<md-dialog-actions layout="row">
+			<span flex></span>
+			<md-button aria-label="cancel" class="md-raised md-default" ng-click="dialVm.close()">
+				Fermer
+			</md-button>
+
+			<md-button aria-label="submit" type="submit" class="md-raised md-primary" ng-click="dialVm.save()" ng-disabled="dialVm.disablelogin || formDialog.$invalid || formDialog.$pristine">
+				{{dialVm.isUpdate ? 'Modifier' : 'Ajouter' }}
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>

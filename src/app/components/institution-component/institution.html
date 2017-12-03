@@ -1,0 +1,17 @@
+<div class="institution" ng-class="{'selected': selected}" ng-click="toggle(evt, institution.id)">
+	<img ng-if="!selected" src="/assets/icons/black.png" />
+	<img ng-if="selected" ng-src="/assets/icons/blue.png" />
+
+	<div class="institution-button" id="button{{::institution.id}}">
+		<h5>{{::institution.name}}</h5>
+		<h5 id="meaning{{::institution.id}}" class="meaning">
+			{{::institutionClass}}
+		</h5>
+		<div class="details">
+			<span>
+				{{::institution.wilaya.name}}, {{::institution.commune.name}}, {{::institution.address}}
+			</span>
+			<span id="contact{{::institution.id}}">{{::institution.phone}}</span>
+		</div>
+	</div>
+</div>

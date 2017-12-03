@@ -1,0 +1,42 @@
+<div layout="column" ng-cloak id="admin">
+	<md-toolbar class="md-hue-2">
+		<div class="md-toolbar-tools">
+			<md-button class="md-icon-button" aria-label="Settings" ng-click="vm.toggleSideNav()">
+				<md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
+			</md-button>
+			<h2>SoMap Administration</h2>
+			<span flex></span>
+			<md-button aria-label="logout" ng-click="vm.logout()">
+				Se deconnecter
+			</md-button>
+		</div>
+	</md-toolbar>
+	<section layout="row" flex>
+		<md-sidenav class="admin-sidenav-left" md-component-id="left">
+
+			<md-toolbar class="md-theme-indigo">
+				<h1 class="md-toolbar-tools">Gestion</h1>
+			</md-toolbar>
+			<md-content>
+				<md-button class="menu-button" ui-sref="admin.users">
+					<md-icon md-svg-icon="assets/icons/users.svg"></md-icon> Utilisateurs
+				</md-button>
+				<md-button class="menu-button" ui-sref="admin.institution_classes">
+					<md-icon></md-icon> Types d'établissement</md-button>
+				<md-button class="menu-button" ui-sref="admin.institutions">
+					<md-icon></md-icon> établissements</md-button>
+				<md-button class="menu-button" ui-sref="admin.wilayas">
+					<md-icon></md-icon> Wilayas</md-button>
+				<md-button class="menu-button" ui-sref="admin.communes">
+					<md-icon></md-icon> communes</md-button>
+				<md-button class="menu-button" ng-click="vm.openProfileDialog($event)">
+					<md-icon md-svg-icon="assets/icons/settings.svg"></md-icon> Paramètre
+				</md-button>
+			</md-content>
+		</md-sidenav>
+
+		<md-content flex layout-padding>
+			<ui-view></ui-view>
+		</md-content>
+	</section>
+</div>

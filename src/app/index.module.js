@@ -13,7 +13,11 @@
             'ngFileUpload',
             'pascalprecht.translate',
 
-            //costum modules
-            "home" 
+            //costum modules,
+			"services",
+			"home",
+			"admin",
+			"dialogs",
+			"components"
         ]);
 })();

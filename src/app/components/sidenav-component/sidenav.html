@@ -1,0 +1,36 @@
+<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="openned">
+
+	<md-toolbar class="sidenav-toolbar">
+		<div layout="row" layout-align="space-around">
+			<span layout="column" layout-align="center">Filtres:</span>
+			<md-input-container>
+				<label>Etablissements</label>
+				<md-select ng-model="selected.institutionClasses" ng-change="filterInstitutions()" md-selected-text="(selected.institutionClasses.length)+' Etablissements'"
+				 multiple>
+					<md-optgroup label="Types d'etablissement">
+						<md-option ng-value="class.id" ng-repeat="class in institutionClasses" style="text-transform: capitalize">
+							{{class.name}}
+						</md-option>
+					</md-optgroup>
+				</md-select>
+			</md-input-container>
+			<md-input-container>
+				<label>Wilayas</label>
+				<md-select ng-model="selected.wilayas" md-selected-text="(selected.wilayas.length)+' Wilayas'" ng-change="filterInstitutions()"
+				 multiple>
+					<md-select-header>
+						<md-button ng-click="selectWilayas(true)">Tout</md-button>
+						<md-button ng-click="selectWilayas(false)">Aucun</md-button>
+					</md-select-header>
+					<md-optgroup label="wilaya">
+						<md-option ng-value="wilaya.id" ng-repeat="wilaya in wilayas" style="text-transform: capitalize">
+							{{wilaya.name}}
+						</md-option>
+					</md-optgroup>
+				</md-select>
+			</md-input-container>
+		</div>
+	</md-toolbar>
+
+	<md-content ng-transclude></md-content>
+</md-sidenav>

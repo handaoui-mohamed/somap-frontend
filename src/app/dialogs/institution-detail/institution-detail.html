@@ -1,0 +1,35 @@
+<md-dialog aria-label="Ajouter un etablissement" class="custom-dialog">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Details etablissement</h2>
+			<span flex></span>
+			<md-button aria-label="close" class="md-icon-button" ng-click="dialVm.close()">
+				<img src="assets/icons/close.png" alt="close" style="width: 15px;padding-top: 5px;">
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-dialog-content>
+		<div layout="column" layout-align="center center" layout-fill>
+			<div>
+				<h3>{{dialVm.institution.name}}</h3>
+				<div>
+					<h3>{{dialVm.institutionClasses[dialVm.institution.class.id].name}}</h3>
+					<p>{{dialVm.institution.description}}</p>
+					<h4>Contacts</h4>
+					<p>Adresse: {{dialVm.institution.wilaya.name}}, {{dialVm.institution.commune.name}}, {{dialVm.institution.address}}
+						<br>
+						<br>Téléphone: {{dialVm.institution.phone}}
+						<br>Fax: {{dialVm.institution.fax}}</p>
+				</div>
+			</div>
+			<img src="{{dialVm.institution.picture.path}}" alt="" style="width:40%">
+		</div>
+	</md-dialog-content>
+
+	<md-dialog-actions layout="row">
+		<span flex></span>
+		<md-button aria-label="submit" type="submit" class="md-raised md-default" ng-click="dialVm.close()">
+			Fermer
+		</md-button>
+	</md-dialog-actions>
+</md-dialog>

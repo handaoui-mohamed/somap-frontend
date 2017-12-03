@@ -1,0 +1,29 @@
+<div id="MapContainer">
+	<div id="map-canvas">
+		<map id="main-map" center="32, 2" zoom="6" on-click="hideInfoWindow(event)" style="height: 100%">
+			<marker ng-repeat="marker in institutions" id="{{marker.id}}" on-click="showInfoWindow(event, marker, true)" position="{{marker.position.lat+','+marker.position.lng}}"
+			 title="{{marker.name}}" icon="{{icons[marker.class.id -1]}}" visible="true"></marker>
+
+			<info-window id="myInfoWindow" max-width="500" style="text-transform: capitalize">
+				<div id="iw-container" ng-non-bindable>
+					<div class="iw-title" layout="row" layout-align="space-between center">
+						<span style="width: 300px">{{ selectedInstitution.name }}</span>
+						<md-button ng-click="openInstitutionDetailsDialog(event, selectedInstitution)">
+							Détails
+						</md-button>
+					</div>
+					<div class="iw-content">
+						<div class="iw-subTitle">{{ institutionClasses[selectedInstitution.class.id].name }}</div>
+						<p>{{ selectedInstitution.description }}</p>
+						<div class="iw-subTitle">Contacts</div>
+						<p>
+							Adresse: {{ selectedInstitution.wilaya.name }}, {{ selectedInstitution.commune.name }}, {{ selectedInstitution.address }}
+							<br>
+							<br>Téléphone: {{ selectedInstitution.phone }}
+							<br>Fax: {{ selectedInstitution.fax }}</p>
+					</div>
+				</div>
+			</info-window>
+		</map>
+	</div>
+</div>

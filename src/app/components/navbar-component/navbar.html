@@ -1,0 +1,87 @@
+<md-toolbar class="app-navbar">
+    <div class="md-toolbar-tools" layout="row">
+        <div layout="row" layout="center center">
+            <md-button id="menu-button" class="md-icon-button" aria-label="menu" ng-click="toggleSideNav()">
+                <md-icon md-svg-icon="assets/icons/menu.svg"></md-icon>
+            </md-button>
+
+            <div id="search-container" layout="column" layout-align="center">
+                <input id="searchInput" type="text" placeholder="Recharcher ..." ng-model="queryText" ng-model-options="{ debounce: 250 }">
+
+                <img for="searchInput" src="/assets/icons/search.png" alt="search">
+            </div>
+
+            <md-menu>
+                <md-button aria-label="menu" class="md-icon-button menu-button" ng-click="$mdMenu.open(event)">
+                    <img src="/assets/icons/menu.png" width="20" alt="menu">
+                </md-button>
+                <md-menu-content width="3">
+                    <md-menu-item class="show-on-mobile">
+                        <md-button ng-if="$root.currentUser" ng-click="openInstitutionFormDialog(event)">
+                            Ajouter un Etablissement
+                        </md-button>
+
+                        <md-button ng-if="!$root.currentUser" ng-click="openAuthDialog(event)">
+                            Se connecter
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider class="show-on-mobile"></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-click="showInstitutions()">
+                            Afficher recherchés
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="showAllInstitutions()">
+                            Afficher Tout
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="hideInstitutions()">
+                            Cacher Tout
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-divider ng-if="$root.currentUser"></md-menu-divider>
+                    <md-menu-item ng-if="$root.currentUser">
+                        <md-button ng-click="logout()">
+                            Se deconnecter
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+        <div layout-fill layout="row" layout-align="space-between center">
+            <span flex></span>
+            <!-- must be admin -->
+            <md-button ng-if="$root.currentUser.isAdmin" class="hide-on-mobile" ui-sref="admin.institutions">
+                Administrer
+            </md-button>
+
+            <md-button ng-if="$root.currentUser" class="hide-on-mobile" ng-click="openInstitutionFormDialog(event)">
+                Ajouter un Etablissement
+            </md-button>
+
+            <md-button ng-if="!$root.currentUser" class="hide-on-mobile" ng-click="openAuthDialog(event)">
+                Se connecter
+            </md-button>
+
+            <md-menu>
+                <md-button aria-label="menu" class="md-icon-button menu-button" ng-click="$mdMenu.open(event)">
+                    <img ng-src="assets/icons/{{selectedLanguage}}.png" alt="lang-menu">
+                </md-button>
+                <md-menu-content class="lang-menu-content">
+                    <md-menu-item>
+                        <md-button aria-label="lang-fr" ng-click="changeLanguage('fr')">
+                            <img src="assets/icons/fr.png" alt="lang-fr">
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button aria-label="lang-ar" ng-click="changeLanguage('ar')">
+                            <img src="assets/icons/ar.png" alt="lang-ar">
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </div>
+</md-toolbar>
