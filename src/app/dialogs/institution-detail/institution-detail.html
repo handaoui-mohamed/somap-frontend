@@ -11,12 +11,12 @@
 	<md-dialog-content>
 		<div layout="column" layout-align="center center" layout-fill>
 			<div>
-				<h3>{{dialVm.institution.denomination}}</h3>
+				<h3>{{dialVm.institution.name}}</h3>
 				<div>
-					<h3>{{dialVm.institutionClasses[dialVm.institution.class.id].denomination}}</h3>
+					<h3>{{dialVm.institutionClasses[dialVm.institution.class.id].name}}</h3>
 					<p>{{dialVm.institution.description}}</p>
 					<h4>Contacts</h4>
-					<p>Adresse: {{dialVm.institution.wilaya}}, {{dialVm.institution.commune.name}}, {{dialVm.institution.address}}
+					<p>Adresse: {{dialVm.institution.wilaya.name}}, {{dialVm.institution.commune.name}}, {{dialVm.institution.address}}
 						<br>
 						<br>Téléphone: {{dialVm.institution.phone}}
 						<br>Fax: {{dialVm.institution.fax}}</p>
